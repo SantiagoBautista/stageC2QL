@@ -99,12 +99,34 @@ pour faciliter les preuves
 
 * Choses à faire (dans l'immédiat)
 ** ORGanisation
-*** TODO Passer mes notes en ORG mode
-En cours
-*** TODO Créer un dépôt git
+*** DONE Passer mes notes en ORG mode
+Fait :)
+*** DONE Créer un dépôt git
+[[https://github.com/SantiagoBautista/stageC2QL.git][Dépôt git du stage]]
+
 
 ** C2QL
-*** TODO S'intéresser à la complétude du système de lois algébriques
+*** S'intéresser à la complétude du système de lois algébriques
+**** TODO Faire la liste des lois algébriques
+Je vais commencer par réunir dans un seul endroit toutes les lois algébriques
+(avec, tant qu'à faire, leur conditions d'application)
+**** TODO Demander à Ronan le code tex
+Si je peux avoir le fichier .tex de la thèse ou de l'article,
+cela m'éviterait de devoir taper de 0 toutes les lois...
+**** DONE Définir une notion de complétude du système de lois
+Vu que l'objectif de C2QL est d'aider le développeur
+à composer les mécanismes de sécurité de sorte à optenir un système
+sûr, efficace et nuagique, pour l'instant il me semble que la notion de complétude
+qu'il serait le plus intéressant de vérifier est:
+
+A partir d'une requête C2QL, peut-on, en applicant les transformations
+données par les lois algébriques, obtenir toutes les requếtes sémantiquement
+équivalentes?
+
+Si cette propriété de complétude était vérifiée, on serait sûrs de pouvoir
+optenir la requête la mieux optimisée, quel que soit le critère d'optimisation.
+
+**** TODO Vérifier si le système de lois vérifie le critère de complétude
 
 
 * Prise de notes
