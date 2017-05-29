@@ -1,0 +1,252 @@
+* Choses à faire (Grande lignes)
+** Définir une notion de complétude pour les lois algébrique
+*** Première idée: 
+On peut dire qu'un système de transformations est complet si,
+à partir d'une requête C2QL, il permet d'exprimer toutes les requêtes
+lui étant sémantiquement équivalantes (i.e. décrivant la même fonction
+sur l'ensemble des relations possibles)
+
+Intuition: J'ai l'impression que pour que ce critère de
+complétude puisse être sattisfait, il faudrait créer des nouvelles
+lois identité, pour pouvoir faire apparaître au besoin toutes les différentes
+fonctions dont peut être composée une requête C2QL
+
+
+** Établir la correction des lois algébriques
+*** Correction sémantique
+Pour la correction sémantique d'une loi algébrique on peut prendre
+pour définition celle qui à priori est la définition d'Ullman (82) :
+Deux fonctions sont sémantiquement équivalentes si elle coïncident
+sur l'ensemble de toutes les relations, indépendament du schéma relationnel
+
+Pour démontrer la correction sémantique, il me semble que la seule chose
+qui peut s'avérer gênante est la présence de comportements *implicites* dans
+les lois fournies. En effet, la loi (20) par exemple [page 66 de la thèse]
+nécessite d'une synchronisation/séquentialisaiton des calculs effectués
+sur chacun des deux fragments pour être juste.
+Cette synchronisation est un effet de bord, qui n'apparâit pas 
+dans l'écriture de la requête comme composition de fonctions
+(parce que de fait, les fonctions du langage C2QL ne sont pas des fonctions
+pures).
+
+Il a été mentionné qu'une extension possible serait de rendre *explicite* 
+dans C2QL la gestion des deux bases de données / clouds distinct(e)s...
+Si cela est fait, l'information transmise d'une DB à l'autre serait
+de ce fait rendue explicite (et donc en particulier la synchronisation
+nécessaire pour la tranformation (20) serait explicite) et cela
+résoudrait la gêne que j'ai exprimé précédemment.
+
+*** Correction de l'équivalence de confidentialité
+Le mantient de la confidencialité, lui aussi, repose grandement
+sur des mécanismes potant sur
+- le rapatriment des données côté client
+- la nature des informations transmises à tel ou tel fragment de la base de données
+Prouver que les transformations préservent la confidentialité pourrait donc
+également être facilité par l'introduction explicite de la genstion
+des diférents clouds et des comunications entre les différents agents.
+Dans le travail déjà effectué, cette introduction a surement lieu lors de la traduction
+en pi-calcul.
+
+
+** Extensions possibles
+
+*** Plus de deux fragements
+Actuellement les fonctions de fragmentation/défragmentation
+sont faites pour fragmenter/défragmenter en/depuis 2 segments.
+Une idée pourrait être de généraliser ces fonctions pour
+travailler avec un nombre quelconque de segments.
+
+
+*** Plus d'un utilisateur
+Pour le moment, le langage a été construit en considérant qu'il y a
+un seul utilisateur du service à la fois, "Alice".
+Faudrait-il étendre le langage pour gérer plusieurs utilisateurs qui
+utilisent la ressource au même temps?
+
+
+*** Autres propriétés de sécurité que Privacité
+En ce moment, le langage permet au développeur
+de réfléchir sur comment il va composer les
+mécanismes de sécurité pour préserver la privacité/confidentialité
+des données.
+On pourrait introduire également dans le langage des mécanismes
+permettant de préserver d'autres propriétés de sécurité,
+telles que *l'intégrité*, par exemple.
+
+
+*** Faire apparaître dans le langage la répartition entre plusieurs clouds
+En ce moment, la gestion des différents clouds (nécessaire pour la
+gestion correcte de la fragmentation) est faite implicitement,
+et manuellement.
+Des idées pourraient être soit de l'automatiser (en fonction des contraintes
+de privacité, suggérer une répartition qui marche) soit de la rendre
+explicite dans le langage.
+
+** Autres
+
+*** Compilation vers proVérif
+En ce moment, la transformation vers le pi-calcul
+est codée, mais pas celle vers proVérif.
+Coder la transformation vers proVérif
+permettrait de vérifier automatiquement la correction
+des programmes codés en C2QL
+
+
+*** Modifications visant à simplifier les preuves
+Si nécessaire, il est possible de modifier le langage
+pour faciliter les preuves
+
+
+* Choses à faire (dans l'immédiat)
+** ORGanisation
+*** TODO Passer mes notes en ORG mode
+En cours
+*** TODO Créer un dépôt git
+
+** C2QL
+*** TODO S'intéresser à la complétude du système de lois algébriques
+
+
+* Prise de notes
+** Doutes résolus
+*** La transformation de requête de base en requête optimisée est-elle automatisée?
+Non.
+**** Discours actuel
+Les transformations à appliquer sont laissées au choix du développeur en
+fonction de ce qu'il veut optimiser spécifiquement pour son programme
+**** Travail futur
+Le développeur pourrait rentrer une liste de priorités de critères à optimiser
+pour son programme, et en se basant sur cette liste, le choix
+des lois à appliquer pourrait être automatisé, pour aboutir automatiquement
+à la requête C2QL optimale.
+
+
+*** Que vérifie le typage Idris?
+Actuellement, le système de typage Idris sert à vérifier
+que la composition faite aura un sens au moment de l'exécution
+(i.e. elle sert à éviter certaines erreurs de programmation)
+ 
+
+*** Quelles compilations manquent?
+**** La transformation en application concrète exécutable
+S'il avait eu le temps, Ronan l'aurait faite en JavaScript pour
+le côté client et en Scala pour le côté serveur.
+
+
+**** La compilation vers proVérif
+La compilation vers le pi-calcul a été faite
+et il a été expliqué comment compiler vers proVérif, mais
+le compilateur vers proVérif n'a pas été codé.
+
+
+*** L'implémentation actuelle permet-elle de mettre en place des mécanismes de sécurité?
+Elle permet de les décrire (c'est le principal but de C2QL)
+mais puisque la compilation vers une application concrète n'existe pas
+encore, elle ne les mets pas vraiment en place.
+
+
+*** L'implém actuelle donne-elle de l'assurance?
+C'est le but de la transformation vers proVérif, qui n'est pas automatisée
+
+
+*** Est-il possible d'accéder au livre d'Ullman?
+Oui, Ronan me l'a passé.
+
+
+*** ACHTUNG dans les lois, parfois les conditions d'application ne sont pas écrites
+Comme c'est le cas dans la loi de permutation de selection et projection,
+empruntée à Ullman. (équation 5 page 30)
+
+
+*** La fragmentation et le rapatriment côté client appelés "cryptographie"?
+Oui, car ce sont des techniques rendentant inintelligible...
+**** pour la fragmentation,
+l'association de données
+**** pour le rapatriment côté client,
+les données... vis à vis d'un attaquant qui intercepterait les comunications
+sur les canaux de comunication
+
+
+*** Est-il vraiment nécessaire de prouver correction d'un point de vue privacité alors que cc dès que nécessaire?
+Justement, lorsque pour une loi algébrique il est question de
+prouver la correction d'un point de vue privacité, il s'agit de savoir
+si la gestion des fragments / du côté client envisagée
+préserve bien les contraintes... MAIS CETTE GESTION EST IMPLICITE
+
+
+*** L'implémentation en Scala a été abandonnée
+Car elle utilisait largement les types dépendants, qui ne sont
+pas une notions native au langage ni aisée d'utilisation
+en Scala (en effet, pour faire apparaître des types dépendants, il
+faudrait forcer le compilateur à calculer des types à la volée en utilisant
+les implicits).
+Idris plus adapté car manipule nativement les types dépendants
+
+
+** Doutes / choses à voir
+*** L'implémen actuelle permet-elle de définir une politique de sécurité?
+Pas en C2QL, mais à priori oui, en Idris et proVérif
+**** TODO regarder comment peuvent être définies les politiques de sécurité en Idris et proVérif
+
+*** Regarder les expérimentations de Ronan 
+github.com/rcherrueau/C2QL/tree/master/experimentations
+
+
+*** Dans cryptDB
+Est-ce que la partie "proxy" ne pourrait pas s'exécuter côté client
+pour avoir un nuage confidentiel?
+
+
+*** Le rapatriment des données côté client n'étant pas explicite
+les différent mécanismes de préservation de la confidentialité n'ont
+pas tous le même statut... (cc n'a pas le même statut que frag ou crypt)
+Initialement, ceci est dû au fait qu'on peut le déduire
+de la position des constructeurs et des destructeurs
+
+
+*** Est-ce que Ullman définit une sémantique précise?
+Regarder le livre d'Ullman
+
+
+*** On fait apparaître les constructeurs de confidentialité à chaque requête...
+pourtant ils doivent être les mêmes pour tout le programme,
+pour toutes les requêtes.
+
+
+*** Avoir plusieurs encodages/chiffrements et séparer les filtres
+comme en CryptDB, pourrait-ce être une extension?
+
+
+** notes personelles
+*** zero-knowledge proof
+Permet de certifier l'intégrité d'un calcul sans transmission de données
+
+*** notions de Saas, Paas et Iaas
+Dans les exemple avec deux fragments, nécessité de louer deux Iaas et un Paas
+*** ? filtres de Bloom ?
+*** pi-calcul
+En bref: lambda-calcul concurrent
+*** chiffrement homomorphe
+Le chiffrement de Gentry est un 
+chiffrement homomorphe total, qui permet tout type d'opérations,
+est couteux et demande à ce que le chiffrement soit raffraichit assez
+fréquemment. Raffraîchissement long.
+Mais il existe de nombreux chiffrements partiellement homomorphes:
+**** permettant l'addition
+**** permettant la multiplication
+Comme ElGamal
+**** permettant le test d'égalité
+Les chiffrements déterministes en sont un cas particulier
+(exemple: AES)
+**** préservant l'ordre
+*** Lors de la fragmentation verticale
+Si dans un fragment une donnée est chiffrée,
+la clé peut être stockée dans l'autre fragment.
+*** Def loi algébriques
+Transformation correcte d'une querry en une autre...
+Ici, permutation correcte de deux fonctions
+*** Regarder du côté de diVimercati pour la fragmentation verticale
+*** Dans le pi-calcul, l'opérateur new
+est une restriction car il limite la visibilité des cannaux.
+En imposant à un canal d'être frais, nouveau, il 
+restreint l'ensemble des processus pouvant s'en servir
