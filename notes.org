@@ -111,7 +111,7 @@ Fait :)
 Je vais commencer par réunir dans un seul endroit toutes les lois algébriques
 (avec, tant qu'à faire, leur conditions d'application)
 
-**** TODO Demander à Ronan le code tex
+**** DONE Demander à Ronan le code tex
 Si je peux avoir le fichier .tex de la thèse ou de l'article,
 cela m'éviterait de devoir taper de 0 toutes les lois...
 **** DONE Définir une notion de complétude du système de lois
