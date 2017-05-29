@@ -127,6 +127,9 @@ Si cette propriété de complétude était vérifiée, on serait sûrs de pouvoi
 optenir la requête la mieux optimisée, quel que soit le critère d'optimisation.
 
 **** TODO Vérifier si le système de lois vérifie le critère de complétude
+INTUITION: Pour l'instant ça m'étonnerait que le système soit complet
+=> Pour l'instant on peut chercher des contre-exemples à la complétude,
+et ajouter des lois
 
 
 * Prise de notes
