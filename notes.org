@@ -107,7 +107,7 @@ Fait :)
 
 ** C2QL
 *** S'intéresser à la complétude du système de lois algébriques
-**** TODO Faire la liste des lois algébriques
+**** DONE Faire la liste des lois algébriques
 Je vais commencer par réunir dans un seul endroit toutes les lois algébriques
 (avec, tant qu'à faire, leur conditions d'application)
 
