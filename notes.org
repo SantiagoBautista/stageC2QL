@@ -1,4 +1,4 @@
-* Choses à faire (Grande lignes)
+* Grandes lignes
 ** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
 On peut dire qu'un système de transformations est complet si,
@@ -97,24 +97,52 @@ Si nécessaire, il est possible de modifier le langage
 pour faciliter les preuves
 
 
+
 * Choses à faire (dans l'immédiat)
-** ORGanisation
-*** DONE Passer mes notes en ORG mode
-Fait :)
-*** DONE Créer un dépôt git
-[[https://github.com/SantiagoBautista/stageC2QL.git][Dépôt git du stage]]
-
-
 ** C2QL
 *** S'intéresser à la complétude du système de lois algébriques
-**** DONE Faire la liste des lois algébriques
+**** TODO Faire la liste des lois algébriques
 Je vais commencer par réunir dans un seul endroit toutes les lois algébriques
 (avec, tant qu'à faire, leur conditions d'application)
 
-**** DONE Demander à Ronan le code tex
+***** DONE Demander à Ronan le code tex
 Si je peux avoir le fichier .tex de la thèse ou de l'article,
-cela m'éviterait de devoir taper de 0 toutes les lois...
-**** DONE Définir une notion de complétude du système de lois
+cela m'éviterait de devoir taper de 0 toutes les loi
+
+***** DONE Regrouper les lois apparaissant dans la thèse 
+Emplacements de référence des différentes lois dans la thèse: pages 30 et 63
+
+***** DONE Regarder si elles contiennent les lois apparaissant dans l'article
+Non.
++ Dans l'article les lois sont formulées en thermes de group et non de count
++ les lois de sélection sont plus rigoureuses (domaines <- selec sur plus
+d'un attribut à la fois)
++ Il y a à la fois de la fragmentation verticale 
+et de la fragmentation horizontale
+***** TODO Choisir quel ensemble de lois garder initialement
+****** DONE Se familiariser avec les macros LaTeX / en créer des propres
+******* projections
+\pi_{\delta} suffit
+******* sélections
+\sigma_p suffit
+******* frag, defrag, crypt et decrypt
+Je vais déclarer des opérateurs amsmath
+******* group/fold
+Je trouve plus pertinent de travailler avec les fonctions
+group et fold, plus générales, que avec la fonction count, qui est
+un cas particulier.
+
+\mathrm{group}_{delta}
+\mathrm{fold}_{f, z}
+****** TODO Faut-il garder la fragmentation horizontale?
+Ou seulement la fragmentation verticale?
+****** Garder les lois de projection de la thèse, pas de l'article
+Les définitions avec les intersections sont plus claires et probablement
+plus justes que les distinctions a/aBarre
+
+
+**** Définir une notion de complétude du système de lois
+***** DONE Première idée de critère de complétude
 Vu que l'objectif de C2QL est d'aider le développeur
 à composer les mécanismes de sécurité de sorte à optenir un système
 sûr, efficace et nuagique, pour l'instant il me semble que la notion de complétude
@@ -127,10 +155,35 @@ données par les lois algébriques, obtenir toutes les requếtes sémantiquemen
 Si cette propriété de complétude était vérifiée, on serait sûrs de pouvoir
 optenir la requête la mieux optimisée, quel que soit le critère d'optimisation.
 
+
+***** TODO Lire Ullman pour réfléchir à la pertinance du critère choisi
+Peut-être Ullman définit-il un autre critère de complétude pour
+l'ensemble de ses lois? Peut-être définit-il ce critère-ci et le
+prouve pour son ensemble de lois?
+
+
 **** TODO Vérifier si le système de lois vérifie le critère de complétude
 INTUITION: Pour l'instant ça m'étonnerait que le système soit complet
 => Pour l'instant on peut chercher des contre-exemples à la complétude,
 et ajouter des lois
+
+
+*** TODO Remplacer count par group/fold
+dans l'implémentation actuelle de C2QL si ce n'est déjà fait
+
+
+** ORGanisation
+*** DONE Passer mes notes en ORG mode
+Fait :)
+*** DONE Créer un dépôt git
+[[https://github.com/SantiagoBautista/stageC2QL.git][Dépôt git du stage]]
+
+
+
+* Erreurs trouvées
+** Composition de plusieurs projections
+(p. 30 de la thèse) Projeter sur plusieurs sous-ensembles
+en cascade revient à projeter sur l'intersection, et non sur l'union
 
 
 * Prise de notes
@@ -214,7 +267,8 @@ Idris plus adapté car manipule nativement les types dépendants
 Pas en C2QL, mais à priori oui, en Idris et proVérif
 **** TODO regarder comment peuvent être définies les politiques de sécurité en Idris et proVérif
 
-*** Regarder les expérimentations de Ronan 
+
+*** TODO Regarder les expérimentations de Ronan 
 github.com/rcherrueau/C2QL/tree/master/experimentations
 
 
@@ -223,6 +277,17 @@ Est-ce que la partie "proxy" ne pourrait pas s'exécuter côté client
 pour avoir un nuage confidentiel?
 
 
+
+
+*** Est-ce que Ullman définit une sémantique précise?
+Regarder le livre d'Ullman
+
+
+*** Avoir plusieurs encodages/chiffrements et séparer les filtres
+comme en CryptDB, pourrait-ce être une extension?
+
+
+** Remarques
 *** Le rapatriment des données côté client n'étant pas explicite
 les différent mécanismes de préservation de la confidentialité n'ont
 pas tous le même statut... (cc n'a pas le même statut que frag ou crypt)
@@ -230,17 +295,9 @@ Initialement, ceci est dû au fait qu'on peut le déduire
 de la position des constructeurs et des destructeurs
 
 
-*** Est-ce que Ullman définit une sémantique précise?
-Regarder le livre d'Ullman
-
-
 *** On fait apparaître les constructeurs de confidentialité à chaque requête...
 pourtant ils doivent être les mêmes pour tout le programme,
 pour toutes les requêtes.
-
-
-*** Avoir plusieurs encodages/chiffrements et séparer les filtres
-comme en CryptDB, pourrait-ce être une extension?
 
 
 ** notes personelles
@@ -276,3 +333,4 @@ Ici, permutation correcte de deux fonctions
 est une restriction car il limite la visibilité des cannaux.
 En imposant à un canal d'être frais, nouveau, il 
 restreint l'ensemble des processus pouvant s'en servir
+

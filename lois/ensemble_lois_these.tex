@@ -64,6 +64,17 @@
 \end{align}
 
 \begin{align}
+%% Encryption
+id &\equiv \decrypt{c}{\alpha} \circ \crypt{c}{\alpha} \qquad
+\text{si $\alpha \in \Delta$}
+\label{eq:law-id-enc}\\
+%% Vertical
+id &\equiv \defrag \circ \frag{\delta} \qquad
+\text{si $\delta \subseteq \Delta$}
+\label{eq:law-id-frag}
+\end{align}
+
+\begin{align}
 	%% Encryption
 	\ccPrj{\delta} \circ \decrypt{c}{\alpha}
 	&\equiv \decrypt{c}{\alpha} \circ \ccPrj{\delta} \qquad
