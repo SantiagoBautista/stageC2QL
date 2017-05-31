@@ -1,15 +1,19 @@
 * Grandes lignes
 ** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
-On peut dire qu'un système de transformations est complet si,
-à partir d'une requête C2QL, il permet d'exprimer toutes les requêtes
-lui étant sémantiquement équivalantes (i.e. décrivant la même fonction
-sur l'ensemble des relations possibles)
+[[*Première idée de critère de complétude][Complétude formelle: exprimer toutes les requêtes équivalentes]]
 
 Intuition: J'ai l'impression que pour que ce critère de
 complétude puisse être sattisfait, il faudrait créer des nouvelles
 lois identité, pour pouvoir faire apparaître au besoin toutes les différentes
 fonctions dont peut être composée une requête C2QL
+
+
+*** Deuxième approche:
+Moins formellement, on peut garder la même approche que Ronan et vérifier si
++ Les catégories de lois qu'il propose comprennent toutes les transformations
+qu'on peut vouloir faire
++ Chaque catégorie est complète
 
 
 ** Établir la correction des lois algébriques
@@ -82,6 +86,15 @@ Des idées pourraient être soit de l'automatiser (en fonction des contraintes
 de privacité, suggérer une répartition qui marche) soit de la rendre
 explicite dans le langage.
 
+
+*** Si ce n'ai déjà fait, généraliser avec group/fold au lieu de count
+Dans la thèse, toutes les lois sont exprimées avec count
+Un langage disposant des fonction group et fold étant plus expressif
+qu'un langage ne disposant que de count,
+je trouverai ça intéressant de, si ce n'est déjà fait,
+intégrer complétement les fonctions group et fold au langage.
+
+
 ** Autres
 
 *** Compilation vers proVérif
@@ -150,24 +163,28 @@ Vu que l'objectif de C2QL est d'aider le développeur
 sûr, efficace et nuagique, pour l'instant il me semble que la notion de complétude
 qu'il serait le plus intéressant de vérifier est:
 
-A partir d'une requête C2QL, peut-on, en applicant les transformations
-données par les lois algébriques, obtenir toutes les requếtes sémantiquement
-équivalentes?
+À partir d'une requête C2QL, l'ensemble des lois
+permet-il d'exprimer toutes les requêtes
+étant sémantiquement équivalantes à la requête initiale?
 
 Si cette propriété de complétude était vérifiée, on serait sûrs de pouvoir
 optenir la requête la mieux optimisée, quel que soit le critère d'optimisation.
 
+***** DONE Deuxième approche du critère de complétude
+[[*Deuxième approche:][Complétude informelle: ensmb des catégories, et catégories elles-mêmes]]
 
-***** TODO Lire Ullman pour réfléchir à la pertinance du critère choisi
+
+***** TODO Lire Ullman pour réfléchir à la pertinance des critères
 Peut-être Ullman définit-il un autre critère de complétude pour
 l'ensemble de ses lois? Peut-être définit-il ce critère-ci et le
 prouve pour son ensemble de lois?
 
 
 **** TODO Vérifier si le système de lois vérifie le critère de complétude
-INTUITION: Pour l'instant ça m'étonnerait que le système soit complet
+INTUITION: Pour l'instant ça m'étonnerait que le système soit complet au premier sens
 => Pour l'instant on peut chercher des contre-exemples à la complétude,
 et ajouter des lois
+Pour le deuxième sens, je voudrais ajouter des lois pour le fold
 
 
 *** Remplacer count par group/fold...
@@ -179,7 +196,10 @@ et ajouter des lois
 
 ** ORGanisation
 *** DONE Passer mes notes en ORG mode
-Fait :)
+Fait :-)
+[[*Prise de notes][Prise de notes]]
+
+
 *** DONE Créer un dépôt git
 [[https://github.com/SantiagoBautista/stageC2QL.git][Dépôt git du stage]]
 
@@ -190,11 +210,75 @@ Fait :)
 (p. 30 de la thèse) Projeter sur plusieurs sous-ensembles
 en cascade revient à projeter sur l'intersection, et non sur l'union
 
+Pour la sémantique qu'il donne à \pi_{a_1, ..., a_n},
+voir exemple page 29 ou définition page 28
+
+*** Contre-exemple 
+Si on considère la relation r suivante
+| a_1 | a_2 |
+|-----+-----|
+| a   |   1 |
+| b   |   2 |
+son image par $\pi_{a_2}$ est
+| a_2 |
+|-----|
+|   1 |
+|   2 |
+dont l'image par $\pi_{a_1}$ est la table vide
+
+Ainsi, l'image de r par
+$\pi_{a_1} \circ \pi_{a_2}$ est la table vide.
+
+Par contre, l'immage de r par
+$\pi_{a_1, a_2}$
+est la table r elle-même,
+qui est différente de la table vide.
+
+Ainsi donc, la loi (3) à la page 30 de la thèse est fausse.
+
+
+
+
 
 ** Chiffrement et sélection
 Dans l'article, pour les lois (14) et (15),
 la discussion ne devrait pas porter sur dom(p)\in\P(a)
 mais sur dom(p) \cap a = \emptyset
+
+*** Contre-exemple
+On prend pour prédicat p 
+p: a_1 + a_2 < 10
+
+pour fonction de chiffrement s
+s: n |-> n+50
+
+et pour ensemble des attributs chiffrés a
+a: {a_1}
+
+Le domaine de p est alors {a_1, a_2}
+qui n'est pas une partie de a.
+On est donc dans les hypothèses mentionnées
+dans l'article pour la loi (14)
+
+On s'intéresse à la relation r
+| a_1 | a_2 |
+|-----+-----|
+|  51 |   2 |
+
+L'image de r par
+$\sel_p \circ \decrypt{s}{a_1}$
+est la relation
+| a_1 | a_2 |
+|-----+-----|
+|   1 |   2 |
+
+L'image de r par
+$\decrypt{s}{a_1} \circ \sel_p$
+est la relation vide.
+
+Ainsi donc, la relation (14)
+dans l'article est fausse.
+
 
 
 * Prise de notes
