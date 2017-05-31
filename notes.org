@@ -168,8 +168,11 @@ INTUITION: Pour l'instant ça m'étonnerait que le système soit complet
 et ajouter des lois
 
 
-*** TODO Remplacer count par group/fold
-dans l'implémentation actuelle de C2QL si ce n'est déjà fait
+*** Remplacer count par group/fold...
+**** ... dans les lois
+***** DONE Prendre les lois de group de l'article
+***** TODO ajouter des lois pour le fold
+**** TODO dans l'implémentation actuelle de C2QL si ce n'est déjà fait
 
 
 ** ORGanisation
@@ -184,6 +187,12 @@ Fait :)
 ** Composition de plusieurs projections
 (p. 30 de la thèse) Projeter sur plusieurs sous-ensembles
 en cascade revient à projeter sur l'intersection, et non sur l'union
+
+
+** Chiffrement et sélection
+Dans l'article, pour les lois (14) et (15),
+la discussion ne devrait pas porter sur dom(p)\in\P(a)
+mais sur dom(p) \cap a = \emptyset
 
 
 * Prise de notes
