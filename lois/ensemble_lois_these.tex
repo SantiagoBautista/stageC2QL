@@ -1,0 +1,201 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xparse}
+
+\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
+\newcommand\ccPrj[1]{\pi_{\mathit{#1}}}
+\newcommand\typeT[1]{\text{\ttfamily #1}}
+\newcommand\ccSlt[1]{\sigma_{\mathit{#1}}}
+
+\begin{document}
+
+\DeclareDocumentCommand{\defrag}{g}{%
+	\IfNoValueTF {#1}
+	{ \mathit{defrag} }
+	{ \mathit{defrag}_{\mathit{#1}} }}
+\DeclareDocumentCommand{\decrypt}{gg}{%
+	\IfNoValueTF {#1}
+	{ \mathit{decrypt} }
+	{ \mathit{decrypt}_{\mathit{#2},\typeT{#1}} }}
+\DeclareDocumentCommand{\ccCount}{g}{%
+	\IfNoValueTF {#1}
+	{ \mathit{count} }
+	{ \mathit{count}_{\mathit{#1}} }}
+\DeclareDocumentCommand{\frag}{g}{%
+	\IfNoValueTF {#1}
+	{ \mathit{frag} }
+	{ \mathit{frag}_{\mathit{#1}} }}
+\DeclareDocumentCommand{\crypt}{gg}{%
+	\IfNoValueTF {#1}
+	{ \mathit{crypt} }
+	{ \mathit{crypt}_{\mathit{#2},\typeT{#1}} }}
+
+\begin{align}
+	\pi_{a_1} \circ \pi_{a_2} \circ \cdots \circ \pi_n
+	\equiv \pi_{a_1, a_2, \dots, a_n}
+	\label{eq:sgbd-laws-start}\\
+	\sigma_{pa_1} \circ \sigma_{pa_2} \circ \cdots \circ \sigma_{pa_n}
+	\equiv \sigma_{pa_1 \land pa_2 \land \dots \land pa_n}
+	\label{eq:law-sgbd-scas}
+\end{align}
+
+\begin{align}
+	\pi_{a_1, \dots, a_n} \circ \sigma_{pa_i}
+	\equiv \sigma_{pa_i} \circ \pi_{a_1, \dots, a_n}
+	\label{eq:law-sgbd-pscom}
+\end{align}
+
+\begin{align}
+	\pi_{\delta \uconcat \delta'} \circ \Join
+	&\equiv \Join_{\alpha} (\pi_{\delta}, \pi_{\delta'})
+	&\text{avec $\alpha \in \delta$ et $\delta'$,
+		$\delta \subseteq \Delta$, $\delta' \subseteq \Delta'$}
+	\label{eq:sgbd-commut-proj}\\
+	\sigma_{p\alpha \land q\beta} \circ \Join
+	&\equiv \Join (\sigma_{p\alpha}, \sigma_{q\beta})
+	&\text{avec $\alpha \in \Delta$, $\beta \in \Delta'$}
+	\label{eq:sgbd-commut-sel}
+\end{align}
+
+\begin{align}
+%% Encryption
+id &\equiv \decrypt{c}{\alpha} \circ \crypt{c}{\alpha} \qquad
+\text{si $\alpha \in \Delta$}
+\label{eq:law-id-enc}\\
+%% Vertical
+id &\equiv \defrag \circ \frag{\delta} \qquad
+\text{si $\delta \subseteq \Delta$}
+\label{eq:law-id-frag}
+\end{align}
+
+\begin{align}
+	%% Encryption
+	\ccPrj{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv \decrypt{c}{\alpha} \circ \ccPrj{\delta} \qquad
+	\text{si $\alpha \in \delta$}
+	\label{eq:law-pi-enc}\\
+	\ccPrj{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv \ccPrj{\delta}\ \hphantom{\decrypt{c}{\alpha} \circ\ } \qquad
+	\text{si $\alpha \not\in \delta$}
+	\label{eq:law-pi-enc2}\\
+	%% Vertical
+	\ccPrj{\delta} \circ \defrag{\delta'}
+	&\equiv \defrag{\delta'}\ (
+	\ccPrj{\delta \cap \delta'},
+	\ccPrj{\delta \setminus \delta'}
+	)\label{eq:law-pi-frag}
+\end{align}
+
+\begin{align}
+	%% Encryption
+	\ccSlt{p_{\delta}} \circ \decrypt{c}{\alpha} &\equiv
+	\decrypt{c}{\alpha} \circ \ccSlt{p_{\delta}} \quad\qquad
+	\text{ si $\alpha \not\in \delta$}
+	\label{eq:law-sel-enc1}\\
+	%
+	\ccSlt{p_{\delta}} \circ \decrypt{c}{\alpha} &\equiv
+	\decrypt{c}{\alpha} \circ \ccSlt{\typeT{c} \Rightarrow p_{\delta}}\qquad
+	\text{si $\alpha \in \delta$}
+	\label{eq:law-sel-enc2}\\
+	%% Vertical
+	\ccSlt{g_{\delta \cap \delta'} \land
+		d_{\delta \setminus \delta'} \land
+		p_{\delta}} \circ \defrag{\delta'} &\equiv
+	\ccSlt{p_\delta} \circ \defrag{\delta'}\ (
+	\ccSlt{g_{\delta \cap \delta'}},
+	\ccSlt{d_{\delta \setminus \delta'}}
+	)\label{eq:law-sel-frag1}
+\end{align}
+
+\begin{align}
+	\ccSlt{g_{\delta}
+		\land vrai
+		\land vrai} \circ \defrag{\delta'}
+	&\equiv \defrag{\delta'}\ (\ccSlt{g_{\delta}}, id)
+	&\text{avec $\delta \subseteq \delta'$}
+	\label{eq:law-sel-frag2}\\
+	%
+	\ccSlt{vrai
+		\land d_{\delta}
+		\land vrai} \circ \defrag{\delta'}
+	&\equiv \defrag{\delta'}\ (id, \ccSlt{d_{\delta}})
+	&\text{avec $\delta \cap \delta' = \emptyset$}
+	\label{eq:law-sel-frag3}
+\end{align}
+
+
+\begin{align}
+	%% Encryption
+	\ccCount{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv \decrypt{c}{\alpha} \circ \ccCount{\typeT{c} \Rightarrow \delta}
+	&\text{si $\alpha \in \delta$}
+	\label{eq:law-cnt-enc1}\\
+	\ccCount{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv \ccCount{\delta}
+	&\text{si $\alpha \not\in \delta$}
+	\label{eq:law-cnt-enc2}\\
+	%% Vertical
+	%% Note: `\kern' removes spaces
+	%% http://tex.stackexchange.com/a/74354
+	\ccCount{\delta} \circ \defrag{\delta'}\ (id, \ccPrj{\emptyset})
+	&\equiv \nonumber\\
+	&\kern -2em\defrag{\delta'}\ (\ccCount{\delta}, \ccPrj{\emptyset})
+	&\kern -5em\text{si $\delta \subseteq \delta'$}
+	\label{eq:law-cnt-frag1}\\
+	\ccCount{\delta} \circ \defrag{\delta'}\ (\ccPrj{\emptyset}, id)
+	&\equiv\nonumber\\
+	&\kern -2em\defrag{\delta'}\ (\ccPrj{\emptyset}, \ccCount{\delta})
+	&\kern -5em\text{si $\delta \cap \delta' = \emptyset$}
+	\label{eq:law-cnt-frag2}
+\end{align}
+
+\begin{align}
+	f \circ id \equiv id &\circ f \equiv f
+	\label{eq:law-cmp-id}\\
+	%
+	%% Note: \span lets you extends your current celle to the next one
+	\defrag{\delta, \delta'} (id, id, id) \circ \frag{\delta, \delta'}
+	&\equiv\nonumber\span\span\\
+	\defrag{\delta}\ (id, \defrag{\delta'}\ (id, &id)
+	\circ \frag{\delta'}) \circ \frag{\delta}
+	\quad\,\,\text{si $\delta' \subseteq (\Delta \setminus \delta)$}
+	\span\span
+	\label{eq:law-cmp-frag}\\
+	%
+	\frag{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv (\decrypt{c}{\alpha}, id) \circ \frag{\delta}
+	&\text{si $\alpha \in \delta$}
+	\label{eq:law-cmp-fgcr1}\\
+	%
+	\frag{\delta} \circ \decrypt{c}{\alpha}
+	&\equiv (id, \decrypt{c}{\alpha}) \circ \frag{\delta}
+	&\text{si $\alpha \not\in \delta$}
+	\label{eq:law-cmp-fgcr2}\\
+	%
+	\decrypt{c}{\alpha} \circ \defrag{\delta}
+	&\equiv \defrag{\delta}\ (\decrypt{c}{\alpha}, id)
+	&\text{si $\alpha \in \delta$}
+	\label{eq:law-cmp-crfg1}\\
+	%
+	\decrypt{c}{\alpha} \circ \defrag{\delta}
+	&\equiv \defrag{\delta}\ (id, \decrypt{c}{\alpha})
+	&\text{si $\alpha \not\in \delta$}
+	\label{eq:law-cmp-crfg2}\\
+	%
+	\frag{\delta} \circ \crypt{c}{\alpha}
+	&\equiv (\crypt{c}{\alpha}, id) \circ \frag{\delta}
+	&\text{si $\alpha \in \delta$}
+	\label{eq:law-cmp-fgcr3}\\
+	%
+	\frag{\delta} \circ \crypt{c}{\alpha}
+	&\equiv (id, \crypt{c}{\alpha}) \circ \frag{\delta}
+	&\text{si $\alpha \not\in \delta$}
+	\label{eq:law-cmp-fgcr4}
+\end{align}
+\end{document}
