@@ -101,16 +101,18 @@ pour faciliter les preuves
 * Choses à faire (dans l'immédiat)
 ** C2QL
 *** S'intéresser à la complétude du système de lois algébriques
-**** TODO Faire la liste des lois algébriques
-Je vais commencer par réunir dans un seul endroit toutes les lois algébriques
-(avec, tant qu'à faire, leur conditions d'application)
+**** DONE Faire la liste des lois algébriques
+J'ai réuni dans un seul endroit toutes les lois, reformulées
+[[file:lois/ensemble_lois.pdf][Ensemble des lois]]
 
 ***** DONE Demander à Ronan le code tex
 Si je peux avoir le fichier .tex de la thèse ou de l'article,
 cela m'éviterait de devoir taper de 0 toutes les loi
 
 ***** DONE Regrouper les lois apparaissant dans la thèse 
+[[file:lois/ensemble_lois_these.pdf][Ensemble des lois apparaissant dans la thèse]]
 Emplacements de référence des différentes lois dans la thèse: pages 30 et 63
+
 
 ***** DONE Regarder si elles contiennent les lois apparaissant dans l'article
 Non.
@@ -119,7 +121,7 @@ Non.
 d'un attribut à la fois)
 + Il y a à la fois de la fragmentation verticale 
 et de la fragmentation horizontale
-***** TODO Choisir quel ensemble de lois garder initialement
+***** DONE Choisir quel ensemble de lois garder initialement
 ****** DONE Se familiariser avec les macros LaTeX / en créer des propres
 ******* projections
 \pi_{\delta} suffit
