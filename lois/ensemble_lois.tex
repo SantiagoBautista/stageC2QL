@@ -123,12 +123,21 @@ du fragment de gauche s'appelle $\delta'$ .
 & \text{si $\alpha \in \delta'$} \\
 \fragDelta \circ \cryptCAlpha
 & \equiv (\id, \cryptCAlpha) \circ\fragDelta 
-& \text{si $\alpha \notin \delta'$} \\
+& \text{si $\alpha \notin \delta'$}
 \end{align}
 
 \section*{Lois que je propose de rajouter}
 \subsection*{Lois avec fold}
 A FAIRE
 \subsection*{Commutation de $\defrag$ et $\crypt$}
-A FAIRE (test)
+Lorsqu'une défragmentation est effectuée, on supposera que le schéma relationnel
+du fragment de gauche s'appelle $\delta'$ .
+\begin{align}
+\cryptCAlpha \circ \defrag 
+& \equiv \defrag \circ (\cryptCAlpha, \id)
+& \text{si $\alpha \in \delta'$} \\
+\cryptCAlpha \circ \defrag 
+& \equiv \defrag \circ (\id, \cryptCAlpha)
+& \text{si $\alpha \notin \delta'$} 
+\end{align}
 \end{document}
