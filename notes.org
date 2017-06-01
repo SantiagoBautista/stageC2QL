@@ -16,6 +16,13 @@ qu'on peut vouloir faire
 + Chaque catégorie est complète
 
 
+*** Troisième approche
+Vu que toutes les lois algébriques de C2QL s'intéressent à la composition,
+voir à la commutativité, de différentes fonctions,
+une troisième approche serait de 
+dresser un *tableau* pour toutes les composition de deux fonctions de C2QL.
+
+
 ** Établir la correction des lois algébriques
 *** Correction sémantique
 Pour la correction sémantique d'une loi algébrique on peut prendre
@@ -114,7 +121,7 @@ pour faciliter les preuves
 * Choses à faire (dans l'immédiat)
 ** C2QL
 *** S'intéresser à la complétude du système de lois algébriques
-**** DONE Faire la liste des lois algébriques
+**** Faire la liste des lois algébriques
 J'ai réuni dans un seul endroit toutes les lois, reformulées
 [[file:lois/ensemble_lois.pdf][Ensemble des lois]]
 
@@ -149,8 +156,8 @@ un cas particulier.
 
 \mathrm{group}_{delta}
 \mathrm{fold}_{f, z}
-****** TODO Faut-il garder la fragmentation horizontale?
-Ou seulement la fragmentation verticale?
+****** DONE Faut-il garder la fragmentation horizontale?
+Pas nécessaire d'écrire toutes les lois, juste la mentionner
 ****** Garder les lois de projection de la thèse, pas de l'article
 Les définitions avec les intersections sont plus claires et probablement
 plus justes que les distinctions a/aBarre
@@ -173,26 +180,45 @@ optenir la requête la mieux optimisée, quel que soit le critère d'optimisatio
 ***** DONE Deuxième approche du critère de complétude
 [[*Deuxième approche:][Complétude informelle: ensmb des catégories, et catégories elles-mêmes]]
 
-
-***** TODO Lire Ullman pour réfléchir à la pertinance des critères
+***** DONE Lire Ullman pour réfléchir à la pertinance des critères
 Peut-être Ullman définit-il un autre critère de complétude pour
 l'ensemble de ses lois? Peut-être définit-il ce critère-ci et le
 prouve pour son ensemble de lois?
 
+Non. Ullman ne se soucie pas de complétude.
 
-**** TODO Vérifier si le système de lois vérifie le critère de complétude
-INTUITION: Pour l'instant ça m'étonnerait que le système soit complet au premier sens
-=> Pour l'instant on peut chercher des contre-exemples à la complétude,
-et ajouter des lois
-Pour le deuxième sens, je voudrais ajouter des lois pour le fold
+***** DONE Troisième approche: Toutes les compositions 2 à 2
+Le but de toutes les lois algébriques est de, par permutation,
+permettre une optimisation de la requête exécutée.
+
+On serait du coup sûrs d'avoir explorée complétement
+cette approche si *pour toute paire de fonctions C2QL* on
+a une loi décrivant la possibilité, les conditions et
+le résultat d'une permutation entre elles.
+
+
+**** Vérifier si le système de lois vérifie le critère de complétude
+***** TODO Pour la première approche 
+ça ne saurait tarder...
+***** DONE Pour la deuxième approche
+Il manque des lois pour le fold, une des lois pour crypt, etc...
+***** TODO Pour la troisième approche
+Faire le tableau des lois existantes actuellement
+
+
+**** Compléter le système de lois
+Ceci sera fait pour la troisième approche,
+la première étant probablement impossible et la deuxième
+étant contenue dans la troisième.
+
+***** TODO Dresser et *compléter* le tableau de lois de commutation
 
 
 *** Remplacer count par group/fold...
 **** ... dans les lois
-***** DONE Prendre les lois de group de l'article
+***** DONE Prendre les lois de group de l'article, plutôt que les lois de group
 ***** TODO ajouter des lois pour le fold
 **** TODO dans l'implémentation actuelle de C2QL si ce n'est déjà fait
-
 
 ** ORGanisation
 *** DONE Passer mes notes en ORG mode
@@ -278,6 +304,11 @@ est la relation vide.
 
 Ainsi donc, la relation (14)
 dans l'article est fausse.
+(Car la condition donnée n'est pas assez restrictive)
+
+Inversement, la loi (15), qui est là pour être appliquée
+lorsque la loi (14) ne s'applique pas, est, dans l'article,
+trop restrictive.
 
 
 
@@ -429,3 +460,19 @@ est une restriction car il limite la visibilité des cannaux.
 En imposant à un canal d'être frais, nouveau, il 
 restreint l'ensemble des processus pouvant s'en servir
 
+
+** notes à ranger
+*** TODO p.77 => toute fonction autre que décrypt commute avec defrag??
+Non, ici le critère de validité se base sur l'hypothèse
+qui la requête en question a été optenue avec la méthode
+suggérée dans la thèse (d'abord version locale, puis 
+protection, puis lois).
+
+Il reste cependant à *vérifier* que toutes les commutations faites avec
+le defrag peuvent être défaites de façon transparente.
+
+*** Chercher dans Supernova (Univ Rennes 1) article sur la complétude
+Le plus proche que j'ai pu trouver est un article d'économie sur
+la modélisation mathématique de, grosso modo, le pouvoir d'achat
+des ménages...
+[[file:completude_economie.pdf][Systèmes complets de fonctions de demande]]
