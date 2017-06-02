@@ -196,6 +196,12 @@ cette approche si *pour toute paire de fonctions C2QL* on
 a une loi décrivant la possibilité, les conditions et
 le résultat d'une permutation entre elles.
 
+***** DONE Chercher dans Supernova (Univ Rennes 1) article sur la complétude
+Le plus proche que j'ai pu trouver est un article d'économie sur
+la modélisation mathématique de, grosso modo, le pouvoir d'achat
+des ménages...
+[[file:completude_economie.pdf][Systèmes complets de fonctions de demande]]
+
 
 **** Vérifier si le système de lois vérifie le critère de complétude
 ***** Pour la première approche: échec 
@@ -220,12 +226,19 @@ tautologie de l'ensemble de formules vide.
 
 C'est donc aussi un problème de complétude au sens logique du terme.
 
-
 ***** DONE Pour la deuxième approche
 Il manque des lois pour le fold, une des lois pour crypt, etc...
 
-***** TODO Pour la troisième approche
-Faire le tableau des lois existant actuellement
+***** DONE Pour la troisième approche
+ Tableau des lois existant actuellement + \crypt\circ\defrag
+[[file:completude/fait.pdf][Etat actuel de la complétude au sens de la troisième approche]]
+
+
+****** TODO Est-ce que la notion d'équivalence est vraiment la bonne?
+En réalité il s'agit de transformations, qui 
+(du point de vue d'un ordinateur aveugle)
+ne se comportent pas pareil
+selon qu'on les applique dans un sens ou dans l'autre.
 
 
 **** Compléter le système de lois
@@ -240,7 +253,7 @@ la première étant probablement impossible et la deuxième
 **** ... dans les lois
 ***** DONE Prendre les lois de group de l'article, plutôt que les lois de group
 ***** TODO ajouter des lois pour le fold
-**** TODO dans l'implémentation actuelle de C2QL si ce n'est déjà fait
+**** TODO dans l'implémentation actuelle de C2QL
 
 
 ** ORGanisation
@@ -418,7 +431,7 @@ Pas en C2QL, mais à priori oui, en Idris et proVérif
 
 
 *** TODO Regarder les expérimentations de Ronan 
-github.com/rcherrueau/C2QL/tree/master/experimentations
+[[http://www.github.com/rcherrueau/C2QL/tree/master/experimentations][Dossier des expérimentations]]
 
 
 *** Dans cryptDB
@@ -434,6 +447,27 @@ Regarder le livre d'Ullman
 
 *** Avoir plusieurs encodages/chiffrements et séparer les filtres
 comme en CryptDB, pourrait-ce être une extension?
+
+
+*** p.77 => toute fonction autre que décrypt commute avec defrag??
+Non, ici le critère de validité se base sur l'hypothèse
+qui la requête en question a été optenue avec la méthode
+suggérée dans la thèse (d'abord version locale, puis 
+protection, puis lois).
+
+Il reste cependant à 
+**** TODO *vérifier* que toutes les commutations faites avec le defrag peuvent être défaites de façon transparente.
+
+
+*** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non??
+Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrags imbriqués!
+**** TODO Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
+
+
+*** p.78: il parle d'un \vee, qui n'apparaît nul part dans las formules...
+**** TODO poser la question
+
+
 
 
 ** Remarques
@@ -483,28 +517,8 @@ est une restriction car il limite la visibilité des cannaux.
 En imposant à un canal d'être frais, nouveau, il 
 restreint l'ensemble des processus pouvant s'en servir
 
-
-** notes à ranger
-*** p.77 => toute fonction autre que décrypt commute avec defrag??
-Non, ici le critère de validité se base sur l'hypothèse
-qui la requête en question a été optenue avec la méthode
-suggérée dans la thèse (d'abord version locale, puis 
-protection, puis lois).
-
-Il reste cependant à 
-**** TODO *vérifier* que toutes les commutations faites avec le defrag peuvent être défaites de façon transparente.
-
-*** DONE Chercher dans Supernova (Univ Rennes 1) article sur la complétude
-Le plus proche que j'ai pu trouver est un article d'économie sur
-la modélisation mathématique de, grosso modo, le pouvoir d'achat
-des ménages...
-[[file:completude_economie.pdf][Systèmes complets de fonctions de demande]]
-*** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non??
-Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrags imbriqués!
-**** TODO Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
-*** p.78: il parle d'un \vee, qui n'apparaît nul part dans las formules...
-**** TODO poser la question
 *** Attention, la traduction en pi-calcul ne traduit que la communication avec le cloud
 et non pas ce que se passe chez chaque acteur
 => au moment de traduire vers proVérif il faudra le prendre en compte,
 pour les decrypt, par exemple
+

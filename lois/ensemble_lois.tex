@@ -33,12 +33,15 @@
 
 \begin{document}
 \section*{Lois déjà présentes dans la thèse et/ou l'article}
-\subsection*{Lois empruntées à Ullman}
+\subsection*{Lois locales}
 \begin{align}
 	\proj_{\delta_1}\circ \dots \circ \proj_{\delta_n} 
 	&\equiv \proj_{\delta_1 \cap \dots \cap \delta_n} \\
 	\sel_{p_1} \circ \dots \circ \sel_{p_n}
-	&\equiv \sel_{p_1 \wedge \dots \wedge p_n}
+	&\equiv \sel_{p_1 \wedge \dots \wedge p_n} \\
+	\projDelta \circ \selP
+	& \equiv \selP \circ \projDelta
+	& \text{si $\dom(p) \subset \delta$}
 \end{align}
 \subsection*{Lois identité}
 \begin{align}
