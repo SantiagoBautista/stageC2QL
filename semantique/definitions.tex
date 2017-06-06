@@ -23,6 +23,8 @@
 \DeclareMathOperator{\Sc}{S}
 \DeclareMathOperator{\s}{sch}
 \DeclareMathOperator{\ls}{L}
+\DeclareMathOperator{\ru}{Ru}
+\DeclareMathOperator{\uni}{Unif}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -124,5 +126,51 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	\end{array}
 	$$
 \end{defi}
+
+\subsection*{Fragmentation et défragmentation}
+
+\begin{defi}
+	On appelle \emph{paire de relations unifiable}
+	toute paire $(r, r')$ de $\R^2$ vérifiant
+	$$
+	\left\lbrace
+	\begin{array}{l}
+	\{l(id) / l \in r \} = \{l(id) / l \in r' \} \\
+	\s(r) \cap \s(r') = \emptyset
+	\end{array}
+	\right.
+	$$
+	On note $\ru$ l'ensemble des paires de relations unifiables,
+	qui est donc un sous-ensemble de $\R$.
+	
+	Pour une paire de relations unifiable $(r, r')$, on appelle
+	\emph{Unificateur de $r$ et $r'$} la relation
+	
+	A ECRIRE
+\end{defi}
+
+\begin{defi}
+	Pour tout ensemble de noms d'attributs $\delta$
+	on appelle \emph{fragmentation de fragment gauche $\delta$}
+	l'application suivante:
+	$$
+	\begin{array}{llcl}
+	\fragDelta 	& \R & \rightarrow & \ru \\
+				& r  & \mapsto & (\{l|_{(\s(r)\cap \delta) \cup \{id\}}/ l \in r \}, 
+						\{ l_{(\s(r) \setminus \delta)\cup \{id\}} / l \in r \})
+	\end{array}
+	$$
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{défragmentation} la fonction suivante:
+	$$
+	\begin{array}{llcl}
+	\defrag 	& \ru & \rightarrow & \R \\
+	& (r, r')  & \mapsto & \uni(r, r')
+	\end{array}
+	$$
+\end{defi}
+
 
 \end{document}
