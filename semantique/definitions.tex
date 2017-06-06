@@ -1,0 +1,105 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
+
+\DeclareMathOperator{\proj}{\pi}
+\DeclareMathOperator{\sel}{\sigma}
+\DeclareMathOperator{\frag}{frag}
+\DeclareMathOperator{\defrag}{defrag}
+\DeclareMathOperator{\crypt}{crypt}
+\DeclareMathOperator{\decrypt}{decrypt}
+\DeclareMathOperator{\group}{group}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ens}{E}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Sc}{S}
+\DeclareMathOperator{\s}{sch}
+
+\newcommand\typeT[1]{\text{\ttfamily #1}}
+\newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
+\newcommand{\cryptArgs}[2]{\crypt_{#1 , \typeT{#2}}}
+\newcommand{\projDelta}{\proj_{\delta}}
+\newcommand{\selP}{\sel_p}
+\newcommand{\decryptCAlpha}{\decryptArgs{\alpha}{c}}
+\newcommand{\cryptCAlpha}{\cryptArgs{\alpha}{c}}
+\newcommand{\ch}{\typeT{c}}
+\newcommand{\chp}{\typeT{c'}}
+\newcommand{\groupDelta}{\group_{\delta}}
+\newcommand{\fragDelta}{\frag_{\delta}}
+\newcommand{\val}{\mathcal{V}}
+
+\newtheorem{defi}{Définition}
+
+\begin{document}
+Le but de ce document est de donner une définition
+formelle des fonctions dont est composé le langage C2QL.
+
+\subsection*{Définitions générales}
+Soit $\val$ un ensemble, appelé ensemble des valeurs.
+\begin{defi}
+	Ici, pour simplifier, on appelle chaîne de caractères
+	tout mot sur l'alphabet 
+	$$
+	\Sigma = \{a, \dots, z\} \cup \{A, \dots, Z \} \cup \{0, \dots,  9 \}
+ 	$$
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{nom d'attribut} toute chaîne de caractères.
+\end{defi}	
+
+\begin{defi}
+	On appelle \emph{schéma relationnel} tout ensemble
+	de noms d'attributs.
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{relation} de schéma relationnel $\Delta$
+	un ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
+	
+	Chacune de ces fonctions (chacun des éléments de la relation)
+	est appelé(e) \emph{ligne}.
+	
+	Pour chaque ligne $l$ de la relation et chaque $\alpha$ de $\Delta$,
+	$l(\alpha)$ est appelé \emph{attribut} de \emph{nom} $\alpha$ pour la ligne $l$.
+	
+	L'image de $id$ est appelé \emph{identifiant de la ligne}, et il est, au sein de chaque
+	relation, unique pour chaque ligne.
+\end{defi}
+
+\begin{defi}
+	On appelle $\Sc$ l'ensemble des schémas relationnels possibles.
+	Autrement dit, on pose  $\Sc = \left( \Sigma^* \right)^*$.
+	
+	On appelle $\R$ l'ensemble des relations possibles,
+	
+	et on introduit la fonction $\s$ de $\R$ dans
+	$\Sc$
+	qui à une relation associe son schéma relationnel.
+\end{defi}
+
+\subsection*{Projection et sélection}
+\begin{defi}
+	Pour tout ensemble $\delta$ de noms d'attributs,
+	on appelle \emph{projection sur les attributs $\delta$}
+	la fonction suivante:
+	$$
+	\begin{array}{llcl}
+	\projDelta 	& \R 	& \rightarrow 	& \R \\
+				& r		& \mapsto		& 
+					\{{l|}_{(\delta\cap \s(r)) \cup \{id\}} / l \in r \}
+	\end{array}
+	$$
+	
+\end{defi}
+
+
+\end{document}
