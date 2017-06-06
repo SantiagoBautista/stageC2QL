@@ -22,6 +22,7 @@
 \DeclareMathOperator{\R}{R}
 \DeclareMathOperator{\Sc}{S}
 \DeclareMathOperator{\s}{sch}
+\DeclareMathOperator{\ls}{L}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -86,20 +87,42 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	qui à une relation associe son schéma relationnel.
 \end{defi}
 
-\subsection*{Projection et sélection}
+\subsection*{Projections et sélections}
 \begin{defi}
 	Pour tout ensemble $\delta$ de noms d'attributs,
 	on appelle \emph{projection sur les attributs $\delta$}
 	la fonction suivante:
 	$$
 	\begin{array}{llcl}
-	\projDelta 	& \R 	& \rightarrow 	& \R \\
+	\projDelta:	& \R 	& \rightarrow 	& \R \\
 				& r		& \mapsto		& 
 					\{{l|}_{(\delta\cap \s(r)) \cup \{id\}} / l \in r \}
 	\end{array}
 	$$
-	
 \end{defi}
 
+\begin{defi}
+	On appelle $\ls$ l'ensemble de toutes les lignes possibles.
+	
+	On appelle \emph{prédicat} toute fonction
+	de $\ls$ dans $\{true, false\}$.
+	
+	On appelle \emph{domaine} d'un prédicat $p$ le plus petit
+	ensemble $D$ tel que:
+	$$
+	\forall (l, l') \in \ls^2, (l|_D = l'|_D \Rightarrow  p(l) = p(l')) 
+	$$
+	et on le note $\dom(p)$.
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{sélection de prédicat $p$}, pour tout prédicat $p$, la fonction:
+	$$
+	\begin{array}{llcl}
+	\selP: 	& \R 	& \rightarrow 	& \R \\
+			& r		& \mapsto		& r \cap p^{-1}(\{true\})
+	\end{array}
+	$$
+\end{defi}
 
 \end{document}
