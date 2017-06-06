@@ -130,8 +130,6 @@ du fragment de gauche s'appelle $\delta'$ .
 \end{align}
 
 \section*{Lois que je propose de rajouter}
-\subsection*{Lois avec fold}
-A FAIRE
 \subsection*{Commutation de $\defrag$ et $\crypt$}
 Lorsqu'une défragmentation est effectuée, on supposera que le schéma relationnel
 du fragment de gauche s'appelle $\delta'$ .
@@ -143,4 +141,34 @@ du fragment de gauche s'appelle $\delta'$ .
 & \equiv \defrag \circ (\id, \cryptCAlpha)
 & \text{si $\alpha \notin \delta'$} 
 \end{align}
+
+\subsection*{Lois évidentes}
+\begin{align}
+\cryptCAlpha \circ \cryptArgs{\beta}{s}
+& \equiv \cryptArgs{\beta}{s} \circ \cryptCAlpha
+& \text{si $\alpha \neq \beta$}
+\end{align}
+A priori, chiffrer une donnée déjà chiffrée semble une mauvaise idée de tous points de vue.
+
+\begin{align}
+\decryptCAlpha \circ \decryptArgs{\beta}{s}
+& \equiv \decryptArgs{\beta}{s} \circ \decryptCAlpha
+& \text{si $\alpha \neq \beta$}
+\end{align}
+A priori, déchiffrer une donnée déjà déchiffrée semble une mauvaise idée de tous points de vue.
+
+\subsection*{Lois d'agrégation}
+\begin{align}
+\groupDelta \circ \proj_{\delta'}
+& \equiv \proj_{\delta'} \circ \groupDelta
+& \text{si $\delta \subset \delta'$} \\
+\groupDelta \circ \selP 
+& \equiv \selP \circ \groupDelta
+& \text{si $\dom(p) \subset \delta$} \\
+\text{$\group$ ne commute pas avec lui-même}
+\end{align}
+
+\subsection*{Lois du fold}
+A FAIRE
+
 \end{document}
