@@ -28,6 +28,8 @@
 \DeclareMathOperator{\uni}{Unif}
 \DeclareMathOperator{\cor}{cor}
 \DeclareMathOperator{\rj}{Rj}
+\DeclareMathOperator{\enc}{Enc}
+\DeclareMathOperator{\dec}{Dec}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -41,6 +43,8 @@
 \newcommand{\groupDelta}{\group_{\delta}}
 \newcommand{\fragDelta}{\frag_{\delta}}
 \newcommand{\val}{\mathcal{V}}
+\newcommand{\cy}[1]{\typeT{c}(#1)}
+\newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
 
 \newtheorem{defi}{Définition}
 
@@ -236,6 +240,87 @@ le seul attribut en commun pour les deux tables est l'identifiant des lignes.
 	\end{array}
 	$$
 \end{defi}
+
+\subsection*{Chiffrement et déchiffrement}
+Vu que pour l'instant on s'intéresse uniquement aux contenus des 
+tables pour démontrer la correction sémantique des lois
+de composition, on ne parlera pas pour l'instant
+des éventuelles clefs de chiffrement et déchiffrement.
+
+\begin{defi}
+	On appelle \emph{chiffrement} tout couple $\typeT{c}$ de fonctions
+	de $\val$ dans $\val$
+	$(\enc, \dec)$
+	vérifiant
+	$\displaystyle \dec \circ \enc = \id$.
+	
+	Pour toute valeur $v$ de $\val$
+	on note $\cy{v} = \enc(v)$
+	et $\dc{v} = \dec(v)$
+\end{defi}
+
+\begin{defi}
+	Pour une ligne $l$ définie sur $\Delta$, pour $\alpha$ un attribut,
+	et pour $\typeT{c}$ un chiffrement,
+	on appelle \emph{version de $l$ chiffrée pour $\alpha$ avec le chiffrement
+		$\typeT{c}$}
+	la ligne notée $\cy{l}_\alpha$ définie par:
+	$$
+	\left\lbrace
+	\begin{array}{lll}
+	\forall \beta \in \Delta \setminus \{\alpha\} & \cy{l}_\alpha(\beta) = l(\beta) & \\
+	& \cy{l}_\alpha(\alpha) = \cy{l(\alpha)} & \text{si $\alpha \in \Delta$}
+	\end{array}
+	\right.
+	$$
+	
+	De même, on définit la \emph{version de $l$ déchiffrée pour $\alpha$ avec le chiffrement
+		$\typeT{c}$}, notée $\dc{l}_\alpha$, par:
+	$$
+	\left\lbrace
+	\begin{array}{lll}
+	\forall \beta \in \Delta \setminus \{\alpha\} & \dc{l}_\alpha(\beta) = l(\beta) & \\
+	& \dc{l}_\alpha(\alpha) = \dc{l(\alpha)} & \text{si $\alpha \in \Delta$}
+	\end{array}
+	\right.
+	$$
+\end{defi}
+
+\begin{defi}
+	Pour $\alpha$ un nom d'attribut
+	et \typeT{c} un chiffrement,
+	on appelle \emph{fonction de chiffrement de $\alpha$ par \typeT{c}}
+	la fonction
+	$$
+	\begin{array}{llcl}
+	\cryptCAlpha : & \R & \rightarrow & \R \\
+		&	r	&	\mapsto & \{ \cy{l}_\alpha / l \in r \}
+	\end{array}
+	$$
+	
+	De même, on appelle \emph{fonction de déchiffrement de $\alpha$ par \typeT{c}}
+	la fonction
+	$$
+	\begin{array}{llcl}
+	\decryptCAlpha : & \R & \rightarrow & \R \\
+	&	r	&	\mapsto & \{ \dc{l}_\alpha / l \in r \}
+	\end{array}
+	$$
+\end{defi}
+
+\subsection*{Agrégation}
+
+\begin{defi}
+	Pour $\delta$ un ensemble de noms d'attributs,
+	et une relation $r$, 
+	\emph{on note $r_\delta$} la relation
+	$$
+	\{ l|_\delta / l \in r \}
+	$$
+	
+	Notons que $r_\delta$ étant un ensemble, il n'a pas de doublons.
+\end{defi}
+
 
 
 \end{document}
