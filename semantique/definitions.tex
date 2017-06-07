@@ -26,6 +26,8 @@
 \DeclareMathOperator{\ls}{L}
 \DeclareMathOperator{\ru}{Ru}
 \DeclareMathOperator{\uni}{Unif}
+\DeclareMathOperator{\cor}{cor}
+\DeclareMathOperator{\rj}{Rj}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -130,28 +132,72 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 
 \subsection*{Jointure naturelle}
 \begin{defi}
-	On appelle \emph{lieu de jonction} de deux
-	relations $r$ et $r'$ le plus petit ensemble
-	$\delta$ vérifiant
+	On dit que \emph{deux relations} $r$ et $r'$
+	sont \emph{joignables} si on a:
 	$$
 	\begin{array}{lllr}
-	\forall l \in r,
-	& \exists! l' \in r',
-	& \forall \alpha \in \delta,
-	& l(\alpha) = l'(\alpha) 
-	\end{array}	
+	\forall l \in r &
+	\exists! l' \in r' &
+	\forall \alpha \in \s(r) \cap \s(r'), &
+	l(\alpha) = l'(\alpha)
+	\end{array}
+	$$
+	
+	Si $r$ et $r'$ sont deux relations joignables
+	et $l$ est une ligne de $r$,
+	on appelle \emph{correspondant de $l$ dans
+	$r'$} la ligne $l'$ de la propriété précédente
+	(unique par définition).
+	On note cette ligne $\cor_{r, r'}(l)$.
+	
+	On dit alors que $l$ et $l'$ sont
+	\emph{deux lignes correspondantes}.
+\end{defi}
+
+\begin{defi}
+	Si $l$ et $l'$ sont deux lignes correspondantes,
+	on appelle \emph{concaténation de $l$ et de $l'$},
+	notée $l.l'$ la fonction de $\s(l) \cup \s(l') \cup \{id\}$
+	définie par:
+	$$
+	\left\lbrace
+	\begin{array}{ll}
+	l.l'(\alpha)  = l(\alpha) & \text{si $\alpha \in \s(r) \setminus \s(r')$} \\
+	l.l'(\alpha)  = l'(\alpha) & \text{si $\alpha \in \s(r') \setminus \s(r)$} \\
+	l.l'(\alpha)  = l(\alpha) = l'(\alpha) & \text{si $\alpha \in \s(r) \cap \s(r')$} \\
+	l.l'(id)  = l(id) &  \\
+	\end{array}
+	\right.
 	$$
 \end{defi}
 
 \begin{defi}
-	contenu...
+	Pour $r$ et $r'$ deux relations joignables,
+	on appelle \emph{jointure naturelle}
+	de $r$ et $r'$ la table
+	$$
+	r \Join r' = \{l.\cor_{r,r'}(l) / l \in r \}
+	$$
+	
+	On utilisera aussi la notation préfixe.
+	En effet, si on appelle $\rj$ l'ensemble
+	des paires de relations unifiables,
+	on vient de définir la fonction
+	$$
+	\begin{array}{llcl}
+	\Join : & \rj & \rightarrow & \R \\
+			& (r, r') & \mapsto & r \Join r'
+	\end{array}
+	$$
 \end{defi}
 
 \subsection*{Fragmentation et défragmentation}
+La défragmentation est un cas particulier de jointure naturelle,
+le seul attribut en commun pour les deux tables est l'identifiant des lignes.
 
 \begin{defi}
-	On appelle \emph{paire de relations unifiable}
-	toute paire $(r, r')$ de $\R^2$ vérifiant
+	Deux relations $r$ et $r'$ sont dites \emph{unifiables}
+	si:
 	$$
 	\left\lbrace
 	\begin{array}{l}
@@ -160,20 +206,11 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	\end{array}
 	\right.
 	$$
+	On remarquera que deux relations unifiables sont également joignables.
+	
 	On note $\ru$ l'ensemble des paires de relations unifiables,
-	qui est donc un sous-ensemble de $\R$.
-	
-	On dit que deux \emph{lignes} $l$ et $l'$
-	appartenant respectivement 
-	sont \emph{unifiables}
-	s
-\end{defi}
-
-\begin{defi}
-	Pour une paire de relations unifiable $(r, r')$, on appelle
-	\emph{Unificateur de $r$ et $r'$} la relation
-	
-	
+	qui est donc un sous-ensemble de $\rj$, qui lui même
+	est un sous-ensemble de $\R^2$.
 \end{defi}
 
 \begin{defi}
@@ -190,11 +227,12 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 \end{defi}
 
 \begin{defi}
-	On appelle \emph{défragmentation} la fonction suivante:
+	On appelle \emph{défragmentation} la
+	restriction de la jointure naturelle à $\ru$.
 	$$
 	\begin{array}{llcl}
 	\defrag 	& \ru & \rightarrow & \R \\
-	& (r, r')  & \mapsto & \uni(r, r')
+	& (r, r')  & \mapsto & r \Join r'
 	\end{array}
 	$$
 \end{defi}

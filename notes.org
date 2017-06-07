@@ -400,10 +400,17 @@ du reste du système
 + / ne pas avoir d'identifiant
 + / devoir choisir entre différents identifiants
 ??
+**** Lorsque les identifiants ne coïncident pas, tous les choix me semblent arbitraires 
+Pour l'instant je choisis donc de garder l'id de gauche,
+mais je vais investiger dans quels cas ça pourrait raisonnablement
+se produire, pour voir quel est le choix raisonnable dans ce cas là.
 **** TODO Chercher un exemple où il faut accepter IDs différents
 Eventuellement, chercher parmi les exercices classiques d'enseignement du SQL
 **** TODO Chercher un exemple où ça serait gênant de perdre les identifiants
 Typiquement, un exemple où il faudrait faire une défragmentation après une jointure
+*** Lieu de jonction vs attributs en commun
+Si on définit la notion de lieu de jonction,
+que faire avec des attributs communs qui n'auraient pas la même valeur?
 
 
 * Prise de notes
