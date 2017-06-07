@@ -6,6 +6,7 @@
 \usepackage{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
+%\usepackage{latexsym} %maybe needed for \Join
 
 \newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
 
@@ -80,7 +81,7 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 
 \begin{defi}
 	On appelle $\Sc$ l'ensemble des schémas relationnels possibles.
-	Autrement dit, on pose  $\Sc = \left( \Sigma^* \right)^*$.
+	Autrement dit, on pose  $\Sc = \mathcal{P}\left( \Sigma^* \right)$.
 	
 	On appelle $\R$ l'ensemble des relations possibles,
 	
@@ -127,6 +128,25 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	$$
 \end{defi}
 
+\subsection*{Jointure naturelle}
+\begin{defi}
+	On appelle \emph{lieu de jonction} de deux
+	relations $r$ et $r'$ le plus petit ensemble
+	$\delta$ vérifiant
+	$$
+	\begin{array}{lllr}
+	\forall l \in r,
+	& \exists! l' \in r',
+	& \forall \alpha \in \delta,
+	& l(\alpha) = l'(\alpha) 
+	\end{array}	
+	$$
+\end{defi}
+
+\begin{defi}
+	contenu...
+\end{defi}
+
 \subsection*{Fragmentation et défragmentation}
 
 \begin{defi}
@@ -143,10 +163,17 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	On note $\ru$ l'ensemble des paires de relations unifiables,
 	qui est donc un sous-ensemble de $\R$.
 	
+	On dit que deux \emph{lignes} $l$ et $l'$
+	appartenant respectivement 
+	sont \emph{unifiables}
+	s
+\end{defi}
+
+\begin{defi}
 	Pour une paire de relations unifiable $(r, r')$, on appelle
 	\emph{Unificateur de $r$ et $r'$} la relation
 	
-	A ECRIRE
+	
 \end{defi}
 
 \begin{defi}

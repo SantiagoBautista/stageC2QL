@@ -256,6 +256,16 @@ la première étant probablement impossible et la deuxième
 **** TODO dans l'implémentation actuelle de C2QL
 
 
+*** Sémantique des fonctions et des formules
+**** Définir la sémantique des fonctions utilisées
+En justifiant les choix faits, en particulier dans leurs
+différences avec ce qui existe actuellement
+
+**** Démontrer la correction sémantique des lois
+
+
+
+
 ** ORGanisation
 *** DONE Passer mes notes en ORG mode
 Fait :-)
@@ -306,6 +316,9 @@ Ainsi donc, la loi (3) à la page 30 de la thèse est fausse.
 Dans l'article, pour les lois (14) et (15),
 la discussion ne devrait pas porter sur dom(p)\in\P(a)
 mais sur dom(p) \cap a = \emptyset
+*** En fait, cela a été  corrigé dans la thèse
+Mais la formulation de la correction ne me semble pas la bonne
+
 
 *** Contre-exemple
 On prend pour prédicat p 
@@ -346,6 +359,51 @@ Inversement, la loi (15), qui est là pour être appliquée
 lorsque la loi (14) ne s'applique pas, est, dans l'article,
 trop restrictive.
 
+
+
+* Choix dans les définitions
+** Définition sémantique de "relation"
+Dans un premier temps, j'ai voulu définir une relation juste comme la table de ses valeurs.
+Mais cela me posait le problème suivant:
+une même relation pouvait correspondre à des schémas relationnels différents...
+alors qu'en soit une relation n'a qu'un seul schéma relationnel...
+
+Dans un deuxième temps, j'ai voulu définir une relation comme un couple de
+schéma relationnel et de table des valeurs,
+mais avec cette définition, la formalisation de ce qu'est une projection n'était pas
+naturelle, les attributs n'apparaissant pas vraiment dans la table.
+
+C'est alors que dans un troisième temps j'ai compris l'intérêt de la deuxième définition
+d'Ullman: une relation est un ensemble de fonctions.
+La notion de fonction encapsule efficacement et synthétiquement à la fois 
+cette existence et unicité du schéma relationnel, et cette idée de valeurs.
+
+
+** Définitions relatives à la jointure et la fragmentation
+Les notions intermédiaires que je souhaitait introduire pour la
+défragmentation et pour la jointure étant très proches
+(unificateur, lieu d'unification, concaténation...)
+cela semblait confus de leur donner des noms différents...
+
+C'est pour cela que j'ai choisi de voir la défragmentation comme un cas particulier
+de jointure.
+*** Problème qui se pose : indentifiants pour les jointures naturelles
+Doit-on imposer que l'identifiant fasse partie des attributs communs (égaux)?
+
+A priori non, car on peut vouloir faire une jointure où l'un des membres serait
+issu d'un calcul (d'une opération d'agrégation) que l'on voudrait rajouter à l'autre
+membre...
+
+Mais alors à l'issue de la jointure on pourrait se retrouver à
++ avoir des identifiants qui n'ont pas de sens vis à vis
+du reste du système
++ / ne pas avoir d'identifiant
++ / devoir choisir entre différents identifiants
+??
+**** TODO Chercher un exemple où il faut accepter IDs différents
+Eventuellement, chercher parmi les exercices classiques d'enseignement du SQL
+**** TODO Chercher un exemple où ça serait gênant de perdre les identifiants
+Typiquement, un exemple où il faudrait faire une défragmentation après une jointure
 
 
 * Prise de notes
