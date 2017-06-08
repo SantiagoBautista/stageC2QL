@@ -30,6 +30,11 @@
 \DeclareMathOperator{\rj}{Rj}
 \DeclareMathOperator{\enc}{Enc}
 \DeclareMathOperator{\dec}{Dec}
+\DeclareMathOperator{\ids}{IDs}
+\DeclareMathOperator{\lgr}{lg}
+\DeclareMathOperator{\redu}{red}
+\DeclareMathOperator{\head}{hd}
+\DeclareMathOperator{\tail}{tl}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -45,6 +50,8 @@
 \newcommand{\val}{\mathcal{V}}
 \newcommand{\cy}[1]{\typeT{c}(#1)}
 \newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
+\newcommand{\cip}{\cup \{id\}}
+
 
 \newtheorem{defi}{Définition}
 
@@ -312,15 +319,109 @@ des éventuelles clefs de chiffrement et déchiffrement.
 
 \begin{defi}
 	Pour $\delta$ un ensemble de noms d'attributs,
-	et une relation $r$, 
-	\emph{on note $r_\delta$} la relation
-	$$
-	\{ l|_\delta / l \in r \}
-	$$
+	on appelle \emph{nom de groupe pour $\delta$}
+	toute application $n$ définie de $\delta \cup \{id\}$
+	dans $\val$.
 	
-	Notons que $r_\delta$ étant un ensemble, il n'a pas de doublons.
+	On remarque que tout nom de groupe est une ligne.
+	
+	$\delta$ est appelé \emph{domaine} du nom de groupe $n$,
+	et noté $\dom(n)$.
+	
+	De plus, pour $r$ une relation, on définit
+	\emph{l'ensemble des noms de groupe de $r$ pour $\delta$}:
+	$$
+	r_\delta = \{l|_\delta / l \in r \}
+	$$
 \end{defi}
 
+\begin{defi}
+	Pour $r$ une relation et $n$ un groupe, on appelle
+	\emph{groupe de $r$ pour le nom $n$} l'ensemble
+	des éléments de $r$ coïncidant avec $n$ 
+	sur $(\s(r)\cap\dom(n))\cup\{id\}$. On le note $r_n$.
+	
+	Autrement dit:
+	$$
+	r_n = \{l \in r / l|_{(\s(r)\cap\dom(n))\cup\{id\}}  = n|_{(\s(r)\cap\dom(n))\cup\{id\}} \}
+	$$
+	
+	De plus, on appelle \emph{identifiants du groupe $r_n$} l'ensemble
+	des identifiants des lignes du groupe. On note $\ids(r_n)$ cet ensemble.
+	
+	Autrement dit:
+	$$
+	\ids(r_n) = \{ l(id) / l \in r_n \}
+	$$
+\end{defi}
+
+\begin{defi}
+	Pour $r$ une relation, $n$ un nom de groupe,
+	et $\alpha$ un attribut de
+	$(\s(r) \setminus \dom(r)) \cup \{id\}$,
+	on appelle \emph{valeurs du groupe $r_n$ pour
+		l'attribut $\alpha$}
+	la fonction
+	$$
+	\begin{array}{llcl}
+	r_n(\alpha) : & \ids(r_n) & \rightarrow & \val \\
+			& l(id) & \mapsto & l(\alpha)
+	\end{array}
+	$$
+\end{defi}
+
+\begin{defi}
+	Pour $r$ une relation, et $n$ un nom de groupe,
+	on appelle \emph{ligne de groupe de $r$ pour $n$}
+	la ligne notée $\lgr_{r,n}$ définie sur $\s(r) \cip$ par:
+	$$
+	\left\lbrace
+	\begin{array}{ll}
+	\lgr_{r, n}(\alpha) = n(\alpha) & \text{si $\alpha \in \s(r) \cap \dom(n)$} \\
+	\lgr_{r, n}(\alpha) = r_n(\alpha) & \text{si $\alpha \in (\s(r) \cip) \setminus \dom(n)$}
+	\end{array}
+	\right.
+	$$ 
+\end{defi}
+
+\begin{defi}
+	Pour $\delta$ un ensemble de noms d'attributs,
+	on appelle \emph{fonction d'agrégation pour les attributs $\delta$}
+	la fonction suivante:
+	$$
+	\begin{array}{llcl}
+	\groupDelta: & \R & \rightarrow &  \R \\
+			& r & \mapsto & \{ \lgr_{r,n} / n \in r_\delta \}
+	\end{array}
+	$$
+\end{defi}
+
+\subsection*{Réduction}
+La plupart du temps, les agrégations sont faites pour pouvoir faire une
+réduction ensuite.
+
+On suppose que les identifiants des lignes peuvent être totalement ordonnés
+et donc que les fonctions définies sur des ensembles d'identifiants peuvent
+être vues comme des listes.
+
+Pour toute liste $l$ on notera $\head(l)$ le premier élément de la liste,
+et $\tail(l)$ le reste de la liste.
+
+\begin{defi}
+	Pour $f$ une fonction de $\val^2$ dans $\val$
+	et $z$ un élément de $\val$,
+	on appelle
+	\emph{réduction d'une liste $l$ par la fonction $f$ avec l'élément neutre $z$}
+	la valeur $\redu_{f, z}(l)$ définit par induction sur la liste par:
+	$$
+	\left\lbrace
+	\begin{array}{l}
+	\redu_{f,z}(\emptyset) = z \\
+	\redu_{f,z}(l) = \redu_{f , f(z, hd(l))}(l)
+	\end{array}
+	\right.
+	$$
+\end{defi}
 
 
 \end{document}

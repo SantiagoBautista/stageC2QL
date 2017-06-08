@@ -413,6 +413,24 @@ Si on définit la notion de lieu de jonction,
 que faire avec des attributs communs qui n'auraient pas la même valeur?
 
 
+** Définition de l'aggrégation
+Pour l'instant le choix que j'ai fait lorsqu'on regroupe
+est de faire apparaître les listes des différentes valeurs
+pour les attributs ne faisant pas partie des attributs de regroupement.
+
+Cependant, ceci n'est pas ce que fait SQL:
+pour les attributs n'ayant pas servi à regrouper,
+SQL ne permet que d'afficher des fonctions sur l'ensemble des valeurs.
+
+Mon approche à moi est plus modulaire/fragmentaire/fonctionnelle
+en ce qu'elle permet de raisonner sur les effets de la fonction \group seule
+et après de la composer avec les autres fonctions, dont fold notament.
+
+Mais mon approche ne semble pas naturelle: dans la définition sémantique
+elle nécessite l'introduction de beaucoup trop de couches de concepts intermédiaires,
+dont une que je n'arrive pas à nomer: celle qui construit une ligne du résultat
+à partir des valeurs de groupe
+
 * Prise de notes
 ** Doutes résolus
 *** La transformation de requête de base en requête optimisée est-elle automatisée?
