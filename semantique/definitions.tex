@@ -6,7 +6,7 @@
 \usepackage{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{latexsym} %maybe needed for \Join
+%\usepackage{latexsym} %maybe needed for \Join %nope, it doesn't seem so
 
 \newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
 
@@ -51,7 +51,8 @@
 \newcommand{\cy}[1]{\typeT{c}(#1)}
 \newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
 \newcommand{\cip}{\cup \{id\}}
-
+\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
+\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
 
 \newtheorem{defi}{Définition}
 
@@ -405,23 +406,57 @@ et donc que les fonctions définies sur des ensembles d'identifiants peuvent
 être vues comme des listes.
 
 Pour toute liste $l$ on notera $\head(l)$ le premier élément de la liste,
-et $\tail(l)$ le reste de la liste.
+et $\tail(l)$ le reste de la liste. \\
+
+Dans les définitions qui suivent, $f$ est une fonction de $\val^2$ dans $\val$
+et $z$ est un élément de $\val$.
 
 \begin{defi}
-	Pour $f$ une fonction de $\val^2$ dans $\val$
-	et $z$ un élément de $\val$,
-	on appelle
-	\emph{réduction d'une liste $l$ par la fonction $f$ avec l'élément neutre $z$}
-	la valeur $\redu_{f, z}(l)$ définit par induction sur la liste par:
+	On appelle
+	\emph{réduction d'une liste $t$ par la fonction $f$ avec l'élément neutre $z$}
+	la valeur $\redu_{f, z}(t)$ définie par induction sur la liste par:
 	$$
 	\left\lbrace
 	\begin{array}{l}
 	\redu_{f,z}(\emptyset) = z \\
-	\redu_{f,z}(l) = \redu_{f , f(z, hd(l))}(l)
+	\redu_{f,z}(t) = \redu_{f , f(z, hd(t))}(\tail(t))
+	\end{array}
+	\right.
+	$$
+	
+	Si une valeur $v$ de $\val$ n'est pas une liste,
+	on la considère alors comme une liste à un seul
+	élément et on pose donc $\redu_{f,z}(v) = f(z,v)$.
+\end{defi}
+
+\begin{defi}
+	Pour $l$ une ligne définie sur $\delta$,
+	et $\alpha$ un nom d'attribut,
+	on appelle
+	\emph{réduction de l'attribut $\alpha$ dans la ligne $l$ 
+		par la fonction $f$ avec l'élément neutre $z$}
+	la ligne $\redu_{\alpha, f, z, l}$ définie sur $\delta$ par:
+	$$
+	\left\lbrace
+	\begin{array}{ll}
+	\redu_{\alpha, f, z, l}(\alpha) = \redu_{f,z}(l(\alpha)) & \\
+	\redu_{\alpha, f, z, l}(\beta) = l(\beta) & \text{si $\beta \neq \alpha$}
 	\end{array}
 	\right.
 	$$
 \end{defi}
 
+\begin{defi}
+	On appelle \emph{fonction de réduction de l'attribut $\alpha$
+		par la fonction $f$ avec l'élément neutre $z$} la fonction suivante:
+	$$
+	\left\lbrace
+	\begin{array}{llcl}
+	\foldAlphafz : & \R & \rightarrow & \R \\
+				& r 	& \mapsto & \{ \redu_{\alpha, f, z, l} / l\in r \}
+	\end{array}
+	\right.
+	$$
+\end{defi}
 
 \end{document}
