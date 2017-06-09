@@ -168,6 +168,29 @@ A priori, déchiffrer une donnée déjà déchiffrée semble une mauvaise idée 
 \text{$\group$ ne commute pas avec lui-même}
 \end{align}
 
+\subsection*{Lois de jonction}
+\subsubsection*{Caractère statique}
+La transformation
+
+\begin{align}
+\defrag \circ (\id, \Join)
+& \rightarrow &\Join (\defrag, \id)
+\end{align}
+ 
+est toujours valable;
+mais la transformation inverse ne l'est pas toujours.
+
+\subsubsection*{Caractère dynamique}
+Si on a trois tables $r_1$, $r_2$ et $r_3$,
+que $r_2$ et $r_3$ sont joignables
+et que $r_1$ est unifiable avec $r_2 \Join r_3$
+alors:
+
+\begin{align}
+\defrag(r_1, r_2 \Join r_3) = & \defrag(r_1, r_2) \Join r_3
+\end{align}
+
+
 \subsection*{Lois du fold}
 A FAIRE
 

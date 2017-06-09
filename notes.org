@@ -234,11 +234,15 @@ Il manque des lois pour le fold, une des lois pour crypt, etc...
 [[file:completude/fait.pdf][Etat actuel de la complétude au sens de la troisième approche]]
 
 
-****** TODO Est-ce que la notion d'équivalence est vraiment la bonne?
+****** DONE La notion d'équivalence n'est pas forcément la bonne
 En réalité il s'agit de transformations, qui 
 (du point de vue d'un ordinateur aveugle)
 ne se comportent pas pareil
 selon qu'on les applique dans un sens ou dans l'autre.
+
+En effet, dans le cas de join et défrag, defrag \circ \Join
+peut toujours être transromé en \Join \circ \defrag, mais 
+l'inverse n'est pas toujour vrai.
 
 
 **** Compléter le système de lois
@@ -431,6 +435,21 @@ elle nécessite l'introduction de beaucoup trop de couches de concepts interméd
 dont une que je n'arrive pas à nomer: celle qui construit une ligne du résultat
 à partir des valeurs de groupe
 
+
+* Problèmes dans mes définitions
+** Définition de la jointure ne correspond pas avec jointure naturelle
+La définition SQL comme la définition d'Ullman (produit cartésien puis filtrage)
+concordent entre elles et ma définition ne correspond pas.
+
+Serait-ce finalement une bonne idée de travailler avec le produit cartésien?
+
+
+** En fait, les schèmas relationnels sont connus
+J'ai formulé une partie de mes lois en voulant que les conditions ne portent que sur les fonctions...
+mais en soi les schéma relationnels des tables en entrée sont connus, car c'est une donnée statique,
+propre au programme en question.
+
+
 * Prise de notes
 ** Doutes résolus
 *** La transformation de requête de base en requête optimisée est-elle automatisée?
@@ -604,4 +623,3 @@ restreint l'ensemble des processus pouvant s'en servir
 et non pas ce que se passe chez chaque acteur
 => au moment de traduire vers proVérif il faudra le prendre en compte,
 pour les decrypt, par exemple
-
