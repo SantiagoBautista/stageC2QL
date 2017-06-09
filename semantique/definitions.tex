@@ -35,6 +35,8 @@
 \DeclareMathOperator{\redu}{red}
 \DeclareMathOperator{\head}{hd}
 \DeclareMathOperator{\tail}{tl}
+\DeclareMathOperator{\hfrag}{hfrag}
+\DeclareMathOperator{\hdefrag}{hdefrag}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -456,6 +458,31 @@ et $z$ est un élément de $\val$.
 				& r 	& \mapsto & \{ \redu_{\alpha, f, z, l} / l\in r \}
 	\end{array}
 	\right.
+	$$
+\end{defi}
+
+\subsection*{Opérations ensemblistes: union, différence, fragmentation horizontale}
+\begin{defi}
+	On appelle \emph{union} ou \emph{défragmentation horizontale}
+	de deux tables $r$ et $r'$ ayant le même schéma relationnel
+	la table $r \cup r'$, aussi notée $\hdefrag(r, r')$.
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{différence ensembliste}
+	de deux tables $r$ et $r'$ ayant le même schéma relationnel
+	la table $r \setminus r'$.
+\end{defi}
+
+\begin{defi}
+	Pour $p$ un prédicat, on appelle \emph{fragmentation horizontale 
+		de critère $p$}
+	la fonction
+	$$
+	\begin{array}{llcl}
+	\hfrag : & \R \rightarrow & \R^2 \\
+			& r & \mapsto & (\{l \in r / p(l)\} , \{l \in r, \neg p(l)\})
+	\end{array}
 	$$
 \end{defi}
 
