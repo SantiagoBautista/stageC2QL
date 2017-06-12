@@ -652,7 +652,7 @@ pour les decrypt, par exemple
 ** Il faut réprendre
 À l'ennonciation des formules pour le fold
 
-** 11/06
+** 12/06
 Je vais plutôt commencer à démontrer les lois,
 et je finirai d'énoncer les lois pour le fold après
 
@@ -665,3 +665,27 @@ ou par catégorie (qui relève des calculs locaux, qui relève du chiffrement,
 qui relève de la comunication entre acteurs...).
 
 Le regroupement par opérateurs me semble plus objectif, mais moins attrayant.
+
+*** Projection et défragmentation
+Pour pouvoir passer de droite à gauche dans cette loi, il est 
+nécessaire de supposer que les schéma relationnels en entrée ont une intersection vide!
+
+À nouveau deux possibilitées s'offraient à moi:
++ soit je passait d'une notion d'équivalence à une notion de transformation
+pour pouvoir avoir dans un sens, une loi qui suppose moins d'hypothèses
++ soit j'impose une hypothèse sur les schémas relationnels en entrée.
+
+À nouveau j'ai conclut que la deuxième possibilité était la meilleure
+car de toute façons:
++ Dans le sens où on pourrait se passer de l'hypothèse sur les schémas,
+elle est quand-même présente, dans le fait que l'expression écrite soit définie
++ On dispose des schémas relationnels des entrées
+
+(Ce n'est qu'après avoir fait ce raisonnement que je me suis souvenu
+que je l'avais déjà fait).
+
+N'empêche,
+j'avais pas vu la nécessité de préciser cette hypothèse dans cette loi-là,
+donc je vais pouvoir *corriger la loi en question*.
+
+**** Devrais-je informer Ronan, Fatima et Mario de la modif à appliquer à la loi 12? 

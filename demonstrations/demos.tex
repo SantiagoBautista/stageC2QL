@@ -197,13 +197,47 @@ $l \in r_1$.
 Ainsi, $r_2 \subset r_1$.
 
 \subsection*{Projection et défragmentation (verticale)}
+En appelant $\delta_1$ le schéma relationnel du premier
+argument et $\delta_2$ le schéma relationnel du deuxième
+argument, on a:
 \begin{align}
 \projDelta \circ \defrag
-& = \defrag \circ (\proj_{\delta \cap \delta'}, \proj_{\delta \setminus \delta'})
-& \text{où $\delta'$ est le schéma relationnel du premier fragment}
+& = \defrag \circ (\projDelta, \projDelta)
+& \text{si $\delta_1 \cap \delta_2 = \emptyset$}
 \end{align}
 
 Soit $\delta$ un ensemble de noms d'attributs.
-Soient $r_1$ et $r_2$ des relations 
+Soient $r$ et $r'$ des relations unifiables.
+Soit $\delta'$ le schéma relationnel de $r$.
+
+On pose $r_1 = (\projDelta \circ \defrag) (r, r')$
+et $r_2 = \defrag \circ (\proj_{\delta \cap \delta'}, \proj_{\delta \setminus \delta'}) (r, r')$.
+
+\paragraph*{Remarque:}
+Dès que l'une des deux quantités $r_1$ et $r_2$ est définie, l'autre l'est aussi.
+En effet, si $r_1$ est définie, alors $r$ et $r'$ sont unifiables,
+donc $\s(r) \cap \s(r') = \emptyset$ d'où
+$ (\s(r) \cap (\delta \cap \delta') \cap (\s(r') \cap (\delta \setminus \delta')) = \emptyset $
+et donc $\proj_{\delta \cap \delta'}(r)$ et $\proj_{\delta \setminus \delta'(r')}$ sont unifiables.
+
+\subsubsection*{Schémas relationnels}
+Le schéma relationnel de $\defrag(r, r')$ est $\s(r) \cup \s(r')$
+donc le schéma relationnel de $r_1$ est $(\s(r) \cup \s(r')) \cap \delta$.
+
+Le schéma relationnel de $\proj_{\delta \cap \delta'}(r)$ est
+$\s(r) \cap (\delta \cap \delta') = \delta' \cap (\delta \cap \delta') = \delta \cap \delta'$
+et le schéma relationnel de $\proj_{\delta \setminus \delta'}(r')$
+est $\s(r') \cap (\delta \setminus \delta')$.
+Par hypothèse, $r$ et $r'$ sont joignables,
+donc $\s(r) \cap \s(r') = \emptyset$
+et $\s(\proj_{\delta \setminus \delta'}(r'))
+= \s(r')  \cap \delta$.
+On en déduit que le schéma de $r_2$ est
+\begin{align*}
+\s(r_2) = (\delta \cap \delta') \cup (\s(r')  \cap \delta) 
+& = \delta \cap (\delta' \cup \s(r'))  \\
+ & = \delta \cap (\s(r) \cup \s(r'))  = \s(r_1)
+\end{align*}
+
 
 \end{document}
