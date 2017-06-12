@@ -18,6 +18,8 @@
 \DeclareMathOperator{\group}{group}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\send}{send}
+\DeclareMathOperator{\rec}{receiveAndGroup}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -30,6 +32,9 @@
 \newcommand{\chp}{\typeT{c'}}
 \newcommand{\groupDelta}{\group_{\delta}}
 \newcommand{\fragDelta}{\frag_{\delta}}
+\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
+\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
+
 
 \begin{document}
 \section*{Lois déjà présentes dans la thèse et/ou l'article}
@@ -93,12 +98,12 @@ du fragment de gauche s'appelle $\delta'$ .
 & \text{Si $\alpha \notin \delta$} \\
 \groupDelta \circ \decryptCAlpha
 & \equiv \decryptCAlpha \circ \groupDelta
-& \text{Si $\ch$ est compatible avec l'égalité} \\
+& \text{Si $\alpha \in \delta$ et $\ch$ est compatible avec l'égalité} \\
 \groupDelta \circ \defrag 
-& \equiv \defrag \circ (\groupDelta, \group_{\{\id\}})
+& \equiv \defrag \circ (\send\circ\groupDelta, \rec())
 & \text{Si $\delta \subset \delta'$} \\
 \groupDelta \circ \defrag 
-& \equiv \defrag \circ (\group_{\{\id\}}, \groupDelta)
+& \equiv \defrag \circ (\rec(), \send\circ\groupDelta)
 & \text{Si $\delta \cap \delta' = \emptyset$} 
 \end{align}
 
@@ -165,31 +170,65 @@ A priori, déchiffrer une donnée déjà déchiffrée semble une mauvaise idée 
 \groupDelta \circ \selP 
 & \equiv \selP \circ \groupDelta
 & \text{si $\dom(p) \subset \delta$} \\
-\text{$\group$ ne commute pas avec lui-même}
+\text{$\group$ ne commute pas  avec lui-même}
 \end{align}
 
 \subsection*{Lois de jonction}
-Les deux compositions de fonctions considérées dans ce paragraphe ont
-trois arguments.
-Appelons $\delta_1$ (respectivement $\delta_2$ et $\delta_3$)
-le schéma relationnel du premier (resp. du deuxième et du troisième)
-argument.
+Lorsque les compositions de fonctions considérées à continuations prennent
+plusieurs arguments,
+on appelle, de gauche à droite,
+$\delta_1, \delta_2, \delta_3, \dots$ leurs schémas relationnels respectifs.
 
-On a les transformations suivantes
+\paragraph{Pour join et defrag} 
 \begin{align}
-\defrag \circ (\id, \Join)
- \rightarrow
-& \Join \circ (\defrag, \id) & \\
 \Join \circ (\defrag, \id)
- \rightarrow
-& \defrag \circ (\id, \Join)
+& \equiv
+ \defrag \circ (\id, \Join)
 & \text{si $\delta_1 \cap (\delta_2 \cup \delta_3) = \emptyset$}
+\end{align}
+
+\paragraph{Pour join et decrypt}
+\begin{align}
+\decryptCAlpha \circ \Join
+& \equiv
+\Join \circ (\decryptCAlpha, \id)
+& \text{si $\alpha \in \delta_1$} \\
+\decryptCAlpha \circ \Join
+& \equiv
+\Join \circ (\id, \decryptCAlpha)
+& \text{si $\alpha \in \delta_2$} 
+\end{align}
+
+\paragraph{Pour join et join} on a envie d'écrire
+\begin{align}
+\Join \circ (\Join, \id)
+& \equiv \Join \circ (\id, \Join) &
+\end{align}
+La correction de cette formule est à vérifier.
+
+\paragraph{Join et group}
+\begin{align}
+\groupDelta \circ \Join
+& \equiv \Join \circ (\groupDelta, \groupDelta)
+& \text{si $\delta = \delta_1 \cap \delta_2$}
+\end{align}
+
+
+\subsection*{Lois du fold}
+\begin{align}
+\foldAlphafz \circ \projDelta
+& \equiv \projDelta \circ \foldAlphafz
+& \text{si $\alpha \in \delta$} \\
+\foldAlphafz \circ \projDelta
+& \equiv \projDelta
+& \text{si $\alpha \notin \delta$} \\
+\projDelta \circ \foldAlphafz
+& \equiv \projDelta
+& \text{si $\alpha \notin \delta$}
 \end{align}
 
 
 
-
-\subsection*{Lois du fold}
-A FAIRE
+A FINIR
 
 \end{document}

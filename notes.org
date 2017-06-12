@@ -231,18 +231,7 @@ Il manque des lois pour le fold, une des lois pour crypt, etc...
 
 ***** DONE Pour la troisième approche
  Tableau des lois existant actuellement + \crypt\circ\defrag
-[[file:completude/fait.pdf][Etat actuel de la complétude au sens de la troisième approche]]
-
-
-****** DONE La notion d'équivalence n'est pas forcément la bonne
-En réalité il s'agit de transformations, qui 
-(du point de vue d'un ordinateur aveugle)
-ne se comportent pas pareil
-selon qu'on les applique dans un sens ou dans l'autre.
-
-En effet, dans le cas de join et défrag, defrag \circ \Join
-peut toujours être transromé en \Join \circ \defrag, mais 
-l'inverse n'est pas toujour vrai.
+[[file:completude/fait.pdf][Etat de la complétude dans la thèse au sens de la troisième approche]]
 
 
 **** Compléter le système de lois
@@ -251,6 +240,8 @@ la première étant probablement impossible et la deuxième
 étant contenue dans la troisième.
 
 ***** TODO Dresser et *compléter* le tableau de lois de commutation
+[[file:completude/nouveau.pdf][Etat actuel de la complétude au sens de la troisième approche]]
+
 
 
 *** Remplacer count par group/fold...
@@ -436,6 +427,26 @@ dont une que je n'arrive pas à nomer: celle qui construit une ligne du résulta
 à partir des valeurs de groupe
 
 
+** La notion d'équivalence n'est pas forcément la bonne
+En réalité il s'agit de transformations, qui 
+(du point de vue d'un ordinateur aveugle)
+ne se comportent pas pareil
+selon qu'on les applique dans un sens ou dans l'autre.
+
+En effet, dans le cas de join et défrag, defrag \circ \Join
+peut toujours être transromé en \Join \circ \defrag, mais 
+l'inverse n'est pas toujour vrai.
+C'est aussi le cas des lois 3, ...
+
+Non non non, en soit, il y a pour certains lois des sens
+pour lesquels il semblerait qu'on peut se passer de la condition..
+mais c'est seulement parce qu'on a la condition dans une autre hypothèse
+(à savoir "l'expressioin d'origine a du sens") donc
+en vrai on est pas vraiment en train de se passer de l'hypothèse...
+
+Donc la notion d'équivalence était bel et bien la bonne
+
+
 * Problèmes dans mes définitions
 ** Définition de la jointure ne correspond pas avec jointure naturelle
 La définition SQL comme la définition d'Ullman (produit cartésien puis filtrage)
@@ -443,11 +454,23 @@ concordent entre elles et ma définition ne correspond pas.
 
 Serait-ce finalement une bonne idée de travailler avec le produit cartésien?
 
+Après recherche d'exemples d'utilisation de la jointure pour des bases de données
+réelles, je m'apperçoit que ma définition convient :-)
+
 
 ** En fait, les schèmas relationnels sont connus
 J'ai formulé une partie de mes lois en voulant que les conditions ne portent que sur les fonctions...
 mais en soi les schéma relationnels des tables en entrée sont connus, car c'est une donnée statique,
 propre au programme en question.
+
+
+** Deux choix à faire
+*** Adopte-t-on la définition join = select o x ?
+Ou alors se restreint-on à une sorte de JOIN LEFT avec
+la définition ensembliste?
+
+
+*** Comment faire intervenir défragmentation et jointure?
 
 
 * Prise de notes
@@ -623,3 +646,22 @@ restreint l'ensemble des processus pouvant s'en servir
 et non pas ce que se passe chez chaque acteur
 => au moment de traduire vers proVérif il faudra le prendre en compte,
 pour les decrypt, par exemple
+
+
+* Carnet de bord à partir du 10/06
+** Il faut réprendre
+À l'ennonciation des formules pour le fold
+
+** 11/06
+Je vais plutôt commencer à démontrer les lois,
+et je finirai d'énoncer les lois pour le fold après
+
+Un des enjeux va être de trouver une façon efficace de régiger
+les démonstrations, vu qu'il y en aura plus de 40...
+
+*** Question que je me pose: Comment regrouper/ordoner les lois?
+Le regroupement peut se faire par opérateur (proj, selections, ...)
+ou par catégorie (qui relève des calculs locaux, qui relève du chiffrement,
+qui relève de la comunication entre acteurs...).
+
+Le regroupement par opérateurs me semble plus objectif, mais moins attrayant.

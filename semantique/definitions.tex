@@ -151,21 +151,17 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	$$
 	\begin{array}{lllr}
 	\forall l \in r &
-	\exists! l' \in r' &
+	\exists l' \in r' &
 	\forall \alpha \in \s(r) \cap \s(r'), &
 	l(\alpha) = l'(\alpha)
 	\end{array}
 	$$
 	
-	Si $r$ et $r'$ sont deux relations joignables
-	et $l$ est une ligne de $r$,
-	on appelle \emph{correspondant de $l$ dans
-	$r'$} la ligne $l'$ de la propriété précédente
-	(unique par définition).
-	On note cette ligne $\cor_{r, r'}(l)$.
-	
-	On dit alors que $l$ et $l'$ sont
-	\emph{deux lignes correspondantes}.
+	Si $(r,r')$ est une paire de relations joignables,
+	et que $l$ est une ligne de $l$,
+	on appelle \emph{correspondants de $l$ dans $r'$}
+	l'ensemble des lignes $l'$ de la propriété précédente.
+	On note $\cor_{r, r'}(l)$ l'ensemble de ces lignes-là.
 \end{defi}
 
 \begin{defi}
@@ -179,10 +175,13 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	l.l'(\alpha)  = l(\alpha) & \text{si $\alpha \in \s(r) \setminus \s(r')$} \\
 	l.l'(\alpha)  = l'(\alpha) & \text{si $\alpha \in \s(r') \setminus \s(r)$} \\
 	l.l'(\alpha)  = l(\alpha) = l'(\alpha) & \text{si $\alpha \in \s(r) \cap \s(r')$} \\
-	l.l'(id)  = l(id) &  \\
+	l.l'(id)  = l(id).l'(id) &  \\
 	\end{array}
 	\right.
 	$$
+	où $l(id).l'(id)$ est compris comme la concaténation de listes
+	(les valeurs qui ne sont pas des listes sont assimilées
+	à des listes avec un seul élément).
 \end{defi}
 
 \begin{defi}
@@ -190,7 +189,7 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	on appelle \emph{jointure naturelle}
 	de $r$ et $r'$ la table
 	$$
-	r \Join r' = \{l.\cor_{r,r'}(l) / l \in r \}
+	r \Join r' = \{l.l' / l \in r, l' \in \cor_{r, r'}(l) \}
 	$$
 	
 	On utilisera aussi la notation préfixe.
