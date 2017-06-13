@@ -56,7 +56,7 @@
 \newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
 \newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
 
-\newcommand{\intro}[2]{Soit $r$ une relation. On pose $r_1 = #1(r) $ et $r_2 = #2(r) $}
+\newcommand{\intro}[2]{Soit $r$ une relation. On pose $r_1 = (#1)(r) $ et $r_2 = (#2)(r) $}
 \newcommand{\dintro}{De même, si $l$ est un élément de $r_2$,}
 
 \begin{document}
@@ -294,5 +294,133 @@ $l = l'_1 . l'_2 = (l_1|_{\delta \cip}) . (l_2|_{\delta \cip}) = (l_1 . l_2)|_{\
 
 Or, $l_1 . l_2$ appartient à $\defrag(r_1, r_2)$
 donc $l = (l_1 . l_2)|_{\delta \cip}$ appartient à $ {res}_1$
+
+\subsection*{Projection et déchiffrement d'un attribut projeté ou non}
+\begin{align}
+\projDelta \circ \decryptArgs{\alpha}{c}
+& \equiv \decryptArgs{\alpha}{c} \circ \projDelta
+\end{align}
+Soit $\delta$ un ensemble de noms d'attributs
+et $\alpha$ un attribut (appartenant à $\delta$ ou pas).
+\intro{\projDelta \circ \decryptArgs{\alpha}{c}}{\decryptArgs{\alpha}{c} \circ \projDelta}.
+
+\subsubsection*{Schémas relationnels}
+Le déchiffrement ne changeant pas le schéma relationnel
+d'une relation,le schéma relationnel de $r_1$ et $r_2$
+est $\s(r) \cap \delta$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de $r_1$.
+
+Il existe $l'$ une ligne de $\decryptCAlpha(r)$ telle que
+$l = l'|_{\delta \cip}$.
+$l'$ étant un élément de $\decryptCAlpha(r)$, il existe une ligne
+$l_0$ de $r$ telle que $l' = \dc{l_0}_\alpha$
+et donc $l = \dc{l_0}_\alpha|_{\delta \cip}$. \\
+
+Puisque $l_0$ appartient à $r$, $l_0|_{\delta \cip}$
+appartient à $\projDelta(r)$ et donc
+$\dc{l_0|_{\delta \cip}}_\alpha$ appartient à $r_2$. \\
+
+Montrons que $\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$.
+Les deux fonctions en question sont définies sur $(\s(r)\cap \delta) \cip$.
+
+Soit: $\beta \in (\s(r) \cap \delta) \cip$.
+
+Si $\beta \neq \alpha$, on a:
+$$
+\left\lbrace
+\begin{array}{ll}
+\dc{l_0}_\alpha|_{\delta \cip}(\beta) 
+& = \dc{l_0}_\alpha(\beta) = l_0(\beta) \\
+\dc{l_0|_{\delta \cip}}_\alpha (\beta)
+& = l_0|_{\delta \cip}(\beta) = l_0(\beta)
+\end{array}
+\right.
+$$
+
+Si $\alpha \in \s(r) \cap \delta$, on a:
+$$
+\left\lbrace
+\begin{array}{ll}
+\dc{l_0}_\alpha|_{\delta \cip}(\alpha) 
+& = \dc{l_0}_\alpha(\alpha) = \dc{l_0(\alpha} \\
+\dc{l_0|_{\delta \cip}}_\alpha (\alpha)
+& = \dc{l_0|_{\delta \cip}(\alpha)} = \dc{l_0(\alpha)}
+\end{array}
+\right.
+$$
+
+Ainsi, $\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$
+donc $l$ appartient à $r_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $r_2$.
+
+Il existe une ligne $l'$ de $\projDelta(r)$
+telle que $l = \dc{l'}_\alpha$.
+
+Puisque $l'$ appartient à $\projDelta(r)$, 
+il existe $l_0$ dans $r$ telle que
+$l' = l_0|_\delta$ et donc telle que
+$l = \dc{l_0|_{\delta \cip}}_\alpha$. \\
+
+Vu que $l_0$ appartient à $r$, 
+$\dc{l_0}_\alpha$ appartient à $\decryptCAlpha(r)$
+et $\dc{l_0}_\alpha|_{\delta \cip}$ appartient à $r_1$.
+
+Or, $l_0$ étant une ligne de $r$,
+d'après la démonstration faite pour la première inclusion, on a:
+$\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$.
+
+On en déduit que $l$ appartient à $r_1$.
+
+
+\subsection*{Projection et déchiffrement d'un attribut non projeté}
+\begin{align}
+\projDelta \circ \decryptArgs{\alpha}{c}
+& \equiv \projDelta
+&\text{si $\alpha \notin \delta$} 
+\end{align}
+
+Soit $\delta$ un ensemble de noms d'attributs
+et $\alpha$ un attribut n'appartenant pas à $\delta$.
+\intro{\projDelta \circ \decryptArgs{\alpha}{c}}{\decryptArgs{\alpha}{c} \circ \projDelta}.
+
+\subsubsection*{Schémas relationnels}
+Le déchiffrement ne changeant pas le schéma relationnel
+d'une relation,le schéma relationnel de $r_1$ et $r_2$
+est $\s(r) \cap \delta$.
+
+\subsubsection*{Inclusions}
+La seule chose qui change est la démonstration du fait que 
+pour toute ligne $l_0$ de $r$
+$\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$.
+
+En effet, si on suppose $\alpha \notin \delta$, un seul cas se présente,
+à savoir
+$\beta \in (\s(r) \cap \delta) \cip \wedge \beta \neq \alpha$, et on a alors
+$$
+\left\lbrace
+\begin{array}{ll}
+\dc{l_0}_\alpha|_{\delta \cip}(\beta) 
+& = \dc{l_0}_\alpha(\beta) = l_0(\beta) \\
+\dc{l_0|_{\delta \cip}}_\alpha (\beta)
+& = l_0|_{\delta \cip}(\beta) = l_0(\beta)
+\end{array}
+\right.
+$$
+d'où l'égalité voulue. \\
+
+À partir de là, si $l$ est une ligne de $r_1$,
+elle s'écrit $\dc{l_0}_\alpha|_{\delta \cip}$
+avec $l_0 \in r$ et $\dc{l_0|_{\delta \cip}}_\alpha$
+appartient à $r_2$ donc $l$ appartient à $r_2$.
+
+Inversement, si $l$ est une ligne de $r_2$,
+elle s'écrit $\dc{l_0|_{\delta \cip}}_\alpha$
+avec $l_0 \in r$ et $\dc{l_0}_\alpha|_{\delta \cip}$
+appartient à $r_1$ donc $l$ appartient à $r_1$.
+
 
 \end{document}

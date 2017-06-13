@@ -246,8 +246,8 @@ le seul attribut en commun pour les deux tables est l'identifiant des lignes.
 	restriction de la jointure naturelle à $\ru$.
 	$$
 	\begin{array}{llcl}
-	\defrag 	& \ru & \rightarrow & \R \\
-	& (r, r')  & \mapsto & r \Join r'
+	\defrag:	& \ru & \rightarrow & \R \\
+	& (r, r')  	& \mapsto & r \Join r'
 	\end{array}
 	$$
 \end{defi}
@@ -259,9 +259,8 @@ de composition, on ne parlera pas pour l'instant
 des éventuelles clefs de chiffrement et déchiffrement.
 
 \begin{defi}
-	On appelle \emph{chiffrement} tout couple $\typeT{c}$ de fonctions
+	On appelle \emph{chiffrement} tout couple $\typeT{c}$ de fonctions $(\enc, \dec)$
 	de $\val$ dans $\val$
-	$(\enc, \dec)$
 	vérifiant
 	$\displaystyle \dec \circ \enc = \id$.
 	
