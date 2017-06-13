@@ -701,4 +701,5 @@ Je me propose moi-même des blocs de 40 minutes
 pour les deux premières activités, et de 20 minutes
 pour la troisième.
 
-*** 
+*** Pour avoir une trace de ce que j'ai fait aujourd'hui
+Voir les commits sur le git

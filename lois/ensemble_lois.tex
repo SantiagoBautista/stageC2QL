@@ -241,4 +241,13 @@ On appelle $\delta'$ le schéma relationnel du premier argument.
 & = \defrag \circ (\id, \foldAlphafz)
 & \text{si $\alpha \notin \delta'$}
 \end{align}
+
+\begin{align}
+\foldAlphafz \circ \decryptArgs{\beta}{c}
+& = \decryptArgs{\beta}{c} \circ \foldAlphafz
+& \text{si $\alpha \neq \beta$} \\
+\foldAlphafz \circ \decryptCAlpha
+& = \decryptCAlpha \circ \fold{\alpha}{\typeT{c} \Rightarrow f}{\typeT{c} \Rightarrow z}
+& \text{si $\typeT{c}$ est compatible avec $f$}
+\end{align}
 \end{document}
