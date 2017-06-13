@@ -232,5 +232,13 @@ La correction de cette formule est à vérifier.
 & \text{si $\alpha \notin \dom(p)$}
 \end{align}
 
-
+On appelle $\delta'$ le schéma relationnel du premier argument.
+\begin{align}
+\foldAlphafz \circ \defrag
+& = \defrag \circ (\foldAlphafz, \id)
+& \text{si $\alpha \in \delta'$} \\
+\foldAlphafz \circ \defrag
+& = \defrag \circ (\id, \foldAlphafz)
+& \text{si $\alpha \notin \delta'$}
+\end{align}
 \end{document}

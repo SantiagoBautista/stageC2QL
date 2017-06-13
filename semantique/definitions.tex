@@ -62,8 +62,7 @@
 Le but de ce document est de donner une définition
 formelle des fonctions dont est composé le langage C2QL.
 
-\subsection*{Définitions générales}
-Soit $\val$ un ensemble, appelé ensemble des valeurs.
+\subsection*{Préambule}
 \begin{defi}
 	Ici, pour simplifier, on appelle chaîne de caractères
 	tout mot sur l'alphabet 
@@ -81,17 +80,20 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	de noms d'attributs.
 \end{defi}
 
+\subsection*{Définitions générales}
+Soit $\val$ un ensemble, appelé ensemble des valeurs.
+
 \begin{defi}
 	On appelle \emph{relation} de schéma relationnel $\Delta$
 	un ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
 	
-	Chacune de ces fonctions (chacun des éléments de la relation)
+	Chacun des éléments de la relation (chacune de ces fonctions)
 	est appelé(e) \emph{ligne}.
 	
 	Pour chaque ligne $l$ de la relation et chaque $\alpha$ de $\Delta$,
 	$l(\alpha)$ est appelé \emph{attribut} de \emph{nom} $\alpha$ pour la ligne $l$.
 	
-	L'image de $id$ est appelé \emph{identifiant de la ligne}, et il est, au sein de chaque
+	L'image de $id$ est appelée \emph{identifiant de la ligne}, et elle est, au sein de chaque
 	relation, unique pour chaque ligne.
 \end{defi}
 
