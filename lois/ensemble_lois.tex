@@ -20,6 +20,7 @@
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\send}{send}
 \DeclareMathOperator{\rec}{receiveAndGroup}
+\DeclareMathOperator{\redu}{red}
 
 \newcommand\typeT[1]{\text{\ttfamily #1}}
 \newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
@@ -250,4 +251,17 @@ On appelle $\delta'$ le schéma relationnel du premier argument.
 & = \decryptCAlpha \circ \fold{\alpha}{\typeT{c} \Rightarrow f}{\typeT{c} \Rightarrow z}
 & \text{si $\typeT{c}$ est compatible avec $f$}
 \end{align}
+
+\begin{align}
+\foldAlphafz \circ \fold{\beta}{g}{z'}
+& = \fold{\beta}{g}{z'} \circ \foldAlphafz
+& \text{si $\alpha \neq \beta$}
+\end{align}
+
+\begin{align}
+\foldAlphafz \circ \groupDelta
+& = \groupDelta \circ \foldAlphafz
+& \text{si $\redu_{\alpha, f, z, \bullet}$ est injective}
+\end{align}
+
 \end{document}

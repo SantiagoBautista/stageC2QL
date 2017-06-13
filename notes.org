@@ -648,10 +648,7 @@ et non pas ce que se passe chez chaque acteur
 pour les decrypt, par exemple
 
 
-* Carnet de bord à partir du 10/06
-** Il faut réprendre
-À l'ennonciation des formules pour le fold
-
+* Carnet de bord à partir du 12/06
 ** 12/06
 Je vais plutôt commencer à démontrer les lois,
 et je finirai d'énoncer les lois pour le fold après
@@ -696,10 +693,26 @@ Je verrai ça cette après-midi avec Mario.
 Aujourd'hui, il serait important d'alterner entre
 + Démonstrations
 + Lois pour le fold
-+ Rélecture
++ Relecture
 Je me propose moi-même des blocs de 40 minutes
 pour les deux premières activités, et de 20 minutes
 pour la troisième.
 
 *** Pour avoir une trace de ce que j'ai fait aujourd'hui
 Voir les commits sur le git
+
+*** re-lecture des définitions jusqu'à Agrégation
+*** Pour l'intéraction groupe/fold... les deux sens se comportent pareil, malgré ma première impression
+Si des éléments sont les mêmes leurs immages par une fonction sont les mêmes également,
+mais pour faire la déduction inverse il faut que la fonction en question soit injective.
+
+À cause de ça, l'intéraction entre fold et group (dans le cas où l'attribut reduit
+est un des attributs sur lesquels porte le regroupement) ne se comporte pas de la même
+façon qu'on aille dans un sens où dans l'autre, car 
+dans l'un des deux sens l'hypothèse "f injective" est nécessaire.
+Et cette fois ce n'est pas une hypothèse qui soit cachée dans le fait
+que les quantités soient définies au départ...
+
+J'ai rien dit... Dans les deux cas on a besoin d'une fonction injective car sinon
+dans l'un des deux sens on serait en train d'agrandir les groupes du regroupement,
+et dans l'autre sens on serait en train de les réduire.
