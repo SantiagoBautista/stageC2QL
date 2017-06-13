@@ -207,37 +207,92 @@ argument, on a:
 \end{align}
 
 Soit $\delta$ un ensemble de noms d'attributs.
-Soient $r$ et $r'$ des relations unifiables.
-Soit $\delta'$ le schéma relationnel de $r$.
+Soient $r_1$ et $r_2$ deux relations unifiables.
 
-On pose $r_1 = (\projDelta \circ \defrag) (r, r')$
-et $r_2 = \defrag \circ (\proj_{\delta \cap \delta'}, \proj_{\delta \setminus \delta'}) (r, r')$.
+On pose ${res}_1 = (\projDelta \circ \defrag) (r_1, r_2)$
+et ${res}_2 = \defrag \circ (\projDelta, \proj_\delta) (r_1, r_2)$.
 
 \paragraph*{Remarque:}
-Dès que l'une des deux quantités $r_1$ et $r_2$ est définie, l'autre l'est aussi.
-En effet, si $r_1$ est définie, alors $r$ et $r'$ sont unifiables,
-donc $\s(r) \cap \s(r') = \emptyset$ d'où
-$ (\s(r) \cap (\delta \cap \delta') \cap (\s(r') \cap (\delta \setminus \delta')) = \emptyset $
-et donc $\proj_{\delta \cap \delta'}(r)$ et $\proj_{\delta \setminus \delta'(r')}$ sont unifiables.
+L'hypothèse \og $r_1$ et $r_2$ unifiables \fg{} garantit que
+les ${res}_1$ et ${res}_2$ sont bien définies.
+En effet, non seulement elle garantit que $\defrag(r_1, r_2)$ existe et donc
+que $res_1$ existe (la projection a été définie sur $\R$ tout entier),
+mais elle garantit également que $(\delta_1 \cap \delta) \cap (\delta_2 \cap \delta) = \emptyset$
+et donc (vu que les projections conservent les identifiants) que
+$\projDelta(r_1)$ et $\projDelta(r_2)$ sont unifiables, donc que $res_2$ existe.
 
 \subsubsection*{Schémas relationnels}
-Le schéma relationnel de $\defrag(r, r')$ est $\s(r) \cup \s(r')$
-donc le schéma relationnel de $r_1$ est $(\s(r) \cup \s(r')) \cap \delta$.
+Le schéma relationnel de $\defrag(r_1, r_2)$
+est $\delta_1 \cup \delta_2$, donc celui de
+${res}_1$ est $\delta \cap (\delta_1 \cup \delta_2)$.
 
-Le schéma relationnel de $\proj_{\delta \cap \delta'}(r)$ est
-$\s(r) \cap (\delta \cap \delta') = \delta' \cap (\delta \cap \delta') = \delta \cap \delta'$
-et le schéma relationnel de $\proj_{\delta \setminus \delta'}(r')$
-est $\s(r') \cap (\delta \setminus \delta')$.
-Par hypothèse, $r$ et $r'$ sont joignables,
-donc $\s(r) \cap \s(r') = \emptyset$
-et $\s(\proj_{\delta \setminus \delta'}(r'))
-= \s(r')  \cap \delta$.
-On en déduit que le schéma de $r_2$ est
+Les schémas relationnels de $\projDelta(r_1)$ et de $\projDelta(r_2)$
+sont respectivement $\delta \cap \delta_1$ et $\delta \cap \delta_2$,
+donc le schéma relationnel de ${res}_2$ est 
+$(\delta \cap \delta_1) \cup (\delta \cap \delta_2) = \delta \cap (\delta_1 \cup \delta_2)$
+
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de ${res}_1$.
+
+Il existe $l_0$ une ligne de $\defrag(r_1, r_2)$
+de schéma relationnel $\delta_1 \cup \delta_2$
+telle que $l = l_0|_{\delta \cip}$.
+Il existe donc deux lignes $l_1$ et $l_2$
+appartenant respectivement à $r_1$ et $r_2$
+telles que
+$l_1 = l_0|_{\delta_1 \cip}$
+$l_2 = l_0|_{\delta_2 \cip}$
+
+Puisque $l_1$ appartient à $r_1$,
+il existe une ligne
+$l'_1$ dans $\projDelta(r_1)$
+telle que
+$l'_1 = l_1|_{\delta \cip} = l_0|_{(\delta \cap \delta_1) \cip}$.
+De même,
+il existe une ligne
+$l'_2$ dans $\projDelta(r_2)$
+telle que
+$l'_2 = l_2|_{\delta \cip} = l_0|_{(\delta \cap \delta_2) \cip}$. \\
+
+De l'existence de $l'_1$ et 
+$l'_2$ qui partagent même identifiant
+(et portent sur des schémas relationnels
+disjoints)
+on en déduit que $l'_1 . l'_2 $ appartient à ${res}_2$.
+
+Or,
 \begin{align*}
-\s(r_2) = (\delta \cap \delta') \cup (\s(r')  \cap \delta) 
-& = \delta \cap (\delta' \cup \s(r'))  \\
- & = \delta \cap (\s(r) \cup \s(r'))  = \s(r_1)
+l'_1 . l'_2 & = l_0|_{((\delta \cap \delta_1) \cip) \cup ((\delta \cap \delta_2) \cip)} \\
+	& = l_0|_{(\delta \cap (\delta_1\cup\delta_2)) \cip} \\
+	& = \left( l_0|_{\delta_1 \cup \delta_2 \cip} \right)|_{\delta \cip} \\
+	& = l_0|_{\delta \cip} = l
 \end{align*}
 
+Donc: $l \in {res}_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de ${res}_2$.
+
+Il existe des lignes $l'_1$ et $l'_2$
+appartenant respectivement à $\projDelta(r_1)$ et $\projDelta(r_2)$
+telles que $l = l'_1 . l'_2$
+%ou, autrement dit, $l'_1 = l|_{(\delta_1 \cap \delta) \cip}$
+% et $l'_2 = l|_{(\delta_2 \cap \delta) \cip}$
+.
+
+On en déduit qu'il existe deux lignes $l_1$ et $l_2$
+appartenant respectivement à $r_1$ et $r_2$ 
+telles que $l'_1 = l_1|_{\delta \cip}$ et $l'_2 = l_2|_{\delta \cip}$. \\
+
+$r_1$ et $r_2$ étant unifiables, et $l_1$ et $l_2$ ayant même identifiant,
+$l_1$ et $_2$ sont des lignes correspondantes et on peut donc considérer
+$l_1 . l_2$.
+
+On a d'ailleurs 
+$l = l'_1 . l'_2 = (l_1|_{\delta \cip}) . (l_2|_{\delta \cip}) = (l_1 . l_2)|_{\delta \cip}$. \\
+
+Or, $l_1 . l_2$ appartient à $\defrag(r_1, r_2)$
+donc $l = (l_1 . l_2)|_{\delta \cip}$ appartient à $ {res}_1$
 
 \end{document}
