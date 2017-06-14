@@ -366,7 +366,7 @@ trop restrictive.
 Si on ne suppose pas que les schémas relationnels
 sont disjoints, la quantité de droite peut être définie
 sans que la quantité de gauche soit définie.
-*** TODO Formuler contre-exemple et l'envoyer à Fatima, Ronan et Mario
+*** DONE Formuler contre-exemple et l'envoyer à Fatima, Ronan et Mario
 
 
 * Choix dans les définitions
@@ -764,4 +764,4 @@ Démontrer au moins 10 des 36 lois qu'il reste à démontrer
 + La formulation des lois pour le fold est finie :-D
 + Finalement la loi (6) de la thèse est correcte,
 mais il faudra adapter la condition aux nouvelles définitions
-+ Démonstrations faites: 
++ Démonstrations faites: 1 :-/

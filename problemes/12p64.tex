@@ -1,0 +1,142 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{latexsym} %maybe needed for \Join %nope, it doesn't seem so
+
+\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
+
+\DeclareMathOperator{\proj}{\pi}
+\DeclareMathOperator{\sel}{\sigma}
+\DeclareMathOperator{\frag}{frag}
+\DeclareMathOperator{\defrag}{defrag}
+\DeclareMathOperator{\crypt}{crypt}
+\DeclareMathOperator{\decrypt}{decrypt}
+\DeclareMathOperator{\group}{group}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ens}{E}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Sc}{S}
+\DeclareMathOperator{\s}{sch}
+\DeclareMathOperator{\ls}{L}
+\DeclareMathOperator{\ru}{Ru}
+\DeclareMathOperator{\uni}{Unif}
+\DeclareMathOperator{\cor}{cor}
+\DeclareMathOperator{\rj}{Rj}
+\DeclareMathOperator{\enc}{Enc}
+\DeclareMathOperator{\dec}{Dec}
+\DeclareMathOperator{\ids}{IDs}
+\DeclareMathOperator{\lgr}{lg}
+\DeclareMathOperator{\redu}{red}
+\DeclareMathOperator{\head}{hd}
+\DeclareMathOperator{\tail}{tl}
+\DeclareMathOperator{\hfrag}{hfrag}
+\DeclareMathOperator{\hdefrag}{hdefrag}
+
+\newcommand\typeT[1]{\text{\ttfamily #1}}
+\newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
+\newcommand{\cryptArgs}[2]{\crypt_{#1 , \typeT{#2}}}
+\newcommand{\projDelta}{\proj_{\delta}}
+\newcommand{\selP}{\sel_p}
+\newcommand{\decryptCAlpha}{\decryptArgs{\alpha}{c}}
+\newcommand{\cryptCAlpha}{\cryptArgs{\alpha}{c}}
+\newcommand{\ch}{\typeT{c}}
+\newcommand{\chp}{\typeT{c'}}
+\newcommand{\groupDelta}{\group_{\delta}}
+\newcommand{\fragDelta}{\frag_{\delta}}
+\newcommand{\val}{\mathcal{V}}
+\newcommand{\cy}[1]{\typeT{c}(#1)}
+\newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
+\newcommand{\cip}{\cup \{id\}}
+\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
+\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
+\newcommand{\dilta}{{\delta \cip}}
+
+\begin{document}
+Je me suis aperçu qu'il faut rajouter une condition à la loi (12)
+de la thèse.
+
+
+\subsection*{Ce qui est écrit dans la thèse}
+$$
+\projDelta \circ \defrag
+\equiv \defrag \circ (\proj_{\delta \cap \delta'} , \proj_{\delta \setminus \delta'})
+$$
+où $\delta'$ est le schéma relationnel du premier argument.
+\subsection*{Contre-exemple}
+Si les deux tables ont des attributs en commun,
+la fonction de droite peut être définie sur les deux tables
+sans que la fonction de gauche le soit.
+
+Pour exhiber un contre-exemple on va travailler avec trois attributs $a_1$, $a_2$, $a_3$
+et deux tables $r_1$ et $r_2$ définies comme suit:
+\begin{center}
+\begin{tabular}{cc}
+	$r_1$ & $r_2$ \\
+	\begin{tabular}{ccc}
+		$id$ & $a_1$ & $a_2$ \\
+		$1$	& "a"	& $5$
+	\end{tabular}
+	&
+	\begin{tabular}{ccc}
+		$id$ & $a_3$ & $a_2$ \\
+		1	& $3$		& $7$ 	
+	\end{tabular}
+\end{tabular}
+\end{center}
+et on pose $\delta = \{a_2, a_3\}$.
+
+Dans ce cas là, on a
+$\delta' = \{a_1, a_2\}$. \\
+
+Si on commence par les projections, il est possible de défragmenter les tables obtenues.
+En effet,
+après projection on a:
+\begin{center}
+	\begin{tabular}{cc}
+		$\proj_{\delta \cap \delta'}(r_1)$ & $\proj_{\delta \setminus \delta'}(r_2)$ \\
+		\begin{tabular}{cc}
+			$id$ & $a_2$ \\
+			$1$	&  $5$
+		\end{tabular}
+		&
+		\begin{tabular}{cc}
+			$id$ & $a_3$  \\
+			1	& $3$ 	
+		\end{tabular}
+	\end{tabular}
+\end{center}
+et donc
+\begin{center}
+	\begin{tabular}{c}
+		$\defrag(\proj_{\delta \cap \delta'}(r_1), \proj_{\delta \setminus \delta'}(r_2))$ \\
+		\begin{tabular}{ccc}
+			$id$ & $a_2$ & $a_3$\\
+			$1$	&  $5$	& 3
+		\end{tabular}
+	\end{tabular}
+\end{center}
+Ainsi, $\defrag \circ (\proj_{\delta \cap \delta'} , \proj_{\delta \setminus \delta'})$
+est définie sur ($r_1$, $r_2$).
+
+Par contre, $\defrag(r_1, r_2)$ n'est pas défini, donc
+$\projDelta \circ \defrag$ n'est pas définie sur $(r_1, r_2)$.
+
+\subsection*{Correction}
+La loi devient juste si l'on rajoute une condition sur les schémas relationnels des arguments.\\
+
+En appelant $\delta_1$ le schéma relationnel du premier
+argument et $\delta_2$ le schéma relationnel du deuxième
+argument, on a:
+\begin{align*}
+\projDelta \circ \defrag
+& = \defrag \circ (\proj_{\delta \cap \delta_1}, \proj_{\delta \cap \delta_2})
+& \text{si $\delta_1 \cap \delta_2 = \emptyset$}
+\end{align*}
+
+\end{document}
