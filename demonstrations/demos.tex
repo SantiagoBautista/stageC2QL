@@ -55,6 +55,7 @@
 \newcommand{\cip}{\cup \{id\}}
 \newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
 \newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
+\newcommand{\dilta}{{\delta \cip}}
 
 \newcommand{\intro}[2]{Soit $r$ une relation. On pose $r_1 = (#1)(r) $ et $r_2 = (#2)(r) $}
 \newcommand{\dintro}{De même, si $l$ est un élément de $r_2$,}
@@ -421,6 +422,78 @@ Inversement, si $l$ est une ligne de $r_2$,
 elle s'écrit $\dc{l_0|_{\delta \cip}}_\alpha$
 avec $l_0 \in r$ et $\dc{l_0}_\alpha|_{\delta \cip}$
 appartient à $r_1$ donc $l$ appartient à $r_1$.
+
+\subsection*{Projection et jointure}
+En appelant $\delta_1$ le schéma relationnel du premier
+argument et $\delta_2$ le schéma relationnel du deuxième argument,
+on a:
+\begin{align}
+\projDelta \circ \Join
+& = \Join \circ (\projDelta, \projDelta)
+& \text{si $\delta_1 \cap \delta_2 \subset \delta$}
+\end{align}
+
+Soit $\delta$ un ensemble de noms d'attributs,
+et $r_1$ et $r_2$ des relations.
+On pose $res_1 = (\projDelta \circ \Join)(r_1, r_2)$
+et $res_1 = (\Join \circ (\projDelta, \projDelta))(r_1, r_2)$.
+
+\subsubsection*{Schémas relationnels}
+Le schéma relationnel de $r_1 \Join r_2$ est
+$\s(r_1) \cup \s(r_2)$ donc celui de $res_1$
+est $(\s(r_1) \cup \s(r_2)) \cap \delta$.
+
+Les schémas relationnels respectifs de 
+$\projDelta(r_1)$ et $\projDelta(r_2)$
+sont $\s(r_1) \cap \delta$ et $\s(r_2)\cap \delta$
+donc celui de $res_2$ est 
+$(\s(r_1)\cap \delta) \cup (\s(r_2)\cap\delta) = (\s(r_1)\cup\s(r_2)) \cap \delta$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de $res_1$.
+
+Il existe une ligne $l'$ de $r_1 \Join r_2$
+telle que $l = l'|_\dilta$.
+Puisque $l'$ appartient à $r_1 \Join r_2$,
+il existe deux lignes $l_1$ et $l_2$ appartenant
+respectivement à $r_1$ et $r_2$ telles que
+$l' = l_1.l_2$.
+Ainsi, $l = (l_1.l_2)|_\dilta$.
+
+Puisque $l_1$ et $l_2$ se correspondent
+et que $\delta_1 \cap \delta_2 \subset \delta$,
+$l_1|_\dilta$ et $l_2|_\dilta$ se correspondent aussi.
+Or, $l_1|_\dilta$ (respectivement $l_2|_\dilta$)
+appartient à $\projDelta(l_1)$ (resp. $\projDelta(r_2)$),
+donc $l_1|_\dilta . l_2|_\dilta$ appartient
+à $res_2$.
+
+Montrons que $(l_1.l_2)|_\dilta = l_1|_\dilta . l_2|_\dilta$.
+Ces deux fonctions sont définies sur $((\delta_1 \cup \delta_2) \cap \delta) \cip$.
+Soit $\beta$ un élément de $(\delta_1 \cup \delta_2) \cap \delta$.
+$$
+(l_1.l_2)|_\dilta(\beta) = l_1.l_2(\beta) =
+\left\lbrace
+\begin{array}{ll}
+l_1(\beta) & \text{si $\beta \in \delta_1$} \\
+l_2(\beta) & \text{si $\beta \in \delta_2$}
+\end{array}
+\right.
+$$
+$$
+l_1|_\dilta . l_2|_\dilta (\beta) = 
+\left\lbrace
+\begin{array}{ll}
+l_1|_\dilta (\beta) = l_1(\beta) & \text{si $\beta \in \delta_1$} \\
+l_2|_\dilta (\beta) = l_2(\beta) & \text{si $\beta \in \delta_2$}
+\end{array}
+\right.
+$$
+De plus, $(l_1.l_2)|_\dilta(id) = l_1|_\dilta . l_2|_\dilta (id) = l_1(id) . l_2(id)$.
+Donc on a bien l'égalité souhaitée et on en déduit que $l$ appartient à $res_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $res_2$.
 
 
 \end{document}

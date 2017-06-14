@@ -472,7 +472,7 @@ résultats puissent être les mêmes)
 
 
 * Problèmes dans mes définitions
-** Définition de la jointure ne correspond pas avec jointure naturelle
+** Définition de la jointure ne correspondait pas avec jointure naturelle
 La définition SQL comme la définition d'Ullman (produit cartésien puis filtrage)
 concordent entre elles et ma définition ne correspond pas.
 
@@ -484,22 +484,28 @@ exacte entre les lignes lors d'un join et que ma définition soit SQL-compatible
 
 ** En fait, les schèmas relationnels sont connus
 J'ai formulé une partie de mes lois en voulant que les conditions ne portent que sur les fonctions...
-mais en soi les schéma relationnels des tables en entrée sont connus, car c'est une donnée statique,
-propre au programme en question.
+mais en soi les schémas relationnels des tables en entrée sont connus, car c'est une donnée statique,
+propre au programme en question, et non pas une donnée dynamique qui serait propre au contenu des relations.
 
 
 ** Deux choix à faire
-*** Adopte-t-on la définition join = select o x ?
+*** Adopte-t-on la définition join = select o x ? Non
 Ou alors se restreint-on à une sorte de JOIN LEFT avec
 la définition ensembliste?
 
 J'ai choisi la définition ensembliste parce que tout en étant
 suffisemment expressive elle permet de faire plus facilement une
-démonstration formelle des lois de commutation
+démonstration formelle des lois de commutation.
 
 
 *** Comment faire intervenir défragmentation et jointure?
 La défragmentation est vue comme un cas particulier de jointure.
+
+
+** Les identifiants post-jointure ne sont pas des identifiants
+Si on s'amuse à faire des jointures successives et des unions à partir
+des mêmes relations de base mais en projetant d'un côté et pas de l'autre,
+on peut peut-être arriver à avoir deux lignes différentes qui auraient le même identifiant... :'(
 
 
 * Prise de notes
@@ -677,6 +683,7 @@ et non pas ce que se passe chez chaque acteur
 pour les decrypt, par exemple
 
 
+
 * Carnet de bord à partir du 12/06
 ** 12/06
 Je vais plutôt commencer à démontrer les lois,
@@ -746,7 +753,15 @@ J'ai rien dit... Dans les deux cas on a besoin d'une fonction injective car sino
 dans l'un des deux sens on serait en train d'agrandir les groupes du regroupement,
 et dans l'autre sens on serait en train de les réduire.
 
+
 ** 14/06
 *** Objectifs de la journée
 Démontrer au moins 10 des 36 lois qu'il reste à démontrer
 + Mettre par écrit contre-exemple loi 12 thèse et l'envoyer
+*** Problème qu'il faudra résoudre
+[[*Les identifiants post-jointure ne sont pas des identifiants][Les identifiants post-jointure ne sont pas des identifiants]]
+*** Bilan de la journée
++ La formulation des lois pour le fold est finie :-D
++ Finalement la loi (6) de la thèse est correcte,
+mais il faudra adapter la condition aux nouvelles définitions
++ Démonstrations faites: 
