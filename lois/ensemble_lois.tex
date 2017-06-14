@@ -265,7 +265,19 @@ On appelle $\delta'$ le schéma relationnel du premier argument.
 & \text{si $\redu_{\alpha, f, z, \bullet}$ est injective}
 \end{align}
 
-\section*{Lois que j'avais oublié dans la section 1}
-
+On appelle $\delta_1$ et $\delta_2$
+les schémas relationnels respectifs du
+premier et du deuxième argument.
+\begin{align}
+\foldAlphafz \circ \Join
+& = \Join \circ (\foldAlphafz, \id)
+& \text{si $\alpha \in \delta_1 \setminus \delta_2$} \\
+\foldAlphafz \circ \Join
+& = \Join \circ (\id, \foldAlphafz)
+& \text{si $\alpha \in \delta_2 \setminus \delta_1$} \\
+\foldAlphafz \circ \Join
+& = \Join \circ (\foldAlphafz, \foldAlphafz)
+& \text{si $\redu_{\alpha, f, z, \bullet}$ est injective}
+\end{align}
 
 \end{document}

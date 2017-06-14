@@ -239,7 +239,7 @@ Ceci sera fait pour la troisième approche,
 la première étant probablement impossible et la deuxième
 étant contenue dans la troisième.
 
-***** TODO Dresser et *compléter* le tableau de lois de commutation
+***** DONE Dresser et *compléter* le tableau de lois de commutation
 [[file:completude/nouveau.pdf][Etat actuel de la complétude au sens de la troisième approche]]
 
 
@@ -247,18 +247,24 @@ la première étant probablement impossible et la deuxième
 *** Remplacer count par group/fold...
 **** ... dans les lois
 ***** DONE Prendre les lois de group de l'article, plutôt que les lois de group
-***** TODO ajouter des lois pour le fold
+***** DONE ajouter des lois pour le fold
 **** TODO dans l'implémentation actuelle de C2QL
 
 
 *** Sémantique des fonctions et des formules
-**** Définir la sémantique des fonctions utilisées
+**** DONE Définir la sémantique des fonctions utilisées
 En justifiant les choix faits, en particulier dans leurs
 différences avec ce qui existe actuellement
 
+La définition est faite:
+[[file:semantique/definitions.pdf][Définition formelle des fonctions C2QL]]
+
+Il reste à synthétiser les choix qui ont été faits et leurs raisons
+
+
 **** Démontrer la correction sémantique des lois
-
-
+La démonstration est en cours:
+[[file:demonstrations/demos.pdf][Démonstrations des lois algébriques sur C2QL]]
 
 
 ** ORGanisation
@@ -356,6 +362,13 @@ trop restrictive.
 
 
 
+** Projection et défragmentation
+Si on ne suppose pas que les schémas relationnels
+sont disjoints, la quantité de droite peut être définie
+sans que la quantité de gauche soit définie.
+*** TODO Formuler contre-exemple et l'envoyer à Fatima, Ronan et Mario
+
+
 * Choix dans les définitions
 ** Définition sémantique de "relation"
 Dans un premier temps, j'ai voulu définir une relation juste comme la table de ses valeurs.
@@ -395,14 +408,12 @@ du reste du système
 + / ne pas avoir d'identifiant
 + / devoir choisir entre différents identifiants
 ??
-**** Lorsque les identifiants ne coïncident pas, tous les choix me semblent arbitraires 
-Pour l'instant je choisis donc de garder l'id de gauche,
-mais je vais investiger dans quels cas ça pourrait raisonnablement
-se produire, pour voir quel est le choix raisonnable dans ce cas là.
-**** TODO Chercher un exemple où il faut accepter IDs différents
-Eventuellement, chercher parmi les exercices classiques d'enseignement du SQL
-**** TODO Chercher un exemple où ça serait gênant de perdre les identifiants
-Typiquement, un exemple où il faudrait faire une défragmentation après une jointure
+Je choisi de donner pour identifiant au lignes du résultat
+la concaténation (de listes) des identifiants précédents.
+C'est l'option qui garantit qu'il n'y a aucune perte d'information
+(quitte à ce que l'information pas perdue puisse ne pas être rélévante
+vis à vis du reste du système)
+
 *** Lieu de jonction vs attributs en commun
 Si on définit la notion de lieu de jonction,
 que faire avec des attributs communs qui n'auraient pas la même valeur?
@@ -447,6 +458,19 @@ en vrai on est pas vraiment en train de se passer de l'hypothèse...
 Donc la notion d'équivalence était bel et bien la bonne
 
 
+* Choix dans les lois
+Les notes ci-après ne sont largement pas complètes,
+il faudra que j'y revienne pour lister/synthétiser tous les
+choix qui ont été faits et leurs raisons
+
+** Projection et jointure
+Puisqu'on passe d'une jointure sur un attribut à une jointure sur un ensemble
+d'attributs, 
+la condition sur le \alpha devient  \delta_1 \cap \delta_2 \subset \delta \cap \delta'
+et est nécessaire pour que le nombre de lignes soit le même (et donc pour que les
+résultats puissent être les mêmes)
+
+
 * Problèmes dans mes définitions
 ** Définition de la jointure ne correspond pas avec jointure naturelle
 La définition SQL comme la définition d'Ullman (produit cartésien puis filtrage)
@@ -454,8 +478,8 @@ concordent entre elles et ma définition ne correspond pas.
 
 Serait-ce finalement une bonne idée de travailler avec le produit cartésien?
 
-Après recherche d'exemples d'utilisation de la jointure pour des bases de données
-réelles, je m'apperçoit que ma définition convient :-)
+J'ai donc modifié ma définition pour qu'il n'y ait pas forcément correspondance
+exacte entre les lignes lors d'un join et que ma définition soit SQL-compatible.
 
 
 ** En fait, les schèmas relationnels sont connus
@@ -469,8 +493,13 @@ propre au programme en question.
 Ou alors se restreint-on à une sorte de JOIN LEFT avec
 la définition ensembliste?
 
+J'ai choisi la définition ensembliste parce que tout en étant
+suffisemment expressive elle permet de faire plus facilement une
+démonstration formelle des lois de commutation
+
 
 *** Comment faire intervenir défragmentation et jointure?
+La défragmentation est vue comme un cas particulier de jointure.
 
 
 * Prise de notes
@@ -716,3 +745,8 @@ que les quantités soient définies au départ...
 J'ai rien dit... Dans les deux cas on a besoin d'une fonction injective car sinon
 dans l'un des deux sens on serait en train d'agrandir les groupes du regroupement,
 et dans l'autre sens on serait en train de les réduire.
+
+** 14/06
+*** Objectifs de la journée
+Démontrer au moins 10 des 36 lois qu'il reste à démontrer
++ Mettre par écrit contre-exemple loi 12 thèse et l'envoyer
