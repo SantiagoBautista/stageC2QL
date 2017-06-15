@@ -755,9 +755,39 @@ Donc la première inclusion implique la deuxième.
 \begin{align}
 \foldAlphafz \circ \projDelta
 & \equiv \projDelta
-& \text{si $\alpha \notin \delta$}
+& \text{si $\alpha \notin \dilta$}
 \end{align}
+Soit $\delta$ un ensemble de noms d'attributs,
+$\alpha$ un attribut, $f$ une fonction de $\val$
+dans $val$ et $z$ un élément de $\val$.
 
+Soit $r$ une relation. On pose $res_1 = (\foldAlphafz \circ \projDelta)(r) $ 
+et $res_2 = \projDelta(r) $
 
+\subsubsection*{Schéma et cardinal}
+Pour les mêmes raisons que lors de la démonstration précédente,
+$res_1$ et $res_2$ ont tous les deux le même schéma relationnel
+et le même cardinal que $r$.
 
+\subsubsection*{Inclusion de $res_2$ dans $res_1$}
+Soit $l$ une ligne de $res_2$.
+
+On pose $l' = \redu_{\alpha, f, z, l}$,
+qui est un élément de $res_1$.
+
+Montrons que $l = l'$.
+
+Ces deux lignes là sont définies sur
+$(\s(r) \cap \delta) \cip$.
+
+Pour $\beta \in (\s(r) \cap \delta) \cip$,
+on a forcément $\beta \neq \alpha$ car
+$\alpha \notin \dilta$, donc
+$$
+l'(\beta) = l(\beta)
+$$
+d'où l'égalité entre $l$ et $l'$ et l'appartenance de $l$ à $res_1$.
+
+Ainsi, $res_2 \subset res_1$. Vu que de plus les deux ensembles sont finis de même cardinal,
+on en déduit qu'ils sont égaux.
 \end{document}
