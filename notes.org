@@ -787,4 +787,6 @@ indépendamment du nombre d'arguments des fonctions considérées.
 
 
 **** Démonstrations
-+ De proj/group
++ De proj+group
++ De proj+fold_projeté
++ De proj+fold_non_projeté

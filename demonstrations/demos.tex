@@ -696,4 +696,78 @@ que $l'_0 = l'_i$, donc que $l'_0 \in \{ l'_1, \dots, l'_m \}$.
 
 Ainsi, $r'_n \subset \{ l'_1, \dots, l'_m \}$, d'où l'égalité.
 
+\subsection*{Projection et réduction d'un attribut projeté ou non}
+\begin{align}
+\foldAlphafz \circ \projDelta
+& \equiv \projDelta \circ \foldAlphafz
+\end{align}
+
+Soit $\delta$ un ensemble de noms d'attributs,
+$\alpha$ un attribut, $f$ une fonction de $\val$
+dans $val$ et $z$ un élément de $\val$.
+
+\intro{\foldAlphafz \circ \projDelta}{\projDelta \circ \foldAlphafz}.
+
+\subsubsection*{Schémas relationnels}
+Ni la projection ni la réduction ne changent les schémas relationnels,
+donc $res_1$, $r$ et $res_2$ ont tous les trois le même schéma relationnel.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de $res_1$.
+
+Il existe $l'$ dans $\projDelta(r)$ telle que
+$l = \redu_{\alpha, f, z, l'}$ et $l''$ dans $r$
+telle que $l' = l''|_\dilta$.
+
+$l''$ appartient à $r$ donc
+$\redu_{\alpha, f, z, l''}$ appartient à $\foldAlphafz(r)$
+et, en posant $\tilde{l} = \redu_{\alpha, f, z, l''}|_\dilta$,
+$\tilde{l}$ appartient à $res_2$. \\
+
+Montrons que $l = \tilde{l}$.
+
+Soit $\beta \in (\s(r) \cap \delta) \cip$.
+
+Si $ \beta \neq \alpha$, on a:
+$$
+\tilde{l}(\beta) =  \redu_{\alpha, f, z, l''}(\beta)
+= l''(\beta) = l'(\beta) = \redu_{\alpha, f, z, l'}(\beta) = l(\beta)
+$$
+
+Si $\beta = \alpha$, on a:
+$$
+\tilde{l}(\alpha) = \redu_{\alpha, f, z, l''}(\alpha) = \redu_{f, z}(l''(\alpha))
+= \redu_{f,z}(l'(\alpha)) = \redu_{\alpha, f, z, l'}(\alpha) = l(\alpha)
+$$
+
+Puisqu'on a l'égalité souhaitée, on peut en déduire que
+$l$ appartient à $res_2$, d'où la première inclusion.
+
+\subsubsection*{Deuxième inclusion}
+Inversement, soit $l$ un élément de $res_2$.
+
+Il existe $l'$ dans $\foldAlphafz(r)$
+telle que $l = l'|_\dilta$ et $l''$ dans $r$
+telle que $l' = \redu_{\alpha, f, z, l'}$. 
+
+Puisque $l''$ appartient à $r$,
+$l''|_\dilta$ appartient à $\projDelta(r)$
+et $\redu_{alpha, f, z, l''|_\dilta}$, que l'on va appeler
+$\tilde{l}$, appartient à $res_1$. \\
+
+Par un calcul symétrique à celui de la démonstration de la
+première inclusion,
+on peut montrer que $\tilde{l} = l$.
+
+Ainsi, $l$ appartient à $res_1$ et on a la deuxième inclusion.
+
+\subsection*{Projection et réduction d'un attribut non projeté}
+\begin{align}
+\foldAlphafz \circ \projDelta
+& \equiv \projDelta
+& \text{si $\alpha \notin \delta$}
+\end{align}
+
+
+
 \end{document}
