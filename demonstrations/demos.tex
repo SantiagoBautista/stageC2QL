@@ -79,7 +79,12 @@ $f_2(r)$ ont le même schéma relationnel,
 puis, on montrera que $f_1(r) \subset f_2(r)$
 et ensuite que $f_2(r) \subset f_1(r)$.
 
-On aura ainsi démontré par double inclusion que $f_1(r) = f_2(r)$.
+On aura ainsi démontré par double inclusion que $f_1(r) = f_2(r)$.\\
+
+Dans toutes les démonstrations qui suivent,
+quand on dit de deux fonctions $f$ et $g$ qu'elles coïncident
+sur un ensemble $d$, on entend par là qu'elles coïncident sur
+$D_f \cap D_g \cap d$.
 
 \section*{Lois de projection}
 \subsection*{Projection et projection}
@@ -582,6 +587,113 @@ $l_1 = l_2$
 et on en déduit $res_1 = res_2$.
 
 \subsubsection*{Deuxième cas: si $\delta$ est non vide}
+\paragraph*{Première inclusion} :
 
+Soit $l$ une ligne de $res_1$.
+
+Soit $n$ un nom de groupe sur $\delta$ associé
+(i. e. $n = l|_\delta$).
+
+Pour simplifier les notations, on pose
+$r' = \proj_{\delta'}(r)$.
+
+Il existe $l'_1, \dots, l'_m$ des lignes distinctes de
+$r'$ telles que $r'_n = \{l'_1, \dots, l'_m \}$.
+
+
+Les $l'_i$ appartenant à $r'$,
+il existe des lignes $l_1, \dots, l_m$
+de $r$ telles que 
+$$
+\forall i \in \{1, \dots n \},
+l'_i = l_i|_{\delta' \cip}
+$$
+
+Montrons par double inclusion que $\{ l_1, \dots, l_m \} = r_n$.
+
+Les $l'_1, \dots, l'_m$ sont les restriction des 
+$l_1, \dots, l_m$  à $\delta'$ et elles coïncident entre elles
+sur $\delta$.
+Or $\delta \subset \delta'$ donc les
+$l_1, \dots, l_m$ coïncident sur $\delta$.
+On en déduit que $\{ l_1, \dots, l_m \} \subset r_n$.
+
+Soit maintenant $l_0$ un élément de $r_n$.
+Puisque $l_1$ appartient à $r_n$,
+$l_0$ coïncide avec $l_1$ sur $\delta$;
+donc $l_0|_{\delta' \cip}$ coïncide sur $\delta$ avec 
+$l_1|_{\delta' \cip}$ , et par conséquent avec $n$
+donc $l_0|_{ \delta' \cip } \in r'_n$ 
+
+On en déduit qu'il existe $i \in \{1, \dots, n\}$
+tel que $l_0|_{\delta' \cip} = l'_i$.
+
+$l_0$ coïncide donc avec $l_i$ sur $\delta' \cip$
+donc en particulier $l_0(id) = l_i(id)$ et,
+comme l'identifiant de chaque ligne dans une relation est supposé unique
+et $l_0$ et $l_1$ appartiennent tous les deux à la relation $r$,
+on a: $l_0 = l_i$.
+
+Ainsi, $l_0 \in \{l_1, \dots, l_m\}$.
+
+On en déduit que $r_n \subset \{ l_1, \dots, l_m \}$
+et on a donc l'égalité. \\
+
+On pose $l' = (\lgr_{r, n})|_{\delta' \cip }$,
+qui est donc un élément de $res_2$.
+
+Montrons que $l' = l$.
+
+Ces deux fonctions sont définies
+sur $\delta' \cip$, et pour $\alpha \in \delta' \cip$ on a:
+$$
+\left\lbrace
+\begin{array}{ll}
+l'(\alpha) = n(\alpha) = l(\alpha)
+& \text{si $\alpha \in \delta$} \\
+l' (\alpha) = r_n(\alpha) = r'_n(\alpha) = l(\alpha)
+& \text{si $\alpha \notin \delta$}
+\end{array}
+\right.
+$$
+d'où l'égalité.
+
+On en déduit que $l$ appartient à $res_2$, d'où la première inclusion.
+
+\paragraph*{Deuxième inclusion} :
+
+Soit $l$ une ligne de $res_2$.
+
+Soit $n$ un nom de groupe pour $\delta$
+tel que $l = \lgr_{r,n}|_{\delta' \cip}$. \\
+
+
+Il existe des lignes $l_1, \dots, l_m$
+telles que $r_n = \{ l_1, \dots, l_m \}$.
+
+En appelant $r'$ la relation $\proj_{\delta'}(r)$ et en appelant,
+pour $i$ dans $\{ 1, \dots, m \}$, $l'_i = l_i|_{\delta' \cip}$
+montrons par double inclusion que
+$r'_n = \{ l'_1, \dots, l'_m \}$.
+
+Puisque les $l_1, \dots, l_m$ et $n$ coïncident sur $\delta$,
+leurs restrictions $l'_1, \dots, l'_m$ coïncident sur $\delta$
+également et coïncident sur $\delta$ avec $n$, donc
+$\{ l'_1, \dots, l'_m \} \subset r'_n$.
+
+Dans l'autre sens, soit $l'_0$ un élément de $r'_n$.
+Il existe $l_0$ élément de $r$ tel que
+$l'_0 = l_0|_{\delta' \cip}$. Puisque $l'_0$ coïncide
+avec $n$ sur $\delta$, que $\delta \subset \delta'$
+et que $l_0$ coïncide avec $l'_0$ sur $\delta'$, 
+$l_0$ coïncide avec $n$ sur $\delta$, d'où
+$l_0 \in r_n$.
+
+On en déduit qu'il existe $i$ dans $\{ 1, \dots, m \}$
+tel que $l_0 = l_i$.
+Par définition de $l_0$ et des $l'_i$, on en déduit
+que $l'_0 = l'_i$, donc que $l'_0 \in \{ l'_1, \dots, l'_m \}$.
+
+Ainsi, $r'_n \subset \{ l'_1, \dots, l'_m \}$, d'où l'égalité.
 
 \end{document}
