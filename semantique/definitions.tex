@@ -207,19 +207,15 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 \end{defi}
 
 \subsection*{Fragmentation et défragmentation}
-La défragmentation est un cas particulier de jointure naturelle,
-le seul attribut en commun pour les deux tables est l'identifiant des lignes.
+La défragmentation est presque un cas particulier de jointure naturelle,
+où l'identifiant serait considéré comme un attribut en commun pour les deux tables
+et il serait le seul.
 
 \begin{defi}
 	Deux relations $r$ et $r'$ sont dites \emph{unifiables}
 	si:
 	$$
-	\left\lbrace
-	\begin{array}{l}
-	\{l(id) / l \in r \} = \{l(id) / l \in r' \} \\
 	\s(r) \cap \s(r') = \emptyset
-	\end{array}
-	\right.
 	$$
 	On remarquera que deux relations unifiables sont également joignables.
 	
@@ -242,14 +238,27 @@ le seul attribut en commun pour les deux tables est l'identifiant des lignes.
 \end{defi}
 
 \begin{defi}
-	On appelle \emph{défragmentation} la
-	restriction de la jointure naturelle à $\ru$.
-	$$
-	\begin{array}{llcl}
-	\defrag:	& \ru & \rightarrow & \R \\
-	& (r, r')  	& \mapsto & r \Join r'
-	\end{array}
-	$$
+	On dit que deux lignes $l$ et $l'$ sont \emph{unifiables}
+	si elles partagent le même identifiant
+	et que les relations correspondantes sont unifiables.
+	
+	On définit alors leur unification $\uni(l, l')$ comme la fonction
+	définie sur $\s(l) \cup \s(l') \cip$ par
+		$$
+		\left\lbrace
+		\begin{array}{ll}
+		\uni(l, l')(\alpha)  = l(\alpha) & \text{si $\alpha \in \s(l) $} \\
+		\uni(l, l')(\alpha)  = l'(\alpha) & \text{si $\alpha \in \s(l') $} \\
+		\uni(l, l')(id)  = l(id) = l'(id) &  \\
+		\end{array}
+		\right.
+		$$
+\end{defi}
+
+\begin{defi}
+	On appelle \emph{défragmentation} la fonction
+	de $\ru$ à valeur dans $\R$ définie par:
+	
 \end{defi}
 
 \subsection*{Chiffrement et déchiffrement}

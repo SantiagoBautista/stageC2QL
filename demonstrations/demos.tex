@@ -848,4 +848,28 @@ donc $l$ appartient à $\sel_{p_1}(\sel_{p_2}(r))$,
 autrement connue sous le nom de $res_1$. \\
 
 On en déduit que $res_2 \subset res_2$.
+
+\subsection*{Sélection et défragmentation}
+En appelant $\delta_1$ le schéma relationnel du premier argument,
+et $\delta_2$ le schéma relationnel du deuxième arguemnt,
+\begin{align}
+\selP \circ \defrag 
+& \equiv \defrag \circ (\selP, \id)
+& \text{si $dom(p) \subset \delta_1$} \\
+\selP \circ \defrag 
+& \equiv \defrag \circ (\id, \selP)
+& \text{si $dom(p) \subset \delta_2$}
+\end{align}
+
+Les démonstrations des deux lois étant tout à fait analogues,
+je ne démontrerai que la loi (10).
+
+Soit $p$ un prédicat sur les lignes.
+Soient $r_1$ et $r_2$ deux relations unifiables.
+
+On pose
+$res_1 = \selP(\defrag(r_1, r_2))$
+et
+$res_2 = \defrag(\selP(r_1), r_2)$.
+
 \end{document}
