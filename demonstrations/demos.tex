@@ -790,4 +790,62 @@ d'où l'égalité entre $l$ et $l'$ et l'appartenance de $l$ à $res_1$.
 
 Ainsi, $res_2 \subset res_1$. Vu que de plus les deux ensembles sont finis de même cardinal,
 on en déduit qu'ils sont égaux.
+
+\section*{Lois de sélection}
+\subsection*{Sélection et sélection}
+\begin{align}
+\sel_{p_1} \circ \dots \circ \sel_{p_n}
+&\equiv \sel_{p_1 \wedge \dots \wedge p_n} 
+\end{align}
+
+Vu que le ET logique est associatif, pour démontrer cette loi,
+il suffit de le démontrer pour deux sélections.
+
+Soient $p_1$ et $p_2$ deux prédicats et 
+$r$ une relation.
+
+On pose $res_1 = (\sel_{p_1} \circ \sel_{p_2}) (r)$
+et $res_2 = \sel_{p_1 \wedge p_2}(r)$.
+
+\subsubsection*{Schémas relationnels}
+La sélection préserve le schéma relationnel,
+donc $res_1$ et $res_2$ ont tous les deux le même
+schéma relationnel que $r$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de 
+$res_1$.
+
+Puisque $l$ appartient à $res_1$,
+$l$ appartient à $\sel_{p_2}(r)$
+et $l$ vérifie $p_1$.
+
+Or, si $l$ appartient à $\sel_{p_2}(r)$,
+$l$ appartient à $r$ et vérifie $p_2$.
+
+Donc $l$ appartient à $r$ et vérifie
+à la fois $p_1$ et $p_2$, donc vérifie
+$p_1 \wedge p_2$.
+
+Par conséquent, $l$
+appartient à $res_2$. \\
+
+On en déduit que $res_1 \subset res_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ un élément de $res_2$.
+
+Puisque $l$ appartient à $res_2$,
+$l$ appartient à $r$ et vérifie
+$p_1 \wedge p_2$.
+
+On en déduit que $l$ vérifie et $p_1$ et $p_2$.
+
+Comme $l$ appartient à $r$ et vérifie $p_2$,
+$l$ appartient aussi à $\sel_{p_2}(r)$.
+Or $l$ vérifie $p_1$,
+donc $l$ appartient à $\sel_{p_1}(\sel_{p_2}(r))$,
+autrement connue sous le nom de $res_1$. \\
+
+On en déduit que $res_2 \subset res_2$.
 \end{document}
