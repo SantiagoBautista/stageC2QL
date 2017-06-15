@@ -323,7 +323,7 @@ des éventuelles clefs de chiffrement et déchiffrement.
 \begin{defi}
 	Pour $\delta$ un ensemble de noms d'attributs,
 	on appelle \emph{nom de groupe pour $\delta$}
-	toute application $n$ définie de $\delta \cup \{id\}$
+	toute application $n$ définie de $\delta$
 	dans $\val$.
 	
 	On remarque que tout nom de groupe est une ligne.
@@ -342,11 +342,11 @@ des éventuelles clefs de chiffrement et déchiffrement.
 	Pour $r$ une relation et $n$ un groupe, on appelle
 	\emph{groupe de $r$ pour le nom $n$} l'ensemble
 	des éléments de $r$ coïncidant avec $n$ 
-	sur $(\s(r)\cap\dom(n))\cup\{id\}$. On le note $r_n$.
+	sur $\s(r)\cap\dom(n)$. On le note $r_n$.
 	
 	Autrement dit:
 	$$
-	r_n = \{l \in r / l|_{(\s(r)\cap\dom(n))\cup\{id\}}  = n|_{(\s(r)\cap\dom(n))\cup\{id\}} \}
+	r_n = \{l \in r / l|_{\s(r)\cap\dom(n)}  = n|_{\s(r)\cap\dom(n)} \}
 	$$
 	
 	De plus, on appelle \emph{identifiants du groupe $r_n$} l'ensemble
@@ -356,6 +356,16 @@ des éventuelles clefs de chiffrement et déchiffrement.
 	$$
 	\ids(r_n) = \{ l(id) / l \in r_n \}
 	$$
+\end{defi}
+
+\begin{defi}
+	On dira qu'une application $f$ est \emph{plus petite}
+	qu'une application $g$ si $f$ est une restriction de $g$.
+	
+	On dira qu'un nom de groupe $n_0$ est $\emph{minimal}$
+	pour une relation $r$ donnée
+	si c'est une plus petite application $n$ pour laquelle
+	le groupe de $r$ pour $n$ vaut $r_{n_0}$.
 \end{defi}
 
 \begin{defi}
@@ -372,6 +382,18 @@ des éventuelles clefs de chiffrement et déchiffrement.
 	\end{array}
 	$$
 \end{defi}
+	
+\paragraph{Remarque:}
+Souvent, on supposera que l'ensemble des identifiants possible
+est totalement ordonné et on s'en servira pour considérer
+des fonctions définies sur un ensemble d'identifiants
+(par exemple les $r_n(\alpha)$ définis ci-dessus) 
+comme des listes.
+
+On définit la longueur de telles listes comme le cardinal
+de leur ensemble de départ.
+Par exemple, la longueur de $r_n(\alpha)$
+est $|r_n(\alpha)| = |\ids(r_n)|$
 
 \begin{defi}
 	Pour $r$ une relation, et $n$ un nom de groupe,
@@ -381,7 +403,7 @@ des éventuelles clefs de chiffrement et déchiffrement.
 	\left\lbrace
 	\begin{array}{ll}
 	\lgr_{r, n}(\alpha) = n(\alpha) & \text{si $\alpha \in \s(r) \cap \dom(n)$} \\
-	\lgr_{r, n}(\alpha) = r_n(\alpha) & \text{si $\alpha \in (\s(r) \cip) \setminus \dom(n)$}
+	\lgr_{r, n}(\alpha) = r_n(\alpha) & \text{si $\alpha \in (\s(r) \setminus \dom(n)) \cip$}
 	\end{array}
 	\right.
 	$$ 

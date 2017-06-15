@@ -57,8 +57,8 @@
 \newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
 \newcommand{\dilta}{{\delta \cip}}
 
-\newcommand{\intro}[2]{Soit $r$ une relation. On pose $r_1 = (#1)(r) $ et $r_2 = (#2)(r) $}
-\newcommand{\dintro}{De même, si $l$ est un élément de $r_2$,}
+\newcommand{\intro}[2]{Soit $r$ une relation. On pose $res_1 = (#1)(r) $ et $res_2 = (#2)(r) $}
+\newcommand{\dintro}{De même, si $l$ est un élément de $res_2$,}
 
 \begin{document}
 
@@ -88,28 +88,28 @@ On aura ainsi démontré par double inclusion que $f_1(r) = f_2(r)$.
 & = \proj_{\delta_1 \cap \dots \cap \delta_n}
 \end{align}
 Soit $r$ une relation.
-On pose $r_1 = \proj_{\delta_1}\circ \dots \circ \proj_{\delta_n}(r)$ 
-et $r_2 =  \proj_{\delta_1 \cap \dots \cap \delta_n}(r)$
+On pose $res_1 = \proj_{\delta_1}\circ \dots \circ \proj_{\delta_n}(r)$ 
+et $res_2 =  \proj_{\delta_1 \cap \dots \cap \delta_n}(r)$
 
 \subsubsection*{Schéma relationnel}
 On peut démontrer par récurrence sur $n$ que
-le schéma relationnel de $r_1$
+le schéma relationnel de $res_1$
 est 
 $$
-\s(r_1) = 
+\s(res_1) = 
 \s(r) \cap \bigcap_{i \in \{ 1, \dots, n \} } \delta_i
 $$
 
 De même, par définition de la projection, on a
 $$
-\s(r_2) = 
+\s(res_2) = 
 \s(r) \cap \bigcap_{i \in \{ 1, \dots, n \} } \delta_i
 $$
 
-Donc $\s(r_1) = \s(r_2)$
+Donc $\s(res_1) = \s(res_2)$
 
 \subsubsection*{Première inclusion}
-Soit $l$ une ligne de $r_1$.
+Soit $l$ une ligne de $res_1$.
 
 Il existe $l'$ une ligne de $r$ telle que
 $
@@ -122,13 +122,13 @@ l = {\left(
 $
 .
 Or, par définition de la projection $\proj_{\delta_1 \cap \dots \cap \delta_n}$ ,
-on a $l' |_{(\delta_1 \cap \dots \cap \delta_n) \cip} \in r_2$.
-Donc $l \in r_2$.
+on a $l' |_{(\delta_1 \cap \dots \cap \delta_n) \cip} \in res_2$.
+Donc $l \in res_2$.
 
-Ainsi, $r_1 \subset r_2$.
+Ainsi, $res_1 \subset res_2$.
 
 \subsubsection*{Deuxième inclusion}
-De même, si $l$ est un élément de $r_2$,
+De même, si $l$ est un élément de $res_2$,
 alors il existe une ligne $l'$ de $r$ telle que
 $l = l' |_{(\delta_1 \cap \dots \cap \delta_n) \cip} = 
  {\left( 
@@ -145,9 +145,9 @@ $
 		l'|_{\delta_n \cip} 
 		\right)} |_{\dots }
 	\right)} |_{\delta_1 \cip}
-\in r_1
+\in res_1
 $ 
-, d'où $l \in r_1$ et $r_2 \subset r_1$.
+, d'où $l \in res_1$ et $res_2 \subset res_1$.
 
 \subsection*{Projection et sélection}
 \begin{align}
@@ -165,13 +165,13 @@ $\dom(p) \subset \delta$.
 \subsubsection*{Schéma relationnel}
 Une sélection ne modifiant jamais le schéma relationnel
 d'une relation,
-la schéma relation de $r_1$ et de $r_2$ est
+la schéma relation de $res_1$ et de $res_2$ est
 $\s(r) \cap \delta$.
 
 \subsubsection*{Première inclusion}
-Soit $l$ une ligne de $r_1$.
+Soit $l$ une ligne de $res_1$.
 
-Il existe une ligne $l'$ de $\selP(r_1)$
+Il existe une ligne $l'$ de $\selP(res_1)$
 telle que $l = l'|_{(\s(r)\cap \delta) \cip}$.
 
 Puisque $l$ et $l'$ coïncident sur $\delta$
@@ -179,10 +179,10 @@ et que $\dom(p) \subset \delta$,
 on a $p(l) = p(l') = true$.
 
 Or, par définition de $\projDelta$, $l' \in \projDelta(r)$,
-donc $l' \in \selP(\projDelta(r)) = r_2$.
+donc $l' \in \selP(\projDelta(r)) = res_2$.
 
 Ainsi,
-$r_1 \subset r_2$.
+$res_1 \subset res_2$.
 
 \subsubsection*{Deuxième inclusion}
 \dintro alors $p(l) = true$ et $l \in \projDelta(r)$
@@ -193,9 +193,9 @@ le domaine de $p$, $l'$ vérifie le prédicat $p$
 donc $\l' \in \selP(r)$.
 
 On en déduit par définition de $\projDelta$ que
-$l \in r_1$.
+$l \in res_1$.
 
-Ainsi, $r_2 \subset r_1$.
+Ainsi, $res_2 \subset res_1$.
 
 \subsection*{Projection et défragmentation (verticale)}
 En appelant $\delta_1$ le schéma relationnel du premier
@@ -307,11 +307,11 @@ et $\alpha$ un attribut (appartenant à $\delta$ ou pas).
 
 \subsubsection*{Schémas relationnels}
 Le déchiffrement ne changeant pas le schéma relationnel
-d'une relation,le schéma relationnel de $r_1$ et $r_2$
+d'une relation,le schéma relationnel de $res_1$ et $res_2$
 est $\s(r) \cap \delta$.
 
 \subsubsection*{Première inclusion}
-Soit $l$ une ligne de $r_1$.
+Soit $l$ une ligne de $res_1$.
 
 Il existe $l'$ une ligne de $\decryptCAlpha(r)$ telle que
 $l = l'|_{\delta \cip}$.
@@ -321,7 +321,7 @@ et donc $l = \dc{l_0}_\alpha|_{\delta \cip}$. \\
 
 Puisque $l_0$ appartient à $r$, $l_0|_{\delta \cip}$
 appartient à $\projDelta(r)$ et donc
-$\dc{l_0|_{\delta \cip}}_\alpha$ appartient à $r_2$. \\
+$\dc{l_0|_{\delta \cip}}_\alpha$ appartient à $res_2$. \\
 
 Montrons que $\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$.
 Les deux fonctions en question sont définies sur $(\s(r)\cap \delta) \cip$.
@@ -353,10 +353,10 @@ $$
 $$
 
 Ainsi, $\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$
-donc $l$ appartient à $r_2$.
+donc $l$ appartient à $res_2$.
 
 \subsubsection*{Deuxième inclusion}
-Soit $l$ une ligne de $r_2$.
+Soit $l$ une ligne de $res_2$.
 
 Il existe une ligne $l'$ de $\projDelta(r)$
 telle que $l = \dc{l'}_\alpha$.
@@ -368,13 +368,13 @@ $l = \dc{l_0|_{\delta \cip}}_\alpha$. \\
 
 Vu que $l_0$ appartient à $r$, 
 $\dc{l_0}_\alpha$ appartient à $\decryptCAlpha(r)$
-et $\dc{l_0}_\alpha|_{\delta \cip}$ appartient à $r_1$.
+et $\dc{l_0}_\alpha|_{\delta \cip}$ appartient à $res_1$.
 
 Or, $l_0$ étant une ligne de $r$,
 d'après la démonstration faite pour la première inclusion, on a:
 $\dc{l_0}_\alpha|_{\delta \cip} = \dc{l_0|_{\delta \cip}}_\alpha$.
 
-On en déduit que $l$ appartient à $r_1$.
+On en déduit que $l$ appartient à $res_1$.
 
 
 \subsection*{Projection et déchiffrement d'un attribut non projeté}
@@ -390,7 +390,7 @@ et $\alpha$ un attribut n'appartenant pas à $\delta$.
 
 \subsubsection*{Schémas relationnels}
 Le déchiffrement ne changeant pas le schéma relationnel
-d'une relation,le schéma relationnel de $r_1$ et $r_2$
+d'une relation,le schéma relationnel de $res_1$ et $res_2$
 est $\s(r) \cap \delta$.
 
 \subsubsection*{Inclusions}
@@ -413,15 +413,15 @@ $$
 $$
 d'où l'égalité voulue. \\
 
-À partir de là, si $l$ est une ligne de $r_1$,
+À partir de là, si $l$ est une ligne de $res_1$,
 elle s'écrit $\dc{l_0}_\alpha|_{\delta \cip}$
 avec $l_0 \in r$ et $\dc{l_0|_{\delta \cip}}_\alpha$
-appartient à $r_2$ donc $l$ appartient à $r_2$.
+appartient à $res_2$ donc $l$ appartient à $res_2$.
 
-Inversement, si $l$ est une ligne de $r_2$,
+Inversement, si $l$ est une ligne de $res_2$,
 elle s'écrit $\dc{l_0|_{\delta \cip}}_\alpha$
 avec $l_0 \in r$ et $\dc{l_0}_\alpha|_{\delta \cip}$
-appartient à $r_1$ donc $l$ appartient à $r_1$.
+appartient à $res_1$ donc $l$ appartient à $res_1$.
 
 \subsection*{Projection et jointure}
 En appelant $\delta_1$ le schéma relationnel du premier
@@ -520,5 +520,68 @@ appartient à $res_1$. \\
 
 Grâce à l'égalité prouvée lors de la preuve de l'autre inclusion,
 on en déduit que $l$ appartient à $res_1$.
+
+\subsection*{Projection et agrégation}
+\begin{align*}
+\groupDelta \circ \proj_{\delta'}
+& \equiv \proj_{\delta'} \circ \groupDelta
+& \text{si $\delta \subset \delta'$}
+\end{align*}
+
+Soient $\delta$ et $\delta'$ deux ensembles de noms d'attributs.
+
+Soit $\delta_1$ le schéma relationnel de l'argument.
+
+\intro{\groupDelta \circ \proj_{\delta'}}{\proj_{\delta'} \circ \groupDelta}.
+
+\subsubsection*{Schémas relationnels}
+La fonction $\group$ préserve les schémas relationnels,
+donc $res_1$ et $res_2$ ont tous deux pour schémas relationnels
+$\delta_1 \cap \delta'$.
+
+\subsubsection*{Premier cas: si $\delta$ est vide}
+Dans ce cas-là, pour montrer que $res_1 = res_2$,
+on va directement calculer $res_1$ et $res_2$.
+
+\paragraph*{Calcul de $res_1$}:
+
+Le seul nom de groupe minimal de $\proj_{\delta'}(r)$
+pour $\delta = \emptyset$ est l'application vide
+qu'on notera également $\emptyset$.
+
+Donc, $res_1$ a une seule ligne, à savoir
+$\lgr_{\proj_{\delta'}(r), \emptyset}$,
+qu'on appellera, pour simplifier les notations,
+$l_1$.
+
+$l_1$ est définie sur $(\delta_1 \cap \delta') \cip$
+et est entièrement déterminée par
+$$
+\forall \alpha \in (\delta_1 \cap \delta') \cip,
+l_1(\alpha) = r_\emptyset(\alpha)
+$$
+
+\paragraph*{Calcul de $res_2$}:
+
+De même, le seul nom de groupe minimal de
+$r$ pour $\emptyset$ est $\emptyset$
+donc $\groupDelta(r)$ a un seul élément,
+que nous appelleront $l'_2$ qui est défini
+sur $\delta_1 \cip$ par
+$\forall \alpha \in \delta_1 \cip, l'_2(\alpha) = r_\emptyset(\alpha)$.
+
+On en déduit que $res_2$ a une seule ligne, que nous
+appellerons $l_2$.
+
+$l_2$ est définie sur 
+$(\delta_1 \cap \delta) \cip$ par 
+$$\forall \alpha \in (\delta_1 \cap \delta) \cip, l_2(\alpha) = r_\emptyset(\alpha)$$
+
+Donc on a
+$l_1 = l_2$
+et on en déduit $res_1 = res_2$.
+
+\subsubsection*{Deuxième cas: si $\delta$ est non vide}
+
 
 \end{document}

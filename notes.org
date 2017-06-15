@@ -765,3 +765,26 @@ Démontrer au moins 10 des 36 lois qu'il reste à démontrer
 + Finalement la loi (6) de la thèse est correcte,
 mais il faudra adapter la condition aux nouvelles définitions
 + Démonstrations faites: 1 :-/
+
+** 15/06
+*** Objectifs de la journée
++ Faire au moins 21 démonstrations xD
++ Commencer à comprendre l'implémentation en Idris
+
+*** Bilan de la journée
+**** Correction de la définition de l'agrégation
+Les différentes lignes d'un même group n'ont pas à avoir le même identifiant,
+sinon la plupart du temps le group ne ferait rient et perdrait de son intérêt.
+
+
+**** Définition de nom de groupe minimal
+Dans les définitions de l'agrégation pour pouvoir parler d'unicité.
+
+
+**** Harmonisation du nom des résultats dans les démonstrations
+Maintenant tous les résultats s'appellent res_1 et res_2,
+indépendamment du nombre d'arguments des fonctions considérées.
+
+
+**** Démonstrations
++ De proj/group
