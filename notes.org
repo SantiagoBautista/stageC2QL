@@ -790,3 +790,7 @@ indépendamment du nombre d'arguments des fonctions considérées.
 + De proj+group
 + De proj+fold_projeté
 + De proj+fold_non_projeté
++ sélection et sélection
+
+** 16/06
+*** Finir de réparer la bêtise que j'avais faite dans la def de la défragmentation

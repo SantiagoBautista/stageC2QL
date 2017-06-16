@@ -217,9 +217,9 @@ et il serait le seul.
 	$$
 	\s(r) \cap \s(r') = \emptyset
 	$$
-	On remarquera que deux relations unifiables sont également joignables.
+	On remarquera que deux relations unifiables non vides sont également joignables.
 	
-	On note $\ru$ l'ensemble des paires de relations unifiables,
+	On note $\ru$ l'ensemble des paires de relations unifiables non vides,
 	qui est donc un sous-ensemble de $\rj$, qui lui même
 	est un sous-ensemble de $\R^2$.
 \end{defi}
@@ -258,7 +258,12 @@ et il serait le seul.
 \begin{defi}
 	On appelle \emph{défragmentation} la fonction
 	de $\ru$ à valeur dans $\R$ définie par:
-	
+	$$
+	\begin{array}{llcl}
+	\defrag: & \ru & \rightarrow & \R \\
+			& (r, r') & \mapsto & \{ \uni(l, l') / l(id) = l'(id), l\in r, l' \in r' \}
+	\end{array}
+	$$
 \end{defi}
 
 \subsection*{Chiffrement et déchiffrement}
