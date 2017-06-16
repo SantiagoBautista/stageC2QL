@@ -872,4 +872,74 @@ $res_1 = \selP(\defrag(r_1, r_2))$
 et
 $res_2 = \defrag(\selP(r_1), r_2)$.
 
+\subsubsection*{Schémas relationnels et unifiabilité}
+La sélection préserve le schéma relationnel,
+donc $r_1$ et $r_2$
+sont unifiables si et seulement si
+$\selP(r_1)$ et $r_2$ le sont.
+
+De plus, le schéma relationnel après défragmentation
+est l'union des schémas relationnels initiaux,
+donc les schémas relationnels de 
+$res_1$ et $res_2$ sont tous les deux
+$\delta_1 \cup \delta_2$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de $res_1$.
+
+$l$ vérifie la propriété $p$
+et appartient aussi à $\defrag(r_1, r_2)$.
+Or, puisque $\dom(p) \subset \delta_1$,
+toute ligne coïncidant avec $l$ sur 
+$\delta_1$ vérifie la propriété $p$.
+
+Il existe deux lignes $l_1$ et $l_2$
+appartenant respectivement à 
+$r_1$ et $r_2$ telles que
+$l = \uni(l_1, l_2)$.
+$l_1$ coïncide avec $l$ sur $\delta_1 \cip$
+donc sur $\delta_1$, donc $l_1$ vérifie la propriété $p$. \\
+
+On en déduit que $l_1$ appartient à $\selP(r_1)$.
+Or $l_2$ appartient à $r_2$ et, par définition,
+$l_1$ et $l_2$ sont unifiables,
+donc $l = \uni(l_1, l_2)$ appartient
+à $\defrag(\selP(r_1, r_2)) = res_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $res_2$.
+
+Il existe $l_1$ et $l_2$ unifiables
+appartenant respectivement à 
+$\selP(r_1)$ et $r_2$ telles que
+$l = \uni(l_1, l_2)$.
+
+Puisque $l_1$ appartient à $\selP(r_1)$,
+$l_1$ vérifie la condition $p$ et appartient à
+$r_1$.
+
+Or $l_2$ appartient à $r_2$ et 
+$l_1$ et $l_2$ sont unifiables,
+donc $l = \uni(l_1, l_2)$
+appartient à $\defrag(r_1; _2)$.
+
+Puisque $l_1$ coïncide avec $l$ sur son domaine de définition
+qui contient    $\delta_1$ qui lui même contient $\dom(p)$ et que
+$l_1$ vérifie $p$, $l$ vérifie $p$.
+
+On en déduit que $l$ appartient à $\selP(\defrag(r_1, r_2)) = res_2$.
+
+\subsection*{Sélection et déchiffrement non sélectif}
+\begin{align}
+\selP \circ \decryptCAlpha 
+& = \decryptCAlpha \circ \selP
+& \text{si $\dom(p) \cap \alpha = \emptyset$}
+\end{align}
+
+\subsection*{Sélection et déchiffrement d'un attribut sélectif}
+\begin{align}
+\selP \circ \decryptCAlpha 
+& = \decryptCAlpha \circ \sel_{\typeT{c} \Rightarrow p}
+& \text{si $p$  est compatible avec $\typeT{c}$}
+\end{align}
 \end{document}
