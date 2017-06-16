@@ -766,6 +766,7 @@ Démontrer au moins 10 des 36 lois qu'il reste à démontrer
 mais il faudra adapter la condition aux nouvelles définitions
 + Démonstrations faites: 1 :-/
 
+
 ** 15/06
 *** Objectifs de la journée
 + Faire au moins 21 démonstrations xD
@@ -792,5 +793,28 @@ indépendamment du nombre d'arguments des fonctions considérées.
 + De proj+fold_non_projeté
 + sélection et sélection
 
+
 ** 16/06
-*** Finir de réparer la bêtise que j'avais faite dans la def de la défragmentation
+*** Objectifs de la journée
+**** Finir de corriger def defrag
+**** Faire le plus de démonstrations possibles
+A l'idéal 30
+**** Commencer à comprendre l'implem en IDRIS
+*** Bilan de la journée
+**** Fin correction defrag
+**** Lectures
++ de The morning paper
+=> J'ai l'impression que,
+avec C2QL, on ne donne pas vraiment accès au
+moteur de requêtes vu que justement, lors de la formulation du
+programme toutes les requếtes possibles sont déterminées, et
+ce n'est pas l'utilisateur comme tel, mais le compilteur en quelque
+sorte qui les fait.
+Ça c'est un bon point pour la sécurité :)
+
+=> Le chiffrement déterministe, qui est très utile pour certains motifs de requêtes,
+peut révéler pas mal d'informations sur les données => Chiffrer quand même la
+communication entre les différents acteurs ne me semble pas être en trop..
+**** Démonstrations
++ Sélection et défragmentation
++ Sélection et déchiffrement non sélectif
