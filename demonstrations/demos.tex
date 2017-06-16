@@ -999,4 +999,46 @@ soit $\typeT{c}$ un chiffrement compatible avec $p$ pour $\alpha$,
 $r$ une relation
 et $\delta_1$ son schéma relationnel.
 
+\newcommand{\adap}{\typeT{c}_\alpha \Rightarrow p}
+%\newcommand{\cya}{\typeT{c}_\alpha}
+
+On pose
+$res_1 = \selP(\decryptCAlpha(r))$
+et
+$res_2   = \decryptCAlpha(\sel_{\adap})$.
+
+\subsubsection*{Schémas relationnels}
+Le chiffrement et la sélection
+préservent le schéma relationnel,
+donc $res_1$ et $res_2$ ont tous les deux
+pour schéma relationnel $\delta_1$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ un élément de $res_1$.
+
+$l$ vérifie le prédicat $p$ et 
+appartient à $\decryptCAlpha(r)$.
+Il existe donc une ligne $l_0$ de $r$
+telle que $l = \dc(l_0)_\alpha$, d'où
+$l_0 = \cy{l}_\alpha$. \\
+
+Puisque $l$ vérifie $p$,
+$l_0$ vérifie $\adap$
+et donc $l_0$ appartient à $\sel_{\adap}(r)$.
+On en déduit que $l$ appartient à
+$\decryptCAlpha(\sel_{\adap})(r) = res_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $res_2$.
+
+Il existe $l_0$ dans $\sel_{\adap}(r)$
+telle que $l = \dc{l_0}_\alpha$ et donc
+telle que $l_0 = \cy{l}_\alpha$. \\
+
+Puisque $l_0$ appartient à $\sel_{\adap}(r)$,
+$l_0$ appartient à $r$ et vérifie $\adap$.
+Par conséquent, $l$ appartient à $\decryptCAlpha(r)$
+et $l$ vérifie $p$ donc $l$
+appartient à $\selP(\decryptCAlpha(r)) = res_1$.
+
 \end{document}

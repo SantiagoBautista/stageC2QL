@@ -818,7 +818,7 @@ communication entre les différents acteurs ne me semble pas être en trop..
 **** Démonstrations
 + Sélection et défragmentation
 + Sélection et déchiffrement non sélectif
-+ 
++ Sélection et déchiffrement sélectif
 
 **** Questions à se poser au-delà
 ***** L'optimisation des motifs peut ne pas être sûre car:
@@ -826,7 +826,7 @@ Les agents entre lesquels circule l'information et la
 quantité d'information qui circule peuvent révéler
 quelle est la requête qui est en train de s'
 
-**** Choses à faire plus tard
+**** Choses à faire qui sont apparues
 ***** TODO Changer les définitions pour que id ne soit pas un attribut
 ***** DONE Placer la def de chiffrement compatible ailleurs que dans les démos
 ***** TODO modifier les mentions de c=>p
