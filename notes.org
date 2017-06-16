@@ -820,6 +820,7 @@ communication entre les différents acteurs ne me semble pas être en trop..
 + Sélection et déchiffrement non sélectif
 + Sélection et déchiffrement sélectif
 + Sélection et défragmentation
++ Sélection et agrégation
 **** Changement defs
 ***** Jointure
 Pour que la sélection puisse commuter plus facilement,
@@ -843,3 +844,8 @@ quelle est la requête qui est en train de s'
 ***** DONE Placer la def de chiffrement compatible ailleurs que dans les démos
 ***** TODO modifier les mentions de c=>p
 par c_\alpha => p
+**** Remarque: claviers Apple inutilisables dans les systèmes sensibles
+La mauvaise détection de quand répéter une touche peut lancer / continuer
+des commandes accidentellement, et ça peut avoir comme conséquence,
+par exemble, la suprésion accidentelle de fichiers
+

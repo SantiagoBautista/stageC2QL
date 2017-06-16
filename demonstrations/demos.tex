@@ -1109,8 +1109,8 @@ Soit $\delta$ un ensemble d'attributs,
 $p$ un prédicat et
 $r$ une relation.
 
-On pose $res_1 = (r))$
-et $res_2  = (r))$.
+On pose $res_1 = \groupDelta(\selP(r))$
+et $res_2  = \selP(\groupDelta(r))$.
 
 \subsubsection*{Schémas relationnels}
 L'agrégation conserve les schémas relationnels,
@@ -1118,9 +1118,56 @@ donc $res_1$ et $res_2$ ont tous les deux pour schéma
 $\delta_1$.
 
 \subsubsection*{Première inclusion}
-Soit $l$ une ligne de $res_1$
+Soit $l$ une ligne de $res_1$.
+
+Pour simplifier les notations, on pose
+$r' = \selP(r)$.
+
+On pose $n = l|_\delta$ qui est donc
+le nom du groupe de $r'$ pour 
+$\delta$ auquel est associée $l$.
+
+Il existe $l_1, \dots, l_m$ des lignes
+de $r'$ telles que $r'_n = \{l_1, \dots , l_m\}$. \\
+
+Toute ligne de $r'$ appartient également à $r$
+donc (entre autres) $r'_n \subset r_n$.
+Montrons qu'on a également $r_n \subset r'_n$.
+Soit $l_0$ un élément de $r_n$.
+$l_1$ coïncide avec $l_0$ sur $\delta$,
+donc en particulier sur $\dom(p)$,
+et $l_1$ vérifie $p$,
+donc $l_0$ vérifie $p$ et appartient à $r'$.
+Comme $l_0$ coïncide avec les $l_i$ sur $\delta$,
+$l_0$ appartient à $r'_n$.
+Ainsi, $r'_n \subset r_n$ et $r'_n = r_n$.
+
+On en déduit que $l$ appartient à $\groupDelta(r)$.
+Or, $l$ coïncide avec les $l_i$ sur $\dom(p) \subset \delta$,
+et ceux-ci vérifient $p$, donc
+$l$ appartient à $\selP(r') = res_2$.
 
 \subsubsection*{Deuxième inclusion}
-Soit $l$ une ligne de $res_2$
+Soit $l$ une ligne de $res_2$.
+
+$l$ vérifie $p$ et appartient à $\groupDelta(r)$.
+
+On pose $n = l|_\delta$. Il existe $l_1, \dots, l_m$
+des lignes de $r$ telles que $r_n = \{l_1, \dots, l_m\}$. \\
+
+Les $l_i$ coïncident avec $l$ sur $\delta$ donc sur $\dom(p)$
+donc vérifient $p$.
+
+Pour simplifier les notations, on pose $r' = \selP(r)$.
+Les $l_i$ vérifient $p$ donc appartiennent tous à $r'$,
+donc, vu qu'ils coïncident sur $\delta$,
+$r_n = \{l_1, \dots, l_m \} \subset r'_n$.
+Vu que toute relation de $r'$ appartient aussi à $r$,
+on a aussi l'inclusion $r'_n \subset r_n$.
+
+Ainsi $r_n = r'_n$ et on en déduit que 
+$l = \lgr_{r,n} = \lgr_{r', n}$ appartient
+à $\groupDelta(r') = res_1$.
+
 
 \end{document}
