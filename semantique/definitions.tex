@@ -331,6 +331,17 @@ des éventuelles clefs de chiffrement et déchiffrement.
 	$$
 \end{defi}
 
+\begin{defi}
+	On dit d'un prédicat $p$ et un chiffrement $c$ sont compatibles
+	pour l'attribut $\alpha$
+	s'il existe un autre prédicat $\typeT{c}_\alpha \Rightarrow p$
+	ne dépendant que de $p$, $\typeT{c}$ et du nom d'attribut $\alpha$ tel que
+	$$
+	\forall l \in L,
+	p(l) = (\typeT{c}_\alpha \Rightarrow p)(\cy{l}_\alpha)
+	$$
+\end{defi}
+
 \subsection*{Agrégation}
 
 \begin{defi}
