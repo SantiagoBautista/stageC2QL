@@ -148,21 +148,14 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 
 \subsection*{Jointure naturelle}
 \begin{defi}
-	On dit qu'\emph{une paire de relations} $(r,r')$ 
-	est \emph{joignable} si on a:
+	Si $r$ et $r'$ sont deux relations et que $l$
+	est un élément de $r$.
+	On appelle \emph{correspondants de $l$ dans $r'$}
+	l'ensemble des lignes $l'$ telles que
 	$$
-	\begin{array}{lllr}
-	\forall l \in r &
-	\exists l' \in r' &
-	\forall \alpha \in \s(r) \cap \s(r'), &
-	l(\alpha) = l'(\alpha)
-	\end{array}
+	\forall \alpha \in \s(r)\cap\s(r'),
+	l'(\alpha) = l(\alpha)
 	$$
-	
-	Si $(r,r')$ est une paire de relations joignables,
-	et que $l$ est une ligne de $l$,
-	on appelle \emph{correspondants de $l$ dans $r'$}
-	l'ensemble des lignes $l'$ de la propriété précédente.
 	On note $\cor_{r, r'}(l)$ l'ensemble de ces lignes-là.
 \end{defi}
 
@@ -187,7 +180,7 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 \end{defi}
 
 \begin{defi}
-	Pour $r$ et $r'$ deux relations joignables,
+	Pour $r$ et $r'$ deux relations,
 	on appelle \emph{jointure naturelle}
 	de $r$ et $r'$ la table
 	$$
@@ -195,12 +188,11 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	$$
 	
 	On utilisera aussi la notation préfixe.
-	En effet, si on appelle $\rj$ l'ensemble
-	des paires de relations joignables,
+	En effet,
 	on vient de définir la fonction
 	$$
 	\begin{array}{llcl}
-	\Join : & \rj & \rightarrow & \R \\
+	\Join : & \R^2 & \rightarrow & \R \\
 			& (r, r') & \mapsto & r \Join r'
 	\end{array}
 	$$

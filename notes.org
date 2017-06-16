@@ -819,6 +819,18 @@ communication entre les différents acteurs ne me semble pas être en trop..
 + Sélection et défragmentation
 + Sélection et déchiffrement non sélectif
 + Sélection et déchiffrement sélectif
++ Sélection et défragmentation
+**** Changement defs
+***** Jointure
+Pour que la sélection puisse commuter plus facilement,
+on se permet de faire disparaître des deux côtés les lignes
+n'ayant pas de correspondant dans l'autre table.
+***** Attribut
+[[*Changer les définitions pour que id ne soit pas un attribut][Changer les définitions pour que id ne soit pas un attribut]]
+Je vais spécifier que id ne peut pas être un attribut,
+et spécifier au cas par cas quand il peut apparaître avec d'autres
+attributs.
+
 
 **** Questions à se poser au-delà
 ***** L'optimisation des motifs peut ne pas être sûre car:

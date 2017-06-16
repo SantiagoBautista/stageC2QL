@@ -855,14 +855,15 @@ et $\delta_2$ le schéma relationnel du deuxième arguemnt,
 \begin{align}
 \selP \circ \defrag 
 & \equiv \defrag \circ (\selP, \id)
-& \text{si $dom(p) \subset \delta_1$} \\
+& \text{si $dom(p) \subset \delta_1$} 
+\label{seldefrag1}\\
 \selP \circ \defrag 
 & \equiv \defrag \circ (\id, \selP)
 & \text{si $dom(p) \subset \delta_2$}
 \end{align}
 
 Les démonstrations des deux lois étant tout à fait analogues,
-je ne démontrerai que la loi (10).
+je ne démontrerai que la loi (\ref{seldefrag1}).
 
 Soit $p$ un prédicat sur les lignes.
 Soient $r_1$ et $r_2$ deux relations unifiables.
@@ -1041,4 +1042,59 @@ Par conséquent, $l$ appartient à $\decryptCAlpha(r)$
 et $l$ vérifie $p$ donc $l$
 appartient à $\selP(\decryptCAlpha(r)) = res_1$.
 
+\subsection*{Sélection et jointure}
+Soit $\delta_1$ le schéma relationnel du premier
+argument et $\delta_2$ le schéma relationnel du deuxième
+argument.
+
+\begin{align}
+\selP \circ \Join
+& = \Join \circ (\selP, \id)
+& \text{si $\dom(p) \subset \delta_1$}
+\label{seljoin1}\\ 
+\selP \circ \Join
+& = \Join \circ (\id, \selP)
+& \text{si $\dom(p) \subset \delta_2$}
+\end{align}
+
+Les deux lois se démontrant de façons tout à fait 
+symétriques, je ne vais démontrer que la loi (\ref{seljoin1}).
+
+Soit $p$ un prédicat et $r_1$ et $r_2$ deux relations.
+
+On pose $res_1 = \selP(r_1 \Join r_2)$ et
+$res_2 = \selP(r_1) \Join r_2$.
+
+\subsubsection*{Schémas relationnels}
+La sélection préservant les schémas relationnels,
+les schémas relationnels de $res_1$ et $res_2$
+sont tous les deux $\delta_1 \cup \delta_2$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ un élément de $res_1$.
+
+$l$ vérifie $p$ et appartient à $r_1 \Join r_2$.
+Donc il existe deux lignes $l_1$ et $l_2$
+se correspondant et appartenant respectivement
+à $r_1$ et $r_2$ telles que $l= l_1 . l_2$.
+
+Puisque $l$ coïncide avec $l_1$ sur $\delta_1$,
+que $\dom(p) \subset \delta_1$ et que $l$ vérifie $p$,
+$l_1$ vérifie $p$. Donc $l_1$ appartient à $\selP(r_1)$
+et, vu que $l_2$ appartient à $r_2$ et que $l_1$ et $l_2$
+se correspondent, $l = l_1. l_2$ appartient à $\selP(r_1) \Join r_2 = res_2$.
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $res_2$.
+
+Il existe $l_1$ et $l_2$ appartenant respectivement à
+$\selP(r_1)$ et $r_2$ telles que
+$l = l_1 . l_2 $.
+
+Puisque $l$ coïncide avec $l_1$ là où $l_1$ est définie
+donc en particulier sur $\delta_1$ qui contient le domaine de $p$,
+et que $l_1$ vérifie $p$, $l$ vérifie $p$.
+
+Or $l_1$ appartient aussi à $r_1$ donc $l_1 . l_2 = l$
+appartient aussi à $r_1 \Join r_2$, donc à $\selP(r_1 \Join r_2) = res_1$.
 \end{document}
