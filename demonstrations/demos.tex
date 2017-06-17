@@ -1185,6 +1185,11 @@ $res_1 = \selP(\foldAlphafz(r))$
 et
 $res_2 = \foldAlphafz(\selP(r))$.
 
+\subsubsection*{Schémas relationnels}
+La sélection et la réduction préservent les schémas relationnels,
+donc $res_1$ et $res_2$ ont tous deux
+pour schéma relationnel $\delta_1$.
+
 \subsubsection*{Première inclusion}
 Soit $l$ un élément de $res_1$.
 
@@ -1214,5 +1219,46 @@ $l$ appartient à $\foldAlphafz(r)$.
 Pour la même raison que plus haut, $l|_{\dom(p)} = l'|_{\dom(p)}$.
 Donc, du fait que $l'$ vérifie $p$, $l$ vérifie $p$ et donc
 $l$ appartient à $\selP(\foldAlphafz(r)) = res_1$.
+
+\section*{Lois de fragmentation}
+\subsection*{Fragmentation et défragmentation}
+\begin{align}
+\defrag \circ \fragDelta
+& = \id
+\end{align}
+
+Soit $\delta$ un ensemble de noms d'attributs,
+$r$ une relation et $\delta_0$ son schéma relationnel.
+
+On pose $r' = \defrag(\fragDelta(r))$.
+
+\subsubsection*{Unifiabilité et schémas relationnels}
+On va commencer par montrer que la défragmentation est licite.
+
+On pose 
+$(r_1, r_2) = \fragDelta(r)$.
+
+$r_1$ a pour schéma relationnel
+$\delta_0 \cap \delta$ qu'on appellera par la suite $\delta_1$,
+et $r_2$ a pour schéma relationnel
+$\delta_0\setminus \delta $ qu'on appellera par la suite
+$\delta_2$.
+On a bien $\delta_1 \cap \delta_2 = \emptyset$. 
+
+En ce qui concerne les identifiants, on a,
+pour $i$ dans $\{1, 2\}$, 
+
+$$
+\{ l(id) / l \in r_i \}
+= \{ l|_{\delta_i \cip}(id) / l \in r\}
+= \{l(id) / l \in r \}
+$$
+
+Donc $\{ l(id) / l \in r_1 \}
+= \{ l(id) / l \in r_2 \}$
+et $r_1$ et $r_2$ sont bien
+unifiables et $r'$ est bien définie.
+
+
 
 \end{document}
