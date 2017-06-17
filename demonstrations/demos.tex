@@ -1169,5 +1169,50 @@ Ainsi $r_n = r'_n$ et on en déduit que
 $l = \lgr_{r,n} = \lgr_{r', n}$ appartient
 à $\groupDelta(r') = res_1$.
 
+\subsection*{Sélection et réduction}
+\begin{align}
+\selP \circ \foldAlphafz & = \foldAlphafz \circ \selP
+& \text{si $\alpha \notin \dom(p)$}
+\end{align}
+
+Soit $p$ un prédicat, $\alpha$ un attribut,
+$f$ une fonction de $\val$ dans $\val$,
+$z$ un élément de $\val$, $r$ une relation
+et $\delta_1$ son schéma relationnel.
+
+On pose
+$res_1 = \selP(\foldAlphafz(r))$
+et
+$res_2 = \foldAlphafz(\selP(r))$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ un élément de $res_1$.
+
+$l$ vérifie $p$ et appartient à $\foldAlphafz(r)$.
+Il existe $l'$ appartenant à $r$ telle que
+$l = \redu_{\alpha, f, z, l'}$. \\
+
+$l$ et $l'$ coïncident sur $(\delta_1 \cip) \setminus \{ \alpha \}$,
+donc, en particulier sur $(\delta_1 \cip) \cap \dom(p)$ car
+$\alpha$ n'appartient pas à $p$, donc $l|_{\dom(p)} = l'|_{\dom(p)}$.
+Vu que $l$ vérifie $p$, on en déduit que $l'$ vérifie $p$.
+
+Ainsi, $l'$ appartient à $\selP(r)$ donc
+$l = \redu{\alpha, f, z, l'}$ appartient
+à $\foldAlphafz(\selP(r)) = res_2$.
+
+\subsection*{Deuxième inclusion}
+Soit $l$ une ligne de $res_2$.
+
+Il existe $l'$ dans $\selP(r)$ telle que
+$l = \redu_{\alpha, f, z, l'}$. \\
+
+$l'$ appartient à $r$ et vérifie $p$.
+Puisque $l'$ appartient à $r$,
+$l$ appartient à $\foldAlphafz(r)$.
+
+Pour la même raison que plus haut, $l|_{\dom(p)} = l'|_{\dom(p)}$.
+Donc, du fait que $l'$ vérifie $p$, $l$ vérifie $p$ et donc
+$l$ appartient à $\selP(\foldAlphafz(r)) = res_1$.
 
 \end{document}

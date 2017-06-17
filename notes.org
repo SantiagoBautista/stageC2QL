@@ -849,3 +849,10 @@ La mauvaise détection de quand répéter une touche peut lancer / continuer
 des commandes accidentellement, et ça peut avoir comme conséquence,
 par exemble, la suprésion accidentelle de fichiers
 
+
+** 17/06
+*** Objectifs de la journée
+Déménager x) (C'est un samedi)
+*** Bilan de la journée
+**** Démonstrations
++ Sélection/réduction
