@@ -856,3 +856,4 @@ Déménager x) (C'est un samedi)
 *** Bilan de la journée
 **** Démonstrations
 + Sélection/réduction
++ Fragmentation et défragmentation

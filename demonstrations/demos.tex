@@ -1318,9 +1318,30 @@ donc sont égaux et $l$ appartient à $r'$.
 \begin{align}
 \fragDelta \circ \cryptCAlpha
 & \equiv (\cryptCAlpha, \id) \circ\fragDelta 
-& \text{si $\alpha \in \delta$} \\
+& \text{si $\alpha \in \delta$}
+\label{fragCrypt1} \\
 \fragDelta \circ \cryptCAlpha
 & \equiv (\id, \cryptCAlpha) \circ\fragDelta 
 & \text{si $\alpha \notin \delta$}
 \end{align}
+Les deux lois se démontrent de façons tout à fait symétrique,
+donc je ne vais démontrer que la loi (\ref{fragCrypt1}).
+
+Soit $\alpha$ un nom d'attribut,
+$\typeT{c}$ un chiffrement
+et $\delta$ un ensemble
+de noms d'attributs.
+
+Soit $r$ une relation et $\delta_1$
+son schéma relationnel.
+
+On pose
+$(res_{1,1}, res_{1,2}) = \fragDelta(\cryptCAlpha(r))$
+et $(res_{2,1}, res_{2,2}) = (\cryptCAlpha, \id) \circ \fragDelta(r)$.
+
+\subsubsection*{Schémas relationnels}
+
+\subsubsection*{Première inclusion}
+
+\subsubsection*{Deuxième inclusion}
 \end{document}
