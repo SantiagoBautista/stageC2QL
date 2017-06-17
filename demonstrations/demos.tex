@@ -1257,8 +1257,70 @@ $$
 Donc $\{ l(id) / l \in r_1 \}
 = \{ l(id) / l \in r_2 \}$
 et $r_1$ et $r_2$ sont bien
-unifiables et $r'$ est bien définie.
+unifiables et $r'$ est bien définie. \\
 
+Le schéma relationnel de $r'$ est
+$\delta_1 \cup \delta_2
+= (\delta_0 \cap \delta) \cup (\delta_0 \setminus \delta)
+= \delta_0$ donc les schémas relationnels de $r$ et $r'$
+coïncident.
 
+\subsubsection*{Première inclusion}
+Soit $l'$ une ligne de $r'$.
 
+Il existe deux lignes $l'_1$ et $l'_2$
+appartenant respectivement à $r_1$ et $r_2$
+telles que $l' = l'_1 . l'_2$.
+
+Puisque $l'_1$ appartient à $r_1$,
+il existe un ligne $l_1$ de $r$
+telle que $l'_1 = l_1 |_{\delta_1 \cip}$
+et, de même, il existe $l_2$ une ligne de $r$
+telle que $l'_2 = l_2 |_{\delta_2 \cip}$.
+
+Or $l_1(id) = l'_1(id) = l'(id) = l'_2(id) = l_2(id)$,
+donc, vu qu'au sein de chaque table l'identifiant d'une ligne est unique,
+$l_1 = l_2$. \\
+
+Montrons que $l' = l_1$.
+Soit $\alpha$ un élément de $\delta_0 \cip$.
+
+$$
+\left\lbrace
+\begin{array}{ll}
+l'(\alpha) = l'_1(\alpha) = l_1(\alpha)
+& \text{si $\alpha \in \delta_1 \cip$} \\
+l'(\alpha) = l'_2(\alpha) = l_2(\alpha)
+& \text{si $\alpha \in \delta_2$} \\
+\end{array}
+\right.
+$$
+Donc on a bien $l' = l_1$ et $l' \in r$
+
+\subsubsection*{Deuxième inclusion}
+Soit $l$ une ligne de $r$.
+
+Il existe $l_1$ dans $r_1$ et $l_2$ dans $r_2$
+telles que $l_1 = l|_{\delta_1 \cip}$
+et $l_2 = l|_{\delta_2 \cip}$.
+
+Vu que $l_1(id) = l_2(id) = l(id)$,
+$l' = l_1 .  l_2$ appartient à $r'$.
+
+Or, $l'$ coïncide avec $l$ sur
+$\delta_1 \cip$ et sur $\delta_2 \cip$, 
+deux ensembles dont l'union fait $\delta_0 \cip$.
+
+Donc $l'$ et $l$ coïncident sur leur ensemble de définition,
+donc sont égaux et $l$ appartient à $r'$.
+
+\subsection*{Fragmentation et chiffrement}
+\begin{align}
+\fragDelta \circ \cryptCAlpha
+& \equiv (\cryptCAlpha, \id) \circ\fragDelta 
+& \text{si $\alpha \in \delta$} \\
+\fragDelta \circ \cryptCAlpha
+& \equiv (\id, \cryptCAlpha) \circ\fragDelta 
+& \text{si $\alpha \notin \delta$}
+\end{align}
 \end{document}
