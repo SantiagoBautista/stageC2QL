@@ -857,3 +857,23 @@ Déménager x) (C'est un samedi)
 **** Démonstrations
 + Sélection/réduction
 + Fragmentation et défragmentation
+
+** 19/06
+*** Objectifs de la journée
+**** Regarder puis ajouter group/fold à l'implémentation hydris
+**** Choisir l'extension à faire / la suite du travail
+*** Première lecture du code idris
+**** Qu'est-ce que privy??
+Privy plus expressif que C2QL =>
+peut-on (et aurait-on intérêt) à étendre C2QL pour
+qu'il soit aussi expressif que privy?
+**** Pour rajouter un opérateur
+Il faut, AU MOINS 
++ Le rajouter dans la déclaration du type C2QL
++ Le rajouter dans la fonction d'affichage
++ Rajouter le test d'égalité associé
+*** Bilan de la journée
+**** Instalation de idris, ghc, gmp, cabal..
+**** Exécution du code idris
+Réussie
+**** Comparaison des définition formelles avec les definitions idris
