@@ -502,7 +502,7 @@ démonstration formelle des lois de commutation.
 La défragmentation est vue comme un cas particulier de jointure.
 
 
-** Les identifiants post-jointure ne sont pas des identifiants
+** TODO  Les identifiants post-jointure ne sont pas des identifiants
 Si on s'amuse à faire des jointures successives et des unions à partir
 des mêmes relations de base mais en projetant d'un côté et pas de l'autre,
 on peut peut-être arriver à avoir deux lignes différentes qui auraient le même identifiant... :'(
@@ -877,3 +877,14 @@ Il faut, AU MOINS
 **** Exécution du code idris
 Réussie
 **** Comparaison des définition formelles avec les definitions idris
+La gestion du count dans l'implem ne semble pas 
+aborder tous les cas de figure possible.
+
+Je suis en train de
+***** comprendre le statut des objets/fonctions tels que DEFRAG
+Ils semblent être définis par un cas possible dans une définition de type...
+
+
+***** En ce qui concerne proj
++ La projection se fait bien sur un ensemble de termes :D
++ Pour l'instant je n'ai pas l'impression que cet ensemble puisse ne pas être inclu dans le reste :/
