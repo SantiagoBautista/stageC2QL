@@ -20,14 +20,14 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\ens}{E}
-\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\R}{T}
 \DeclareMathOperator{\Sc}{S}
 \DeclareMathOperator{\s}{sch}
 \DeclareMathOperator{\ls}{L}
-\DeclareMathOperator{\ru}{Ru}
+\DeclareMathOperator{\ru}{Tu}
 \DeclareMathOperator{\uni}{Unif}
 \DeclareMathOperator{\cor}{cor}
-\DeclareMathOperator{\rj}{Rj}
+\DeclareMathOperator{\rj}{Tj}
 \DeclareMathOperator{\enc}{Enc}
 \DeclareMathOperator{\dec}{Dec}
 \DeclareMathOperator{\ids}{IDs}
@@ -59,33 +59,48 @@
 \newtheorem{defi}{Définition}
 
 \begin{document}
+\title{Sémantique de C2QL}
+\author{Santiago Bautista}
+\date{Juin 2017}
+
+\maketitle
+
 Le but de ce document est de donner une définition
 formelle des fonctions dont est composé le langage C2QL.
 
 \subsection*{Préambule}
+
 \begin{defi}
+	On appelle \emph{nom d'attribut} toute chaîne de caractères.
+	
 	Ici, pour simplifier, on appelle chaîne de caractères
 	tout mot sur l'alphabet 
 	$$
 	\Sigma = \{a, \dots, z\} \cup \{A, \dots, Z \} \cup \{0, \dots,  9 \}
- 	$$
-\end{defi}
-
-\begin{defi}
-	On appelle \emph{nom d'attribut} toute chaîne de caractères.
+	$$
+	
+	Vu que le nom d'attribut \og $id$ \fg{} joue un rôle particulier,
+	on appelle, par opposition, \emph{nom d'attribut régulier}
+	tout nom d'attribut autre que \og $id$\fg{}. 
 \end{defi}	
 
 \begin{defi}
 	On appelle \emph{schéma relationnel} tout ensemble
-	de noms d'attributs.
+	de noms d'attributs réguliers.
 \end{defi}
 
 \subsection*{Définitions générales}
-Soit $\val$ un ensemble, appelé ensemble des valeurs.
+
+\begin{defi}
+	On appellera \emph{valeur} tout élément d'un certain ensemble
+	$\val$, que l'on suppose non-vide, infini, dénombrable, et stable
+	par formation de n-uplets
+	(i.e. $\forall k \in \mathbf{N}, \val^k \subset \val$ ). 
+\end{defi}
 
 \begin{defi}
 	On appelle \emph{relation} de schéma relationnel $\Delta$
-	un ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
+	tout ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
 	
 	Chacun des éléments de la relation (chacune de ces fonctions)
 	est appelé(e) \emph{ligne}.
@@ -99,7 +114,7 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 
 \begin{defi}
 	On appelle $\Sc$ l'ensemble des schémas relationnels possibles.
-	Autrement dit, on pose  $\Sc = \mathcal{P}\left( \Sigma^* \right)$.
+	Autrement dit, on pose  $\Sc = \mathcal{P}\left( \Sigma^* \setminus \{id\} \right)$.
 	
 	On appelle $\R$ l'ensemble des relations possibles,
 	
@@ -110,7 +125,7 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 
 \subsection*{Projections et sélections}
 \begin{defi}
-	Pour tout ensemble $\delta$ de noms d'attributs,
+	Pour tout ensemble $\delta$ de noms d'attributs réguliers,
 	on appelle \emph{projection sur les attributs $\delta$}
 	la fonction suivante:
 	$$
@@ -170,19 +185,18 @@ Soit $\val$ un ensemble, appelé ensemble des valeurs.
 	l.l'(\alpha)  = l(\alpha) & \text{si $\alpha \in \s(r) \setminus \s(r')$} \\
 	l.l'(\alpha)  = l'(\alpha) & \text{si $\alpha \in \s(r') \setminus \s(r)$} \\
 	l.l'(\alpha)  = l(\alpha) = l'(\alpha) & \text{si $\alpha \in \s(r) \cap \s(r')$} \\
-	l.l'(id)  = l(id).l'(id) &  \\
+	l.l'(id)  = \gamma & \text{$\gamma$ étant un identifiant frais} \\
 	\end{array}
 	\right.
 	$$
-	où $l(id).l'(id)$ est compris comme la concaténation de listes
-	(les valeurs qui ne sont pas des listes sont assimilées
-	à des listes avec un seul élément).
+	où on appelle \emph{identifiant frais} une valeur qui ne soit l'identifiant
+	d'aucune autre ligne dans le système.
 \end{defi}
 
 \begin{defi}
 	Pour $r$ et $r'$ deux relations,
 	on appelle \emph{jointure naturelle}
-	de $r$ et $r'$ la table
+	de $r$ et $r'$ la relation
 	$$
 	r \Join r' = \{l.l' / l \in r, l' \in \cor_{r, r'}(l) \}
 	$$
@@ -216,7 +230,7 @@ et il serait le seul.
 \end{defi}
 
 \begin{defi}
-	Pour tout ensemble de noms d'attributs $\delta$
+	Pour tout ensemble de noms d'attributs réguliers $\delta$
 	on appelle \emph{fragmentation de fragment gauche $\delta$}
 	l'application suivante:
 	$$
@@ -337,10 +351,10 @@ des éventuelles clefs de chiffrement et déchiffrement.
 \subsection*{Agrégation}
 
 \begin{defi}
-	Pour $\delta$ un ensemble de noms d'attributs,
+	Pour $\delta$ un ensemble de noms d'attributs réguliers,
 	on appelle \emph{nom de groupe pour $\delta$}
 	toute application $n$ définie de $\delta$
-	dans $\val$.
+	à valeurs dans $\val$.
 	
 	On remarque que tout nom de groupe est une ligne.
 	
@@ -419,7 +433,8 @@ est $|r_n(\alpha)| = |\ids(r_n)|$
 	\left\lbrace
 	\begin{array}{ll}
 	\lgr_{r, n}(\alpha) = n(\alpha) & \text{si $\alpha \in \s(r) \cap \dom(n)$} \\
-	\lgr_{r, n}(\alpha) = r_n(\alpha) & \text{si $\alpha \in (\s(r) \setminus \dom(n)) \cip$}
+	\lgr_{r, n}(\alpha) = r_n(\alpha) & \text{si $\alpha \in (\s(r) \setminus \dom(n))$} \\
+	\lgr_{r, n}(id) = \gamma & \text{où $\gamma$ est un identifiant frais}
 	\end{array}
 	\right.
 	$$ 
@@ -471,7 +486,7 @@ et $z$ est un élément de $\val$.
 
 \begin{defi}
 	Pour $l$ une ligne définie sur $\delta$,
-	et $\alpha$ un nom d'attribut,
+	et $\alpha$ un nom d'attribut régulier,
 	on appelle
 	\emph{réduction de l'attribut $\alpha$ dans la ligne $l$ 
 		par la fonction $f$ avec l'élément neutre $z$}
@@ -479,7 +494,7 @@ et $z$ est un élément de $\val$.
 	$$
 	\left\lbrace
 	\begin{array}{ll}
-	\redu_{\alpha, f, z, l}(\alpha) = \redu_{f,z}(l(\alpha)) & \\
+	\redu_{\alpha, f, z, l}(\alpha) = \redu_{f,z}(l(\alpha)) & \text{si $\alpha \in \delta$}\\
 	\redu_{\alpha, f, z, l}(\beta) = l(\beta) & \text{si $\beta \neq \alpha$}
 	\end{array}
 	\right.
@@ -501,8 +516,21 @@ et $z$ est un élément de $\val$.
 
 \subsection*{Opérations ensemblistes: union, différence, fragmentation horizontale}
 \begin{defi}
+	On dit que deux tables $r$ et $r'$ sont \emph{défragmentables horizontalement}
+	si elles ont  même schéma relationnel
+	e leurs ensembles d'identifiants sont disjoints.
+	Autrement dit,
+	$$
+	\left\lbrace
+	\begin{array}{l}
+	\s(r) =  \s(r') \\
+	\{ l(id) / l \in r \} \cap \{ l(id) / l \in r' \} = \emptyset
+	\end{array}
+	\right.
+	$$
+	
 	On appelle \emph{union} ou \emph{défragmentation horizontale}
-	de deux tables $r$ et $r'$ ayant le même schéma relationnel
+	de deux tables $r$ et $r'$ défragmentables horizontalement
 	la table $r \cup r'$, aussi notée $\hdefrag(r, r')$.
 \end{defi}
 
@@ -522,6 +550,8 @@ et $z$ est un élément de $\val$.
 			& r & \mapsto & (\{l \in r / p(l)\} , \{l \in r, \neg p(l)\})
 	\end{array}
 	$$
+	
+	On remarquera que les deux tables du résultat sont horizontalement défragmentables.
 \end{defi}
 
 \end{document}

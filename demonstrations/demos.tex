@@ -1314,7 +1314,7 @@ deux ensembles dont l'union fait $\delta_0 \cip$.
 Donc $l'$ et $l$ coïncident sur leur ensemble de définition,
 donc sont égaux et $l$ appartient à $r'$.
 
-\subsection*{Fragmentation et chiffrement}
+\subsection*{Fragmentation et chiffrement nécessaire}
 \begin{align}
 \fragDelta \circ \cryptCAlpha
 & \equiv (\cryptCAlpha, \id) \circ\fragDelta 
@@ -1340,8 +1340,15 @@ $(res_{1,1}, res_{1,2}) = \fragDelta(\cryptCAlpha(r))$
 et $(res_{2,1}, res_{2,2}) = (\cryptCAlpha, \id) \circ \fragDelta(r)$.
 
 \subsubsection*{Schémas relationnels}
+Vu que $\cryptCAlpha$ préserve les schémas relationnels,
+$res_{1,1}$ et $res_{2,1}$ ont tous les deux pour schémas relationnels
+$\delta_1 \cap \delta$
+$res_{1,2}$ et $res_{2,2}$ ont tous deux pour schéma relationnel
+$\delta_1 \setminus \delta$.
 
 \subsubsection*{Première inclusion}
 
 \subsubsection*{Deuxième inclusion}
+
+
 \end{document}

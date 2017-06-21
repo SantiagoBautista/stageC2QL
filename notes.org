@@ -858,6 +858,7 @@ Déménager x) (C'est un samedi)
 + Sélection/réduction
 + Fragmentation et défragmentation
 
+
 ** 19/06
 *** Objectifs de la journée
 **** Regarder puis ajouter group/fold à l'implémentation hydris
@@ -888,3 +889,63 @@ Ils semblent être définis par un cas possible dans une définition de type...
 ***** En ce qui concerne proj
 + La projection se fait bien sur un ensemble de termes :D
 + Pour l'instant je n'ai pas l'impression que cet ensemble puisse ne pas être inclu dans le reste :/
+
+**** TODO Ajouter des lois pour enlever les opérateurs qui trivialement n'agissent pas
+
+
+** 20/06 et 21/06
+*** Objectifs des journées
+**** Définir la prochaine étape
++ Quelle extension faire?
++ Quel est son intérêt de recherche?
+
+[[*Prochaine étape][Prochaine étape]]
+
+**** DONE Poser des questions à Ronan sur son code
+Je viens de voir qu'une partie des réponses étaient dans les sections 5/6 de sa thèse,
+que je vais donc lire
+***** Qu'est-ce que Privy?
+***** Qu'est-ce que Hole_ (: Nat -> C2QL) ?
+***** Notation auto et notion d'environement
+
+**** Relire/corriger définitions sémantiques
+Les principaux changements qui ont été faits 
+sont présents [[*Relecture des définitions][ici]]
+
+**** Commencer l'optimiseur de requêtes
+Mon but pour l'instant est de le faire en tant que fonction dans Idris
+
+
+*** Bilan des journées
+**** Prochaine étape 
+Je vais commencer par faire un programme qui tienne
+compte des lois et des préférences du développeur pour
+optimiser la requête.
+
+Ceci a été fait pour les requêtes sur des bases de données normales,
+mais pas pour les requêtes tenant compte d'une composition
+fragmentation verticale / cryptographie.
+
+**** Implémentation C2QL
+***** Modification de ce que sont les attributs
+La modification pour qu'un attribut puisse être un liste d'attributs
+(cf. définition sémantique de group)
+
+***** Introduction du fold et du group
+
+**** Relecture des définitions
+***** DONE id pas un identifiant comme les autres
++ ça permet une définition plus propre de "schéma"
++ ça change la définition de S
++ et ça nécessite de rajouter des "régulier(s)" un peu
+partout où il y avait écrit "nom(s) d'attribut(s)"
+***** DONE valeurs stables par liste
+***** DONE assurer l'unicité des identifiants
++ ça change la définition de l'identifiant pour la concaténation
+lors de la jointure naturelle
++ et la définition de ligne de groupe pour l'agrégation
++ et ça rajoute une condition à la défragmentation horizontale 
+
+
+**** Réunion avec Mario
+
