@@ -303,8 +303,6 @@ test = do putStrLn "------ Privy → C2QL/Unsafe"
           putStr "#rendezvous = "
           printLn $ qmeetC2QL'
 
-
-
 -- Local Variables:
 -- eval: (setq idris-interpreter-path (expand-file-name "./linkIdris11"))
 -- idris-load-packages: ("effects")

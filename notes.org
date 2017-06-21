@@ -684,6 +684,12 @@ pour les decrypt, par exemple
 
 
 
+* Optimiseur des requêtes
+Il y a différentes choses à faire, dont
+***** Calculer un schéma à partir d'un schéma et d'une expression C2QL
+***** Calcule-t-on toutes les transformations possibles?
+***** Comment choisi-t-on entre deux transformations
+
 * Carnet de bord à partir du 12/06
 ** 12/06
 Je vais plutôt commencer à démontrer les lois,
@@ -945,7 +951,6 @@ partout où il y avait écrit "nom(s) d'attribut(s)"
 lors de la jointure naturelle
 + et la définition de ligne de groupe pour l'agrégation
 + et ça rajoute une condition à la défragmentation horizontale 
-
 
 **** Réunion avec Mario
 

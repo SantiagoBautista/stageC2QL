@@ -22,10 +22,10 @@ namespace schema
   data Ty = NAT | BOOL | TEXT | DATE | CRYPT CryptTy Ty
 
   interpTy : Ty -> Type
-  interpTy NAT         = Nat | List (interpTy NAT)
-  interpTy BOOL        = Bool | List (interpTy BOOL)
-  interpTy TEXT        = String | List (interpTy TEXT)
-  interpTy DATE        = String | List (interpTy DATE)
+  interpTy NAT         = Nat
+  interpTy BOOL        = Bool
+  interpTy TEXT        = String
+  interpTy DATE        = String
   interpTy (CRYPT c t) = interpCryptTy c (interpTy t)
 
   ||| An attribute is a name and a type.
