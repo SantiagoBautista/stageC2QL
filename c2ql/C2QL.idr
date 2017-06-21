@@ -26,8 +26,6 @@ data C2QL : Type where
   NJoin   : C2QL -> C2QL -> C2QL
   Count   : Schema -> C2QL -> C2QL
   Select  : C2QLPred -> C2QL -> C2QL
-  Group   : Schema -> C2QL -> C2QL
-  Fold    : Attribute -> (Ty -> Ty) -> Ty -> C2QL
   -- C2QL specific
   Crypt   : Attribute -> CryptTy -> C2QL -> C2QL
   Decrypt : Attribute -> CryptTy -> C2QL -> C2QL
@@ -297,8 +295,6 @@ test = do putStrLn "------ Privy → C2QL/Unsafe"
           printLn $ qaddrC2QL'
           putStr "#rendezvous = "
           printLn $ qmeetC2QL'
-
-
 
 -- Local Variables:
 -- eval: (setq idris-interpreter-path (expand-file-name "./linkIdris11"))
