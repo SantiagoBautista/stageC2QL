@@ -27,7 +27,7 @@ data C2QL : Type where
   Count   : Schema -> C2QL -> C2QL
   Select  : C2QLPred -> C2QL -> C2QL
   Group   : Schema -> C2QL -> C2QL
-  Fold    : Attribute -> (Ty -> Ty) -> Ty -> C2QL
+  Fold    : Attribute -> (Ty -> Ty) -> Ty -> C2QL -> C2QL
   -- C2QL specific
   Crypt   : Attribute -> CryptTy -> C2QL -> C2QL
   Decrypt : Attribute -> CryptTy -> C2QL -> C2QL
@@ -59,6 +59,9 @@ Show C2QL where
     showQ (NJoin q1 q2)       = "(" ++ showQ q1 ++ " ⨝ " ++ showQ q2 ++ ")"
     showQ (Count δ q)         = "count " ++ show@{sch} δ ++ showK q
     showQ (Select p q)        = "σ (" ++ show p ++ ")" ++ showK q
+    showQ (Group δ q)         = "group " ++ show@{sch} δ ++ showK q
+    showQ (Fold α f z q)        = "fold(" ++ show@{attr} α
+      ++ ") (" ++ showQ q ++ ")"
     showQ (Crypt a c q)       =
       "crypt " ++ show@{attr} a ++ " " ++ show c ++ showK q
     showQ (Decrypt a c q)     =
@@ -187,6 +190,8 @@ toC2QL p {env} {env'} = (do
   hasDefrag (NJoin x y)     = hasDefrag x || hasDefrag y
   hasDefrag (Count x y)     = hasDefrag y
   hasDefrag (Select x y)    = hasDefrag y
+  hasDefrag (Group δ q)     = hasDefrag q
+  hasDefrag (Fold α f z q)  = hasDefrag q
   hasDefrag (Crypt x y z)   = hasDefrag z
   hasDefrag (Decrypt x y z) = hasDefrag z
   hasDefrag (Frag x y)      = hasDefrag y
