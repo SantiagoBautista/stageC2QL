@@ -11,9 +11,9 @@ fonctions dont peut être composée une requête C2QL
 
 *** Deuxième approche:
 Moins formellement, on peut garder la même approche que Ronan et vérifier si
-+ Les catégories de lois qu'il propose comprennent toutes les transformations
++ Les catégories :: de lois qu'il propose comprennent toutes les transformations
 qu'on peut vouloir faire
-+ Chaque catégorie est complète
++ Chaque catégorie :: est complète
 
 
 *** Troisième approche
