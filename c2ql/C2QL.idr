@@ -200,7 +200,7 @@ toC2QL p {env} {env'} = (do
   hasDefrag (Hole_ x)       = False
 
   ||| Translates a Privy predicate into a C2QL predicate.
-  predToC2QL : Pred e e' -> C2QLPred
+  predToC2QL : Pred e -> C2QLPred
   predToC2QL (AND x y)    = AND (predToC2QL x) (predToC2QL y)
   predToC2QL (OR x y)     = OR (predToC2QL x) (predToC2QL y)
   predToC2QL (Like a pat) = Like a pat

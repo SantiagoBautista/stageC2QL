@@ -977,6 +977,7 @@ Lire les chapitres 6 et 7 de la thèse de Ronan pour comprendre
 **** Relecture/complétion des démonstration
 + Commenncer à relire les démonstration
 + S'il y a le temps, faire la démonstration suivante
+
 *** Bilan de la journée
 **** Compréhension de l'implem / lecture des chaps 6 et 7 de la thèse de Ronan
 + Des exemples sont cités d'erreurs que l'implem idris permet d'éviter
@@ -1004,11 +1005,32 @@ que le type-checker le déduise du contexte quand possible
 
 + Article de Swierstra :: qu'il peut être utile de lire 
 The power of pi 2008 ACM
+[[file:ThePowerOfPi.pdf][Oury&Swierstra2008]]
 
++ ACHTUNG Le fait qu'une lettre soit minuscule ou majuscule ::  dans un argument de type change le sens
+En effet, les minuscules indiquent pas elles mêmes un caractère implicite
+
+**** Modifications à l'implémentation Idris
+***** Pourquoi les predicats devraient être paramétrés par un type?
+****** DONE Première idée de comment je pourrai le savoir:
+Je vais enlever tous les BOOL des pred et regarder si ça marche encore x)
+
+ça fonctionne encore! J'en déduis pour l'instant (jusqu'à demander à Ronan demain)
+qu'il n'y en avait pas besoin.
+
+***** DOING Alléger les contraintes sur le domaine du prédicat
+En effet, on peut vouloir faire des OR et des AND sur des prédicats ne portant pas
+sur les mêmes variables (qui donne pour résultat un prédicat sur l'union des domaines).
+
+Mais surtout, on peut vouloir commuter une sélection sans avoir à changer le prédicat, non?
+
+Je viens de décider que je vais apprendre à me servir d'Idris avant de continuer de modifier le code xD
+
+**** Apprendtissage d'Idris
+Comme suggéré par Ronan, je vais étudier par la réécriture la définition des listes
+qui est donnée par le langage (qui, parait-il, utilise les preuves)
 
 *** Choses à faire qui son apparues
 **** TODO Pour reproductibilité et compréhension: vérifier erreurs evitées
 Déclarer les faux-programmes qui servent d'exemple dans la section 6
  en C2QL et vérifier que ça déclenche bien une erreur de typage
- 
-
