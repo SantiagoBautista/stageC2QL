@@ -1026,6 +1026,9 @@ Mais surtout, on peut vouloir commuter une sélection sans avoir à changer le p
 
 Je viens de décider que je vais apprendre à me servir d'Idris avant de continuer de modifier le code xD
 
+***** DOING frag ne rend pas une expr C2QL, mais 2.. non?
+J'ai modifié le type de frag, ce qui va provablement nécessiter 
+
 **** Apprendtissage d'Idris
 Comme suggéré par Ronan, je vais étudier par la réécriture la définition des listes
 qui est donnée par le langage (qui, parait-il, utilise les preuves)
@@ -1034,3 +1037,6 @@ qui est donnée par le langage (qui, parait-il, utilise les preuves)
 **** TODO Pour reproductibilité et compréhension: vérifier erreurs evitées
 Déclarer les faux-programmes qui servent d'exemple dans la section 6
  en C2QL et vérifier que ça déclenche bien une erreur de typage
+**** TODO Possibilité d'encoder des schémas comme des ensembles
+En utilisant, si nécessaire, cette implémentation d'ensembles en Idris
+[[https://github.com/jfdm/idris-containers/blob/master/Data/AVL/Set.idr][Implem d'ensembles en Idris, par l'un des développeurs d'Idris]]
