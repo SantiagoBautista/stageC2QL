@@ -11,9 +11,9 @@ fonctions dont peut être composée une requête C2QL
 
 *** Deuxième approche:
 Moins formellement, on peut garder la même approche que Ronan et vérifier si
-+ Les catégories :: de lois qu'il propose comprennent toutes les transformations
-qu'on peut vouloir faire
-+ Chaque catégorie :: est complète
++ Les catégories de lois qu'il propose comprennent toutes les transformations
+ qu'on peut vouloir faire
++ Chaque catégorie est complète
 
 
 *** Troisième approche
@@ -248,7 +248,7 @@ la première étant probablement impossible et la deuxième
 **** ... dans les lois
 ***** DONE Prendre les lois de group de l'article, plutôt que les lois de group
 ***** DONE ajouter des lois pour le fold
-**** TODO dans l'implémentation actuelle de C2QL
+**** DOING dans l'implémentation actuelle de C2QL
 
 
 *** Sémantique des fonctions et des formules
@@ -502,11 +502,13 @@ démonstration formelle des lois de commutation.
 La défragmentation est vue comme un cas particulier de jointure.
 
 
-** TODO  Les identifiants post-jointure ne sont pas des identifiants
+** DONE Les identifiants post-jointure ne sont pas des identifiants
 Si on s'amuse à faire des jointures successives et des unions à partir
 des mêmes relations de base mais en projetant d'un côté et pas de l'autre,
 on peut peut-être arriver à avoir deux lignes différentes qui auraient le même identifiant... :'(
 
+C'est pour ça que j'ai fait le choix de créer des identifiants frais
+lors d'une jointure.
 
 * Prise de notes
 ** Doutes résolus
@@ -625,7 +627,8 @@ Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrag
 
 
 *** p.78: il parle d'un \vee, qui n'apparaît nul part dans las formules...
-**** TODO poser la question
+**** DOING poser la question
+Le 23/06 à 13h30 j'ai rendez-vous avec Ronan, je pourrai lui poser la question
 
 
 
@@ -847,7 +850,8 @@ quantité d'information qui circule peuvent révéler
 quelle est la requête qui est en train de s'
 
 **** Choses à faire qui sont apparues
-***** TODO Changer les définitions pour que id ne soit pas un attribut
+***** DONE Changer les définitions pour que id ne soit pas un attribut comme les autres
+Fait. id est un attribut, mais pas un attribut régulier.
 ***** DONE Placer la def de chiffrement compatible ailleurs que dans les démos
 ***** TODO modifier les mentions de c=>p
 par c_\alpha => p
