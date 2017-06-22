@@ -1,5 +1,5 @@
 * Grandes lignes
-** Définir une notion de complétude pour les lois algébrique
+0** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
 [[*Première idée de critère de complétude][Complétude formelle: exprimer toutes les requêtes équivalentes]]
 
@@ -510,6 +510,7 @@ on peut peut-être arriver à avoir deux lignes différentes qui auraient le mê
 C'est pour ça que j'ai fait le choix de créer des identifiants frais
 lors d'une jointure.
 
+
 * Prise de notes
 ** Doutes résolus
 *** La transformation de requête de base en requête optimisée est-elle automatisée?
@@ -808,7 +809,7 @@ indépendamment du nombre d'arguments des fonctions considérées.
 *** Objectifs de la journée
 **** Finir de corriger def defrag
 **** Faire le plus de démonstrations possibles
-A l'idéal 30
+A l'idéal 30 x)
 **** Commencer à comprendre l'implem en IDRIS
 *** Bilan de la journée
 **** Fin correction defrag
@@ -876,16 +877,20 @@ Déménager x) (C'est un samedi)
 **** Choisir l'extension à faire / la suite du travail
 *** Première lecture du code idris
 **** Qu'est-ce que privy??
-Privy plus expressif que C2QL =>
-peut-on (et aurait-on intérêt) à étendre C2QL pour
-qu'il soit aussi expressif que privy?
+Privy est "l'implémentation" de C2QL en ce sens
+qu'elle calcule ce qui arrive concrétement aux schémas,
+pour vérifier qu'il n'y a pas d'erreur de composition/typage.
+
+Privy plus expressif que C2QL??
+
 **** Pour rajouter un opérateur
 Il faut, AU MOINS 
 + Le rajouter dans la déclaration du type C2QL
 + Le rajouter dans la fonction d'affichage
 + Rajouter le test d'égalité associé
++ Le rajouter dans privy et dans l'interprétation de C2QL en Privy
 *** Bilan de la journée
-**** Instalation de idris, ghc, gmp, cabal..
+**** Instalation de idris, ghc, gmp, cabal etc
 **** Exécution du code idris
 Réussie
 **** Comparaison des définition formelles avec les definitions idris
@@ -894,8 +899,7 @@ aborder tous les cas de figure possible.
 
 Je suis en train de
 ***** comprendre le statut des objets/fonctions tels que DEFRAG
-Ils semblent être définis par un cas possible dans une définition de type...
-
+Defrag est le constructeur des objets de son type (cf. case class en Scala)
 
 ***** En ce qui concerne proj
 + La projection se fait bien sur un ensemble de termes :D
@@ -959,6 +963,7 @@ lors de la jointure naturelle
 
 **** Réunion avec Mario
 
+
 ** 22/06
 *** Objectifs de la journée
 **** Optimiseur de requêtes
@@ -974,3 +979,36 @@ Lire les chapitres 6 et 7 de la thèse de Ronan pour comprendre
 + S'il y a le temps, faire la démonstration suivante
 *** Bilan de la journée
 **** Compréhension de l'implem / lecture des chaps 6 et 7 de la thèse de Ronan
++ Des exemples sont cités d'erreurs que l'implem idris permet d'éviter
+=> [[*Pour reproductibilité: vérifier erreurs evitées][Pour reproductibilité et compréhension: vérifier erreurs evitées]]
+
++ ADT :: Algebraic Data Type... Pour l'instant j'ai juste l'impression que ce serait
+l'équivalent / un cas particulier de Case Class en Scala; à voir
+
++ total :: Fonction considérant tous les cas dans les pattern matching
+et agissant systématiquement sur des structures strictement plus petites
+lors des appels récursifs
+Dans une définition d'un type (dépendant) toute fonction intervenant dans la
+définition du type *doit être totale* ce qui donne une garantie de calculabilité du type
+au type-checker
+
++ Type :: est le type des types
+(et est utilisé, entre autres, pour déclarer un type de base)
+
++ Être paramétré par un type :: revient à prendre un type en paramètre,
+donc à être une fonction (et donc, en autres, un type peut être une fonction
+{car un type peut être paramétré par un autre})
+
++ Des accolades :: permettent d'indiquer un type-paramètre comme implicite, pour
+que le type-checker le déduise du contexte quand possible
+
++ Article de Swierstra :: qu'il peut être utile de lire 
+The power of pi 2008 ACM
+
+
+*** Choses à faire qui son apparues
+**** TODO Pour reproductibilité et compréhension: vérifier erreurs evitées
+Déclarer les faux-programmes qui servent d'exemple dans la section 6
+ en C2QL et vérifier que ça déclenche bien une erreur de typage
+ 
+
