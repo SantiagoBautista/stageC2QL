@@ -144,9 +144,9 @@ namespace query
   ||| Inside the repl `:browse Privy.sugar`
   data Pred : (Δ : Schema) -> Type where
     ||| Logical AND
-    AND      : Pred Δ1 -> Pred Δ2 -> Pred (nub (Δ1 ++ Δ2))
+    AND      : Pred Δ -> Pred Δ -> Pred Δ
     ||| Logical OR
-    OR       : Pred δ1 -> Pred δ2 -> Pred (nub (δ1 ++ δ2))
+    OR       : Pred Δ -> Pred Δ -> Pred Δ
     ||| Test that values of `a` contains `pat`.
     |||
     ||| @ p proof that `a` is an attribute of `Δ`.
@@ -370,11 +370,11 @@ namespace sugar
   like = Like
 
   -- export
-  (&&) :Pred d1 -> Pred d2 -> Pred (nub (d1 ++ d2))
+  (&&) : Pred Δ -> Pred Δ -> Pred Δ
   (&&) = AND
 
   -- export
-  (||) : Pred d1 -> Pred d2 -> Pred (nub (d1 ++ d2))
+  (||) : Pred Δ -> Pred Δ -> Pred Δ
   (||) = OR
 
   -- export
