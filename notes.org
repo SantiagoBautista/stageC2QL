@@ -690,6 +690,7 @@ Il y a différentes choses à faire, dont
 ***** Calcule-t-on toutes les transformations possibles?
 ***** Comment choisi-t-on entre deux transformations
 
+
 * Carnet de bord à partir du 12/06
 ** 12/06
 Je vais plutôt commencer à démontrer les lois,
@@ -954,3 +955,18 @@ lors de la jointure naturelle
 
 **** Réunion avec Mario
 
+** 22/06
+*** Objectifs de la journée
+**** Optimiseur de requêtes
+***** Dresser un tableau de qu'est-ce qui est optimisé par chaque loi
+***** Écrire une fonction schéma
+Qui, donnée une expression C2QL et une liste de schémas, en calcule le schéma résultant
+**** Compréhension de l'implémentation
+Lire les chapitres 6 et 7 de la thèse de Ronan pour comprendre
++ Ce qu'est Privy
++ Les choix qui ont été faits pour l'implémentation
+**** Relecture/complétion des démonstration
++ Commenncer à relire les démonstration
++ S'il y a le temps, faire la démonstration suivante
+*** Bilan de la journée
+**** Compréhension de l'implem / lecture des chaps 6 et 7 de la thèse de Ronan
