@@ -478,8 +478,8 @@ sameEnv = Refl
 -- FalseEnv1 = fragEnv [D] $ fragEnv [D] RendezVousEnv
 
 -- -- ill-typed:
-FalseEnv2 : Env 1
-FalseEnv2 = cryptEnv AES N $ fragEnv [D] RendezVousEnv
+-- FalseEnv2 : Env 1
+-- FalseEnv2 = cryptEnv AES N $ fragEnv [D] RendezVousEnv
 
 
 -- The bottom Query type
@@ -500,8 +500,8 @@ specFragDA = frag [A]
 -- falseSpecFragLeft = do frag [D,A] ; frag [D]
 
 -- -- ill-typed:
--- falseSpecCrypt : Privy RendezVousEnv _ Bot
--- falseSpecCrypt = crypt ("Foo", TEXT) AES
+falseSpecCrypt : Privy RendezVousEnv _ Bot
+falseSpecCrypt = crypt ("Foo", TEXT) AES
 
 -- -- ill-typed:
 -- falseSpecFragDA : Privy SafeRendezVousEnv _ Bot

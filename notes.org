@@ -1051,5 +1051,12 @@ Réunion à 13h30
 *** Choses qu'il restera à faire
 **** TODO Modifier frag pour qu'il rende (C2QL, C2QL) et non pas C2QL
 *** Bilan de la journée
-**** Échecs de reproductibilité
-+ Aucune erreur n'est lancée pour l'exemple d'erreur dans l'implémentation de l'environement :/
+**** Réproductibilité
++ Les erreurs ne sont lancées que si on formule la requête avec Privy,
+et non pas avec C2QL
++ FalseEnv1 (corresp ex 2 p105) échouait pour la mauvaise raison
+mais il échou encore après correction :-)
++ FalseEnv2 échouait pour la mauvaise raison, et n'échoue plus après correction :-/
++ falseSpecFragLeft semble échouer correctement,
+mais je n'ai pas compris quelle partie de la notation spécifie sur quel fragment s'effectue la deuxième op
++ falseSpecCrypt échou correctement :)
