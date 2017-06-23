@@ -474,8 +474,8 @@ sameEnv : SafeRendezVousEnv = SafeRendezVousEnv'
 sameEnv = Refl
 
 -- -- ill-typed:
--- FalseEnv1 : Env 3
--- FalseEnv1 = fragEnv [D] $ fragEnv [D] RendezVousEnv
+FalseEnv1 : Env 2
+FalseEnv1 = fragEnv [D] $ fragEnv [D] RendezVousEnv
 
 -- -- ill-typed:
 -- FalseEnv2 : Env 2
