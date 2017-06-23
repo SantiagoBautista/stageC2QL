@@ -31,14 +31,12 @@ data C2QL : Type where
   -- C2QL specific
   Crypt   : Attribute -> CryptTy -> C2QL -> C2QL
   Decrypt : Attribute -> CryptTy -> C2QL -> C2QL
-  FragL   : Schema -> C2QL -> C2QL
-  FragR   : Schema -> C2QL -> C2QL
-  Defrag  : (C2QL, C2QL) -> C2QL
+  Frag    : Schema -> C2QL -> C2QL
+  Defrag  : (C2QL, C2QL) -> C2QL -> C2QL
   Rel     : Schema -> C2QL
   Hole_   : Nat -> C2QL
 
-frag : (delta: Schema) -> (q: C2QL) -> (C2QL, C2QL)
-frag delta q = (FragL delta q, FragR delta q)
+
 -- Implementations for C2QL
 
 Show C2QLPred where

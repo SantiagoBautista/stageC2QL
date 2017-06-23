@@ -1040,3 +1040,13 @@ Déclarer les faux-programmes qui servent d'exemple dans la section 6
 **** TODO Possibilité d'encoder des schémas comme des ensembles
 En utilisant, si nécessaire, cette implémentation d'ensembles en Idris
 [[https://github.com/jfdm/idris-containers/blob/master/Data/AVL/Set.idr][Implem d'ensembles en Idris, par l'un des développeurs d'Idris]]
+
+** 23/06
+*** Objectifs de la journée
+**** Reproductibilité, même si ça implique d'utiliser les Hole: Nat -> C2QL
+**** Compréhension du code de Ronan
+Réunion à 13h30
+**** Tableau d'optimisations effectuées par chaque loi
+**** Suite de la lecture des chapitres 6 et 7
+*** Choses qu'il restera à faire
+**** TODO Modifier frag pour qu'il rende (C2QL, C2QL) et non pas C2QL
