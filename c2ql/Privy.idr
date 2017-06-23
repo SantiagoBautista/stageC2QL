@@ -500,8 +500,8 @@ specFragDA = frag [A]
 -- falseSpecFragLeft = do frag [D,A] ; frag [D]
 
 -- -- ill-typed:
-falseSpecCrypt : Privy RendezVousEnv _ Bot
-falseSpecCrypt = crypt ("Foo", TEXT) AES
+-- falseSpecCrypt : Privy RendezVousEnv _ Bot
+-- falseSpecCrypt = crypt ("Foo", TEXT) AES
 
 -- -- ill-typed:
 -- falseSpecFragDA : Privy SafeRendezVousEnv _ Bot

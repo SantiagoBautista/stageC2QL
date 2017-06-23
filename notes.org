@@ -249,6 +249,7 @@ la première étant probablement impossible et la deuxième
 ***** DONE Prendre les lois de group de l'article, plutôt que les lois de group
 ***** DONE ajouter des lois pour le fold
 **** DOING dans l'implémentation actuelle de C2QL
+Il faudrait aussi le faire, du coup, dans celle de privy
 
 
 *** Sémantique des fonctions et des formules
@@ -584,16 +585,33 @@ pas une notions native au langage ni aisée d'utilisation
 en Scala (en effet, pour faire apparaître des types dépendants, il
 faudrait forcer le compilateur à calculer des types à la volée en utilisant
 les implicits).
-Idris plus adapté car manipule nativement les types dépendants
+
+
+*** Est-ce que Ullman définit une sémantique précise?
+
+
+
+ Regarder le livre d'Ullman
+
+ Il travaille avec une sémantique basée sur des produits cartésiens de domaines
+ (donc sur des tuples).
+ Il ne fait qu'évoquer la définition à base de fonctions d'attributs vers valeurs.
+
+ C'est cette deuxième définition, qu'elle ne fait qu'évoquer, que j'ai retenue.
+
+
 
 
 ** Doutes / choses à voir
+Idris plus adapté car manipule nativement les types dépendants
+
+
 *** L'implémen actuelle permet-elle de définir une politique de sécurité?
 Pas en C2QL, mais à priori oui, en Idris et proVérif
 **** TODO regarder comment peuvent être définies les politiques de sécurité en Idris et proVérif
 
 
-*** TODO Regarder les expérimentations de Ronan 
+*** POSSIBLE Regarder les expérimentations de Ronan 
 [[http://www.github.com/rcherrueau/C2QL/tree/master/experimentations][Dossier des expérimentations]]
 
 
@@ -602,10 +620,6 @@ Est-ce que la partie "proxy" ne pourrait pas s'exécuter côté client
 pour avoir un nuage confidentiel?
 
 
-
-
-*** Est-ce que Ullman définit une sémantique précise?
-Regarder le livre d'Ullman
 
 
 *** Avoir plusieurs encodages/chiffrements et séparer les filtres
@@ -624,17 +638,17 @@ Il reste cependant à
 
 *** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non??
 Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrags imbriqués!
-**** TODO Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
+**** POSSIBLE Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
 
 
 *** p.78: il parle d'un \vee, qui n'apparaît nul part dans las formules...
-**** DOING poser la question
+**** TODO poser la question
 Le 23/06 à 13h30 j'ai rendez-vous avec Ronan, je pourrai lui poser la question
 
-
-
-
 ** Remarques
+
+
+
 *** Le rapatriment des données côté client n'étant pas explicite
 les différent mécanismes de préservation de la confidentialité n'ont
 pas tous le même statut... (cc n'a pas le même statut que frag ou crypt)
@@ -645,9 +659,9 @@ de la position des constructeurs et des destructeurs
 *** On fait apparaître les constructeurs de confidentialité à chaque requête...
 pourtant ils doivent être les mêmes pour tout le programme,
 pour toutes les requêtes.
-
-
 ** notes personelles
+
+
 *** zero-knowledge proof
 Permet de certifier l'intégrité d'un calcul sans transmission de données
 
@@ -685,7 +699,6 @@ restreint l'ensemble des processus pouvant s'en servir
 et non pas ce que se passe chez chaque acteur
 => au moment de traduire vers proVérif il faudra le prendre en compte,
 pour les decrypt, par exemple
-
 
 
 * Optimiseur des requêtes
@@ -905,7 +918,7 @@ Defrag est le constructeur des objets de son type (cf. case class en Scala)
 + La projection se fait bien sur un ensemble de termes :D
 + Pour l'instant je n'ai pas l'impression que cet ensemble puisse ne pas être inclu dans le reste :/
 
-**** TODO Ajouter des lois pour enlever les opérateurs qui trivialement n'agissent pas
+**** TODO Vérifier qu'il y a toutes les lois pour enlever les opérateurs qui n'agissent pas
 
 
 ** 20/06 et 21/06
@@ -1041,9 +1054,17 @@ Déclarer les faux-programmes qui servent d'exemple dans la section 6
 En utilisant, si nécessaire, cette implémentation d'ensembles en Idris
 [[https://github.com/jfdm/idris-containers/blob/master/Data/AVL/Set.idr][Implem d'ensembles en Idris, par l'un des développeurs d'Idris]]
 
+Ou plutôt en utilisant Data.Fin? 
+[[http://docs.idris-lang.org/en/latest/tutorial/typesfuns.html][cf "The finite sets" here]]
+Non, c'est des ensemble canonique, pas des ensembles arbitraires
+
+
 ** 23/06
 *** Objectifs de la journée
-**** Reproductibilité, même si ça implique d'utiliser les Hole: Nat -> C2QL
+**** Reproductibilité
+Vu que c'est dans Privy et non pas dans C2QL
+qu'il faut vérifier la reproductibilité des erreurs pour les mauvaises expressions,
+il n'y a pas besoin d'utiliser les Hole_ : Nat -> C2QL    :-D
 **** Compréhension du code de Ronan
 Réunion à 13h30
 **** Tableau d'optimisations effectuées par chaque loi
@@ -1053,10 +1074,64 @@ Réunion à 13h30
 *** Bilan de la journée
 **** Réproductibilité
 + Les erreurs ne sont lancées que si on formule la requête avec Privy,
-et non pas avec C2QL
+et non pas avec C2QL (c'est normal, cf [[*Réunion avec Ronan][Réunion avec Ronan]])
+
 + FalseEnv1 (corresp ex 2 p105) échouait pour la mauvaise raison
-mais il échou encore après correction :-)
+mais il échou correctement après correction :-)
+
 + FalseEnv2 échouait pour la mauvaise raison, et n'échoue plus après correction :-/
+
 + falseSpecFragLeft semble échouer correctement,
 mais je n'ai pas compris quelle partie de la notation spécifie sur quel fragment s'effectue la deuxième op
+
 + falseSpecCrypt échou correctement :)
+
+**** Réunion avec Ronan
+***** Choses que j'ai compris
+****** C2QL is not intended for use, Privy is
+C'est Privy qui est fait pour être utilisé pour la description des compositions.
+C2QL a été fait pour une utilisation interne à des buts de pi-calcul
+
+
+****** Le rôle du handler, l'existance et le sens du bind, monades
+Handler comme lien avec le monde réel; construction connue
+
+ *bind* comme dans l'exemple
+Si x est un IO a 
+et f est une a -> IO b
+alors 
+y <- a
+f y
+est un IO b, qu'on peut rebinder
+
+Autrement, le >>= fait deux en un: il extrait la partie
+intéressante et applique sur ce qu'il a extrait
+
+Et, de façon assez drôle,
+le Return (ou Pure) est.. *le point d'entrée* à la monade x)
+
+Car oui, si on défini un bind et un return, ça définit, en Idris, une monade
+****** TODO Regarder plus précisément ce qu'est une monade
+Ronan conseille de regarder la monade State
+
+
+****** Le sens du point et du dolar
+Le point est vraiment une composition fonctionnelle
+
+Le dolar est un acteur sintaxique pour dire "d'ici jusqu'à la fin, c'est une seule valeur / un seul argument"
+Il donne la priorité d'évaluation à ce qui est à droite du dolar
+
+
+***** En quoi ça change mes objectifs
++ C'est normal que les requêtes fausses exprimées en C2QL ne lèvent pas d'erreur
+(car c'est lorsqu'elles sont exprimées en Privy qu'elles lèvent des erreurs)
+
++ Par contre je devrai être maintenant en mesure de comprendre les erreurs qui doivent
+être levées en Privy, et vérifier qu'elles sont bien levées
+
+
+***** Miracles que j'ai envie de faire
+****** Former un terme Privy à partir d'un terme C2QL
+****** Remplacer le plus de dollars possibles par des points
+****** Dans C2QL.. Séparer description des tables, des contraintes, et des requêtes?
+       
