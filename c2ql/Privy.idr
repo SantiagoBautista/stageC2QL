@@ -474,12 +474,12 @@ sameEnv : SafeRendezVousEnv = SafeRendezVousEnv'
 sameEnv = Refl
 
 -- -- ill-typed:
-FalseEnv1 : Env 2
-FalseEnv1 = fragEnv [D] $ fragEnv [D] RendezVousEnv
+-- FalseEnv1 : Env 2
+-- FalseEnv1 = fragEnv [D] $ fragEnv [D] RendezVousEnv
 
 -- -- ill-typed:
--- FalseEnv2 : Env 2
--- FalseEnv2 = cryptEnv 0 AES N $ fragEnv [D] RendezVousEnv
+FalseEnv2 : Env 1
+FalseEnv2 = cryptEnv AES N $ fragEnv [D] RendezVousEnv
 
 
 -- The bottom Query type
