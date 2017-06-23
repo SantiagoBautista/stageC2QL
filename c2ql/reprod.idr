@@ -13,3 +13,9 @@ envImplemError = Select (Like N "C*") .
                   Project [N, A] .
                   Defrag (Hole_ 0, Hole_ 1) .
                   Frag [N]
+
+foo: Attribute
+foo = ("foo", TEXT)
+
+envSpecError : C2QL
+envSpecError = Crypt foo AES (Rel RendezVous)
