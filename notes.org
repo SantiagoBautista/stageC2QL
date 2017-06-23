@@ -1050,3 +1050,6 @@ Réunion à 13h30
 **** Suite de la lecture des chapitres 6 et 7
 *** Choses qu'il restera à faire
 **** TODO Modifier frag pour qu'il rende (C2QL, C2QL) et non pas C2QL
+*** Bilan de la journée
+**** Échecs de reproductibilité
++ Aucune erreur n'est lancée pour l'exemple d'erreur dans l'implémentation de l'environement :/
