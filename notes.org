@@ -1,5 +1,5 @@
-111111111* Grandes lignes
-0** Définir une notion de complétude pour les lois algébrique
+* Grandes lignes
+** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
 [[*Première idée de critère de complétude][Complétude formelle: exprimer toutes les requêtes équivalentes]]
 
