@@ -1159,12 +1159,12 @@ pour que les lois soient numérotées dans l'ordre du tableau
 **** Optimiseur
 ***** Liste des critères
 Les critères selon lesquels il faut évaluer les effets des lois sont
-+ Augmentation de l'utilisation du cloud
-+ Amélioration du temps de calcul
-+ Diminution de l'utilisation réseau
++ Augmentation de l'utilisation du cloud (abrégé C)
++ Amélioration du temps de calcul        (abregé T)
++ Diminution de l'utilisation réseau     (abrégé R)
 
 ***** Tableau des effets
 Le tableau de comment les différentes lois influent sur ces différents critères
 est en train d'être dressé:
 
-[[file:opti/effets.ods][Tableau des effets des lois]]
+| Loi | effets |
