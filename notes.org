@@ -1152,9 +1152,10 @@ Faite par
 **** Faire un schéma explicatif du fonctionnement du code Privy
 *** Bilan de la journée
 **** Squelette démos
-Le fichier de démonstrations sera complété avec toutes les lois
+Le fichier de démonstrations a été complété avec toutes les lois
 (quitte à, pour la fin, n'avoir que le squelette)
-pour que les lois soient numérotées dans l'ordre du tableau
+et l'ensemble des lois a été renuméroté,
+pour suivre l'ordre du tableau de complétude.
 
 **** Optimiseur
 ***** Liste des critères
@@ -1209,3 +1210,6 @@ vers le membre droit; le passage inverse ayant les effets opposés.
 |       47 | Dépend        |
 |       49 | +T en général |
 |       50 | Neutre        |
+***** Code idris
+J'hésite entre utiliser la monade Privy (qu'il faudrait donc comprendre)
+ou essayer d'utiliser plutôt C2QL quittre à refaire le calcul du schéma actuel

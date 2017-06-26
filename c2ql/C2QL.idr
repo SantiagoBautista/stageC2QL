@@ -260,11 +260,11 @@ toC2QL p {env} {env'} = (do
     pure $ queryToC2QL p c2ql
 }
 
-c2qlToPrivy: C2QL ->
-  {n: Nat} -> {m: Nat} -> {e: Privy.privy.Env n} ->
-  {e': Privy.privy.Env m} -> {delta: Schema} -> Privy e e' delta
-c2qlToPrivy (Rel delta) = Return (Var_ delta)
-c2qlToProvy _ = ?aFaire
+-- c2qlToPrivy: C2QL ->
+--   {n: Nat} -> {m: Nat} -> {e: Privy.privy.Env n} ->
+--   {e': Privy.privy.Env m} -> {delta: Schema} -> Privy e e' delta
+-- c2qlToPrivy (Rel delta) = Return (Var_ delta)
+-- c2qlToProvy _ = ?aFaire
 
 
 -- Tests

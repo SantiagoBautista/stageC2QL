@@ -1,5 +1,18 @@
 module Opti
 
+import Privy
 import C2QL
 
-sch : C2QL -> Schema -> Schema
+data Fonction: Int -> Type where
+  Id      : Fonction 1
+  Project : Schema -> Fonction 1
+  Join    : Fonction 2
+  Select  : C2QLPred -> Fonction 1
+  Group   : Schema -> Fonction 1
+  Fold    : Attribute -> (Ty -> Ty) -> Ty -> Fonction 1
+  -- C2QL specific
+  Crypt   : Attribute -> CryptTy -> Fonction 1
+  Decrypt : Attribute -> CryptTy -> Fonction 1
+  Frag    : Schema -> Fonction 1
+  Defrag  : Fonction 2
+  Rel     : Schema -> Fonction 0
