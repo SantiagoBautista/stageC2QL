@@ -1,4 +1,4 @@
-* Grandes lignes
+111111111* Grandes lignes
 0** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
 [[*Première idée de critère de complétude][Complétude formelle: exprimer toutes les requêtes équivalentes]]
@@ -1122,6 +1122,11 @@ Le dolar est un acteur sintaxique pour dire "d'ici jusqu'à la fin, c'est une se
 Il donne la priorité d'évaluation à ce qui est à droite du dolar
 
 
+****** Il y a une libraire SQLite pour idris
+Faite par
+[[https://github.com/david-christiansen/IdrisSqlite][David Christiansen]]
+
+
 ***** En quoi ça change mes objectifs
 + C'est normal que les requêtes fausses exprimées en C2QL ne lèvent pas d'erreur
 (car c'est lorsqu'elles sont exprimées en Privy qu'elles lèvent des erreurs)
@@ -1129,9 +1134,37 @@ Il donne la priorité d'évaluation à ce qui est à droite du dolar
 + Par contre je devrai être maintenant en mesure de comprendre les erreurs qui doivent
 être levées en Privy, et vérifier qu'elles sont bien levées
 
++ Si un jour je veux implémenter / aider à implémenter concrètement C2QL
+[[*Il y a une libraire SQLite pour idris][Il y a une libraire SQLite pour idris]]
+
 
 ***** Miracles que j'ai envie de faire
 ****** Former un terme Privy à partir d'un terme C2QL
 ****** Remplacer le plus de dollars possibles par des points
 ****** Dans C2QL.. Séparer description des tables, des contraintes, et des requêtes?
        
+** 26/06
+*** Objectifs de la journée
+**** Optimiseur
++ Dresser la liste d'avantages
++ Dresser le tableau d'avantages par lois
+
+**** Faire un schéma explicatif du fonctionnement du code Privy
+*** Bilan de la journée
+**** Squelette démos
+Le fichier de démonstrations sera complété avec toutes les lois
+(quitte à, pour la fin, n'avoir que le squelette)
+pour que les lois soient numérotées dans l'ordre du tableau
+
+**** Optimiseur
+***** Liste des critères
+Les critères selon lesquels il faut évaluer les effets des lois sont
++ Augmentation de l'utilisation du cloud
++ Amélioration du temps de calcul
++ Diminution de l'utilisation réseau
+
+***** Tableau des effets
+Le tableau de comment les différentes lois influent sur ces différents critères
+est en train d'être dressé:
+
+[[file:opti/effets.ods][Tableau des effets des lois]]
