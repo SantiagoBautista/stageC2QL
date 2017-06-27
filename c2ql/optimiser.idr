@@ -16,6 +16,9 @@ data Fonction: Nat -> Type where
   Frag    : Schema -> Fonction 1
   Defrag  : Fonction 2
 
+total ariteFonction : {n: Nat} -> (f: Fonction n) -> Nat
+ariteFonction {n} f = n
+
 data Formule: Type where
   (.) : Fonction n -> Vect n Formule  -> Formule
   (-) : Fonction n -> Vect n Schema   -> Formule
@@ -23,8 +26,13 @@ data Formule: Type where
 -- exemple : Formule
 -- exemple = Crypt N AES - [RendezVous]
 
-sch: Formule -> List Schema
+total ariteFormule : Formule -> Nat
+ariteFormule (f . v) = ariteFonction f
+ariteFormule (f - v) = ariteFonction f
+
+sch: (f: Formule) -> Vect (ariteResultat f) Schema
 sch (f . v) with (f)
-  | Id = sch (head v)
-  | _  = []
+  | Id          = sch (head v)
+  | Project s   = [intersect s (sch (head v))]
+  | _  = ?todo
 sch (f - v) = ?casBaseFormule
