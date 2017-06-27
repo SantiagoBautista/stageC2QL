@@ -40,12 +40,41 @@ mutual
 -- ex = Reste Pile
 --
 --
-ariteNonNule: AriteCorrecte (f::fs) n -> NonEmpty (f::fs)
-ariteNonNule (Reste a) = IsNonEmpty
+data NonNul : Nat -> Type where
+  IsNextOf : (k: Nat) -> NonNul (S k)
+
+Uninhabited (NonNul Z) where
+  uninhabited (IsNextOf k) impossible
+
+nonNul : (n: Nat) -> Dec(NonNul n)
+nonNul Z = No absurd
+nonNul (S k) = Yes (IsNextOf k)
+
+dAriteNonNule : (p1: AriteCorrecte l n) -> (p2: NonNul n) -> NonEmpty l
+dAriteNonNule p1 p2 with (p1)
+ | Pile        = absurd p2
+ | (Reste a)   = IsNonEmpty
+
+aucuneAriteNule: (f: Fonction n) -> NonNul (ariteResFonction f)
+aucuneAriteNule (Frag s) = IsNextOf 1
+aucuneAriteNule Id            = IsNextOf  0
+aucuneAriteNule (Project s)   = IsNextOf  0
+aucuneAriteNule Join          = IsNextOf  0
+aucuneAriteNule (Select p)    = IsNextOf  0
+aucuneAriteNule (Group s)     = IsNextOf  0
+aucuneAriteNule (Fold a f c)  = IsNextOf  0
+aucuneAriteNule (Crypt a c)   = IsNextOf  0
+aucuneAriteNule (Decrypt a c) = IsNextOf  0
+aucuneAriteNule Defrag        = IsNextOf  0
+
+ariteNonNule: (f: Formule) -> NonNul(ariteResFormule f)
+ariteNonNule (fc . v) = aucuneAriteNule fc
+ariteNonNule (fc - v) = aucuneAriteNule fc
 
 sch: (f: Formule) -> Vect (ariteResFormule f) Schema
 sch ((.) f v {p}) with (f)
-  | Id          = sch (head {ok = ariteNonNule p} v)
+  | Id          = sch (Prelude.List.head
+    {ok = dAriteNonNule p (aucuneAriteNule Id)} v)
   | Project s   = [intersect s (sch (head v))]
   | _  = ?todo
 sch (f - v) = ?casBaseFormule
