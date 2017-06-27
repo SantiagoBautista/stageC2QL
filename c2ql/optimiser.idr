@@ -3,16 +3,16 @@ module Opti
 import Privy
 import C2QL
 
-data Fonction: Int -> Type where
-  Id      : Fonction 1
-  Project : Schema -> Fonction 1
-  Join    : Fonction 2
-  Select  : C2QLPred -> Fonction 1
-  Group   : Schema -> Fonction 1
-  Fold    : Attribute -> (Ty -> Ty) -> Ty -> Fonction 1
+data Fonction: Nat -> Type where
+  Id      : Fonction (S Z)
+  Project : Schema -> Fonction (S Z)
+  Join    : Fonction (S (S Z))
+  Select  : C2QLPred -> Fonction (S Z)
+  Group   : Schema -> Fonction (S Z)
+  Fold    : Attribute -> (Ty -> Ty) -> Ty -> Fonction (S Z)
   -- C2QL specific
-  Crypt   : Attribute -> CryptTy -> Fonction 1
-  Decrypt : Attribute -> CryptTy -> Fonction 1
-  Frag    : Schema -> Fonction 1
-  Defrag  : Fonction 2
-  Rel     : Schema -> Fonction 0
+  Crypt   : Attribute -> CryptTy -> Fonction (S Z)
+  Decrypt : Attribute -> CryptTy -> Fonction (S z)
+  Frag    : Schema -> Fonction (S z)
+  Defrag  : Fonction (S (S Z))
+  Rel     : Schema -> Fonction Z
