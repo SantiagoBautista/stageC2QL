@@ -918,7 +918,7 @@ Defrag est le constructeur des objets de son type (cf. case class en Scala)
 + La projection se fait bien sur un ensemble de termes :D
 + Pour l'instant je n'ai pas l'impression que cet ensemble puisse ne pas être inclu dans le reste :/
 
-**** TODO Vérifier qu'il y a toutes les lois pour enlever les opérateurs qui n'agissent pas
+**** DONE Vérifier qu'il y a toutes les lois pour enlever les opérateurs qui n'agissent pas
 
 
 ** 20/06 et 21/06
@@ -1142,7 +1142,8 @@ Faite par
 ****** Former un terme Privy à partir d'un terme C2QL
 ****** Remplacer le plus de dollars possibles par des points
 ****** Dans C2QL.. Séparer description des tables, des contraintes, et des requêtes?
-       
+
+
 ** 26/06
 *** Objectifs de la journée
 **** Optimiseur
@@ -1213,3 +1214,7 @@ vers le membre droit; le passage inverse ayant les effets opposés.
 ***** Code idris
 J'hésite entre utiliser la monade Privy (qu'il faudrait donc comprendre)
 ou essayer d'utiliser plutôt C2QL quittre à refaire le calcul du schéma actuel
+
+** 27/06
+*** Objectifs de la journée
+**** 
