@@ -19,8 +19,14 @@ data Fonction: Nat -> Type where
 total ariteFonction : {n: Nat} -> (f: Fonction n) -> Nat
 ariteFonction {n} f = n
 
+total ariteResultat: Fonction n -> Nat
+ariteResultat Frag  = 2
+ariteResultat _     = 1
+
+data AriteCorrecte List Formule
+
 data Formule: Type where
-  (.) : Fonction n -> Vect n Formule  -> Formule
+  (.) : (f: Fonction n) -> (args: List Formule)  -> Formule
   (-) : Fonction n -> Vect n Schema   -> Formule
 
 -- exemple : Formule
