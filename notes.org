@@ -1217,4 +1217,17 @@ ou essayer d'utiliser plutôt C2QL quittre à refaire le calcul du schéma actue
 
 ** 27/06
 *** Objectifs de la journée
-**** 
+**** Code Idris de l'optimiseur
+*** Réflexions de la journée
+**** Avec structure, mais sans trous
+Dans l'ADT C2QL, il y a la traduction de la structure
+presque arborescente (en réalité c'est une structure de 
+graphe *orienté* connexe acyclique, et non d'arbre)
+mais il y a des trous.
+
+Mon but avec les ADT Fonction et Formule,
+je veux traduire cette structure presque arborescente,
+sans utiliser de trous.
+
+Ce qui nécessite de prendre en compte l'arité des résultats
+lors de la construction de la structure.

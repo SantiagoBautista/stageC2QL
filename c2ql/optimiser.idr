@@ -16,29 +16,43 @@ data Fonction: Nat -> Type where
   Frag    : Schema -> Fonction 1
   Defrag  : Fonction 2
 
-total ariteFonction : {n: Nat} -> (f: Fonction n) -> Nat
-ariteFonction {n} f = n
 
-total ariteResultat: Fonction n -> Nat
-ariteResultat Frag  = 2
-ariteResultat _     = 1
+total ariteResFonction: Fonction n -> Nat
+ariteResFonction (Frag s) = 2
+ariteResFonction _        = 1
 
-data AriteCorrecte List Formule
+data NonNul: Nat -> Type where
+  IsNextOf : (k: Nat) -> NonNul (S k)
 
-data Formule: Type where
-  (.) : (f: Fonction n) -> (args: List Formule)  -> Formule
-  (-) : Fonction n -> Vect n Schema   -> Formule
+pasCosmoFage : (f: Fonction n) -> NonNul (ariteResFonction f)
+pasCosmoFage (Frag s) = IsNextOf 1
+pasCosmoFage _        = IsNextOf 0
 
--- exemple : Formule
--- exemple = Crypt N AES - [RendezVous]
+-- mutual
+--   data Formule: Type where
+--     (.) : (f: Fonction n) -> (args: List Formule) ->
+--         {auto p : AriteCorrecte args n} -> Formule
+--     (-) : Fonction n -> Vect n Schema   -> Formule
+--
+--   total ariteResFormule: Formule -> S k
+--   ariteResFormule (f . v) = ariteResFonction f
+--   ariteResFormule (f - v) = ariteResFonction f
+--
+--   data AriteCorrecte: List Formule -> Nat -> Type where
+--     Pile: AriteCorrecte [] Z
+--     Reste: AriteCorrecte fs n -> AriteCorrecte (f::fs) (n + ariteResFormule f)
+--
+-- -- exemple pour que je comprenne
+-- ex : AriteCorrecte [Id - [RendezVous]] 1
+-- ex = Reste Pile
+--
+--
+-- ariteNonNule: AriteCorrecte (f::fs) (S k) -> NonEmpty (f::fs)
+-- ariteNonNule (Reste a) = IsNonEmpty
 
-total ariteFormule : Formule -> Nat
-ariteFormule (f . v) = ariteFonction f
-ariteFormule (f - v) = ariteFonction f
-
-sch: (f: Formule) -> Vect (ariteResultat f) Schema
-sch (f . v) with (f)
-  | Id          = sch (head v)
-  | Project s   = [intersect s (sch (head v))]
-  | _  = ?todo
-sch (f - v) = ?casBaseFormule
+-- sch: (f: Formule) -> Vect (ariteResFormule f) Schema
+-- sch (f . v) with (f)
+--   | Id          = sch (head v)
+--   | Project s   = [intersect s (sch (head v))]
+--   | _  = ?todo
+-- sch (f - v) = ?casBaseFormule
