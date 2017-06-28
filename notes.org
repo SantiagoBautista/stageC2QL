@@ -1235,10 +1235,21 @@ lors de la construction de la structure.
 ** 28/06
 *** Objectifs de la journée
 **** Représentation linéaire de C2QL en tenant compte des diamants
-*** Bilan de la journée
+*** Bilan du début de la journée
 **** Représentation linéaire de C2QL en tenant compte des diamants
 La solution que j'ai trouvé c'est de définir un type pour les diamants
 incomplets/ouverts pour pouvoir ainsi les construire avec des constructeurs de type.
 *** Nouveaux objectifs de la journée
 **** Comprendre ce que sont les monades / la monade Privy
 **** Générer les requêtes déduisibles à partir d'une requête
+*** Bilan du reste de la journée
+**** Lecture code Ronan
+***** N'y a-t-il pas une redondance d'informations entre env1 et Delta?
+Non. Delta est là pour coder les NOUVEAUX attributs, apparus par l'action de la fonction
+en question.
+
+**** Questions à poser à quelqu'un qui connaisse Idris
++ Quelle est la différence entre -> et => ?
+  (par exemple [[https://www.idris-lang.org/docs/current/contrib_doc/docs/Data.SortedSet.html][ici]])
+
++ Comment marchent les 'absurd' et les 'impossible' et à quoi servent-ils?

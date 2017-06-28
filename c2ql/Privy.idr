@@ -138,14 +138,7 @@ namespace query
 
   ||| ADT for the predicate of a σ in the relational algebra.
   |||
-  ||| @ Δ  the schema over which this predicate is tested.
-  |||
-  ||| You should use the sugar accessor rather than this constructor.
-  ||| Inside the repl `:browse Privy.sugar`
-  data Pred : (Δ : Schema) -> Type where
-    ||| Logical AND
-    AND      : Pred Δ -> Pred Δ -> Pred Δ
-    ||| Logical OR
+  ||| @ Δ  the scR
     OR       : Pred Δ -> Pred Δ -> Pred Δ
     ||| Test that values of `a` contains `pat`.
     |||
@@ -313,7 +306,7 @@ namespace privy
   |||
   ||| @ env0 the state of the environnement before the query.
   ||| @ env1 the state of the environnement after the query.
-  ||| @ Δ the schema of values produces by this query.
+  ||| @ Δ the schema of values produced by this query.
   |||
   ||| You should use the sugar accessor rather than this
   ||| constructor. Inside the repl `:browse Privy.sugar`

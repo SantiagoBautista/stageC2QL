@@ -26,6 +26,10 @@ mutual
     (>) : (Fonction 1 1 , Fonction 1 1) -> Fonction a 2 -> Uncomplete a
     (<): Fonction 2 a -> (Fonction 1 1, Fonction 1 1) -> Uncomplete a
 
+-- To set the priority right
+-- infix 6 <
+-- < = .<
+
 pred: C2QLPred
 pred = Equal A "Bureau"
 
