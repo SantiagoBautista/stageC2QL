@@ -1225,9 +1225,20 @@ presque arborescente (en réalité c'est une structure de
 graphe *orienté* connexe acyclique, et non d'arbre)
 mais il y a des trous.
 
-Mon but avec les ADT Fonction et Formule,
+Avec les ADT Fonction et Formule,
 je veux traduire cette structure presque arborescente,
 sans utiliser de trous.
 
 Ce qui nécessite de prendre en compte l'arité des résultats
 lors de la construction de la structure.
+
+** 28/06
+*** Objectifs de la journée
+**** Représentation linéaire de C2QL en tenant compte des diamants
+*** Bilan de la journée
+**** Représentation linéaire de C2QL en tenant compte des diamants
+La solution que j'ai trouvé c'est de définir un type pour les diamants
+incomplets/ouverts pour pouvoir ainsi les construire avec des constructeurs de type.
+*** Nouveaux objectifs de la journée
+**** Comprendre ce que sont les monades / la monade Privy
+**** Générer les requêtes déduisibles à partir d'une requête
