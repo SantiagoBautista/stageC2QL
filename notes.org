@@ -1253,3 +1253,32 @@ en question.
   (par exemple [[https://www.idris-lang.org/docs/current/contrib_doc/docs/Data.SortedSet.html][ici]])
 
 + Comment marchent les 'absurd' et les 'impossible' et à quoi servent-ils?
+
+** 29/06
+*** Réunion avec Ronan
+**** Pour l'implem de la Monade State: traductions Idris<->Scala
++ Bind est l'equiv Idris du FlatMap de Scala
+
++ pure est l'équiv Idris de Unit
+
++ do est l'équiv du for...yield
+
++ ` let z = ` , mais sans ` in `
+
++ Les définitions de bind et pure suffisent
+pour pouvoir utiliser les do et les let
+
++ def de Map nécessaire parfois?
+Pas en Idris, car déduit de pure et de bind
+
+**** Sens de la double flèche
+Ça sert à spécifier des contraintes lors des définitions génériques
+(exemple de somme d'une liste à partir de Fold (il faut que le type
+soit sommable))
+
+Autre exemple:
+Dans l'interface Monad, la méthode bind a le type suivant
+(>>=) Monad m => m a -> (a -> m b) -> m b
+qui restreint la définition (générique, pourtant) au fait
+que m soit puisse être le paramètre d'une monade (donc soit
+applicative)
