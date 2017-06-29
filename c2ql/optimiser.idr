@@ -4,6 +4,8 @@ import Privy
 import C2QL
 
 mutual
+  infixl 5 .<
+  infixl 6 >.
   data Fonction: (ariteArgs: Nat) -> (ariteRes: Nat) -> Type where
     Id      : Fonction 1 1
     Project : Schema -> Fonction 1 1
@@ -19,12 +21,12 @@ mutual
     Rel     : Schema -> Fonction 0 1
     -- For composition
     (.) : Fonction b c -> Fonction a b -> Fonction a c
-    (>>) : Uncomplete a -> Fonction b 2 -> Fonction b a
-    (<<): Fonction 2 a -> Uncomplete b -> Fonction b a
+--    (>>) : Uncomplete a -> Fonction b 2 -> Fonction b a
+    (.<): Fonction 2 a -> Uncomplete b -> Fonction b a
 
   data Uncomplete : Nat -> Type where
-    (>) : (Fonction 1 1 , Fonction 1 1) -> Fonction a 2 -> Uncomplete a
-    (<): Fonction 2 a -> (Fonction 1 1, Fonction 1 1) -> Uncomplete a
+    (>.) : (Fonction 1 1 , Fonction 1 1) -> Fonction a 2 -> Uncomplete a
+--    (<): Fonction 2 a -> (Fonction 1 1, Fonction 1 1) -> Uncomplete a
 
 -- To set the priority right
 -- infix 6 <
@@ -34,7 +36,7 @@ pred: C2QLPred
 pred = Equal A "Bureau"
 
 example1 : Fonction 0 1
-example1 = (Defrag < (Project [N], Select pred)) >> (Frag [N, D] . Rel RendezVous)
+example1 = Defrag .< (Project [N], Select pred) >. Frag [N, D] . Rel RendezVous
 -- defrag < (proj s, select s') > frag d . rel rdv
 
 -- total ariteResFonction: Fonction n -> Nat
