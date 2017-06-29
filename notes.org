@@ -143,19 +143,8 @@ d'un attribut à la fois)
 et de la fragmentation horizontale
 ***** DONE Choisir quel ensemble de lois garder initialement
 ****** DONE Se familiariser avec les macros LaTeX / en créer des propres
-******* projections
-\pi_{\delta} suffit
-******* sélections
-\sigma_p suffit
-******* frag, defrag, crypt et decrypt
-Je vais déclarer des opérateurs amsmath
-******* group/fold
-Je trouve plus pertinent de travailler avec les fonctions
-group et fold, plus générales, que avec la fonction count, qui est
-un cas particulier.
-
-\mathrm{group}_{delta}
-\mathrm{fold}_{f, z}
+Finalement j'ai crée mes propres macros, visibles par exemple dans
+[[file:lois/ensemble_lois.tex][l'ensemble des lois]]
 ****** DONE Faut-il garder la fragmentation horizontale?
 Pas nécessaire d'écrire toutes les lois, juste la mentionner
 ****** Garder les lois de projection de la thèse, pas de l'article
@@ -199,9 +188,7 @@ le résultat d'une permutation entre elles.
 ***** DONE Chercher dans Supernova (Univ Rennes 1) article sur la complétude
 Le plus proche que j'ai pu trouver est un article d'économie sur
 la modélisation mathématique de, grosso modo, le pouvoir d'achat
-des ménages...
-[[file:completude_economie.pdf][Systèmes complets de fonctions de demande]]
-
+des ménages..
 
 **** Vérifier si le système de lois vérifie le critère de complétude
 ***** Pour la première approche: échec 
@@ -368,7 +355,7 @@ Si on ne suppose pas que les schémas relationnels
 sont disjoints, la quantité de droite peut être définie
 sans que la quantité de gauche soit définie.
 *** DONE Formuler contre-exemple et l'envoyer à Fatima, Ronan et Mario
-
+[[file:problemes/12p64.pdf][Contre-exemple]]
 
 * Choix dans les définitions
 ** Définition sémantique de "relation"
@@ -394,8 +381,11 @@ défragmentation et pour la jointure étant très proches
 (unificateur, lieu d'unification, concaténation...)
 cela semblait confus de leur donner des noms différents...
 
-C'est pour cela que j'ai choisi de voir la défragmentation comme un cas particulier
+C'est pour cela que j'avais choisi de voir la défragmentation comme un cas particulier
 de jointure.
+
+Avant de faire marche arrière et de différencier les deux définitions car 
+la gestion des identifiants n'est pas la même pour les deux.
 *** Problème qui se pose : indentifiants pour les jointures naturelles
 Doit-on imposer que l'identifiant fasse partie des attributs communs (égaux)?
 
@@ -404,16 +394,14 @@ issu d'un calcul (d'une opération d'agrégation) que l'on voudrait rajouter à 
 membre...
 
 Mais alors à l'issue de la jointure on pourrait se retrouver à
-+ avoir des identifiants qui n'ont pas de sens vis à vis
-du reste du système
-+ / ne pas avoir d'identifiant
-+ / devoir choisir entre différents identifiants
-??
-Je choisi de donner pour identifiant au lignes du résultat
-la concaténation (de listes) des identifiants précédents.
-C'est l'option qui garantit qu'il n'y a aucune perte d'information
-(quitte à ce que l'information pas perdue puisse ne pas être rélévante
-vis à vis du reste du système)
++ avoir des identifiants qui n'ont pas de sens vis à vis du reste du système
++ ne pas avoir d'identifiant
++ devoir choisir entre différents identifiants
+
+Une des principales propriétés des identifiant étant qu'ils doivent
+être différents pour des lignes 
+différentes (et ne provenant pas d'une fragmentation),
+j'ai finalement choisis de donner des identifiants frais.
 
 *** Lieu de jonction vs attributs en commun
 Si on définit la notion de lieu de jonction,
@@ -439,7 +427,7 @@ dont une que je n'arrive pas à nomer: celle qui construit une ligne du résulta
 à partir des valeurs de groupe
 
 
-** La notion d'équivalence n'est pas forcément la bonne
+** La notion d'équivalence ne me semblait pas bonne, mais elle l'est
 En réalité il s'agit de transformations, qui 
 (du point de vue d'un ordinateur aveugle)
 ne se comportent pas pareil
@@ -558,7 +546,7 @@ C'est le but de la transformation vers proVérif, qui n'est pas automatisée
 Oui, Ronan me l'a passé.
 
 
-*** ACHTUNG dans les lois, parfois les conditions d'application ne sont pas écrites
+*** ACHTUNG dans la thèse l'hypothèse est faite que les prédicats s'appliquent à un seul attribut à la fois
 Comme c'est le cas dans la loi de permutation de selection et projection,
 empruntée à Ullman. (équation 5 page 30)
 
@@ -626,9 +614,9 @@ pour avoir un nuage confidentiel?
 comme en CryptDB, pourrait-ce être une extension?
 
 
-*** p.77 => toute fonction autre que décrypt commute avec defrag??
+*** p.77 => toute fonction autre que décrypt commute avec defrag?
 Non, ici le critère de validité se base sur l'hypothèse
-qui la requête en question a été optenue avec la méthode
+que la requête en question a été optenue avec la méthode
 suggérée dans la thèse (d'abord version locale, puis 
 protection, puis lois).
 
@@ -636,12 +624,12 @@ Il reste cependant à
 **** TODO *vérifier* que toutes les commutations faites avec le defrag peuvent être défaites de façon transparente.
 
 
-*** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non??
+*** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non?
 Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrags imbriqués!
 **** POSSIBLE Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
 
 
-*** p.78: il parle d'un \vee, qui n'apparaît nul part dans las formules...
+*** p.78: il parle d'un \vee, qui n'apparaît nulle part dans las formules...
 **** TODO poser la question
 Le 23/06 à 13h30 j'ai rendez-vous avec Ronan, je pourrai lui poser la question
 
@@ -1021,7 +1009,7 @@ The power of pi 2008 ACM
 [[file:ThePowerOfPi.pdf][Oury&Swierstra2008]]
 
 + ACHTUNG Le fait qu'une lettre soit minuscule ou majuscule ::  dans un argument de type change le sens
-En effet, les minuscules indiquent pas elles mêmes un caractère implicite
+En effet, les minuscules indiquent par elles mêmes un caractère implicite
 
 **** Modifications à l'implémentation Idris
 ***** Pourquoi les predicats devraient être paramétrés par un type?
@@ -1295,6 +1283,8 @@ Pendant ce stage j'ai
   - (Reproduire des résultats de recherche est important en recherche :) )
 
 + Dressé un tableau d'une première estimation, naïve, des effets des lois sur les différentes ressources
+
++ Interrogé sur la notion d'équivalence par rapport à une notion de transformation (dans un seul sens)
 
 + Appris plein de choses dont
   - Comment me servir de Emacs et de ORG-mode
