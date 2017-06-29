@@ -736,7 +736,6 @@ donc je vais pouvoir *corriger la loi en question*.
 **** Devrais-je informer Ronan, Fatima et Mario de la modif à appliquer à la loi 12? 
 Je verrai ça cette après-midi avec Mario.
 
-
 ** 13/06
 Aujourd'hui, il serait important d'alterner entre
 + Démonstrations
@@ -765,7 +764,6 @@ J'ai rien dit... Dans les deux cas on a besoin d'une fonction injective car sino
 dans l'un des deux sens on serait en train d'agrandir les groupes du regroupement,
 et dans l'autre sens on serait en train de les réduire.
 
-
 ** 14/06
 *** Objectifs de la journée
 Démontrer au moins 10 des 36 lois qu'il reste à démontrer
@@ -777,7 +775,6 @@ Démontrer au moins 10 des 36 lois qu'il reste à démontrer
 + Finalement la loi (6) de la thèse est correcte,
 mais il faudra adapter la condition aux nouvelles définitions
 + Démonstrations faites: 1 :-/
-
 
 ** 15/06
 *** Objectifs de la journée
@@ -804,7 +801,6 @@ indépendamment du nombre d'arguments des fonctions considérées.
 + De proj+fold_projeté
 + De proj+fold_non_projeté
 + sélection et sélection
-
 
 ** 16/06
 *** Objectifs de la journée
@@ -862,7 +858,6 @@ La mauvaise détection de quand répéter une touche peut lancer / continuer
 des commandes accidentellement, et ça peut avoir comme conséquence,
 par exemble, la suprésion accidentelle de fichiers
 
-
 ** 17/06
 *** Objectifs de la journée
 Déménager x) (C'est un samedi)
@@ -870,7 +865,6 @@ Déménager x) (C'est un samedi)
 **** Démonstrations
 + Sélection/réduction
 + Fragmentation et défragmentation
-
 
 ** 19/06
 *** Objectifs de la journée
@@ -907,7 +901,6 @@ Defrag est le constructeur des objets de son type (cf. case class en Scala)
 + Pour l'instant je n'ai pas l'impression que cet ensemble puisse ne pas être inclu dans le reste :/
 
 **** DONE Vérifier qu'il y a toutes les lois pour enlever les opérateurs qui n'agissent pas
-
 
 ** 20/06 et 21/06
 *** Objectifs des journées
@@ -963,7 +956,6 @@ lors de la jointure naturelle
 + et ça rajoute une condition à la défragmentation horizontale 
 
 **** Réunion avec Mario
-
 
 ** 22/06
 *** Objectifs de la journée
@@ -1045,7 +1037,6 @@ En utilisant, si nécessaire, cette implémentation d'ensembles en Idris
 Ou plutôt en utilisant Data.Fin? 
 [[http://docs.idris-lang.org/en/latest/tutorial/typesfuns.html][cf "The finite sets" here]]
 Non, c'est des ensemble canonique, pas des ensembles arbitraires
-
 
 ** 23/06
 *** Objectifs de la journée
@@ -1130,7 +1121,6 @@ Faite par
 ****** Former un terme Privy à partir d'un terme C2QL
 ****** Remplacer le plus de dollars possibles par des points
 ****** Dans C2QL.. Séparer description des tables, des contraintes, et des requêtes?
-
 
 ** 26/06
 *** Objectifs de la journée
@@ -1296,3 +1286,13 @@ Pendant ce stage j'ai
   - En quoi les types dépendants peuvent être utilisés pour démontrer des prorpriétés.. au sein même du programme!
 
   - Comment contribuer à un projet sur GitHub
+*** Bilan de la journée
+**** Réunion avec Ronan
+**** Intégration au code de Ronan de la correction de FalseEnv2 et de la simplification des prédicats
+**** Établissement du bilan partiel du stage 
+Voir [[*Bilan partiel][ci-haut]]
+**** Lecture des chapitres 3 et 4 de "Fonctionnal programming in Scala"
++ Possibility of lifthing functions to work with options
++ for comprehension to syntatic-sugarly lifting functions (Particular case of Monad, I guess)
+**** Exercices du chapitre 6 de "Fonctionnal programming in Scala" pour comprendre bien les monades
+Début des exercices
