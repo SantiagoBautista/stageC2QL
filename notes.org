@@ -1282,3 +1282,27 @@ Dans l'interface Monad, la méthode bind a le type suivant
 qui restreint la définition (générique, pourtant) au fait
 que m soit puisse être le paramètre d'une monade (donc soit
 applicative)
+*** Bilan partiel
+Pendant ce stage j'ai
++ Posé une définition sémantique des fonctions de C2QL, qui m'a permis de 
+  - démontrer certaines lois; ce qui au passage m'a fait
+  - corriger des erreurs qu'il y avait dans certaines des lois
+
++ Complété l'ensemble des lois C2QL, en particulier celles  pour fold et group
+
++ Reproduit la levée d'erreurs pour des expressions mal formées en C2QL
+  - Ce qui m'a permit de m'appercevoir d'une erreur de non-mise-à-jour dans l'un des exemples
+  - (Reproduire des résultats de recherche est important en recherche :) )
+
++ Dressé un tableau d'une première estimation, naïve, des effets des lois sur les différentes ressources
+
++ Appris plein de choses dont
+  - Comment me servir de Emacs et de ORG-mode
+
+  - Ce que sont les types dépendants et comment m'en servir
+
+  - Ce que sont les monades et comment m'en servir
+
+  - En quoi les types dépendants peuvent être utilisés pour démontrer des prorpriétés.. au sein même du programme!
+
+  - Comment contribuer à un projet sur GitHub
