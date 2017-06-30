@@ -1302,21 +1302,33 @@ Autrement dit, le code
 :let (a,b) = (1,2)
 n'échoue pas, mais ne crée pas de bindings non plus
 ** 30/06
+*** Multiples implémentations de monades pour mieux comprendre
+[[file:exercices/idris/ch6AsMonad.idr][ch6AsMonad.idr]]
+[[file:exercices/idris/state.idr][state.idr]]
+[[file:exercices/idris/candyMachine.idr][candyMachine.idr]]
 *** Remarques implem exercices chapitre 6 fpinscala
-**** En Idris, le with casse les parenthèses :( (tant pis!)
-Typiquement, le code suivant ne marche pas
+**** En Idris, le with n'est utilisable que lors de la définition d'une fonction
+exemple:
 
-(>>=) : Rand a -> (a -> Rand b) -> Rand b
-(>>=) (R nexta) f =  R (\rng =>
-  let (vala, nrng) = nexta rng with (f vala) | (R nextb) = nextb nrng)
+natToBin : Nat -> List Bool
+natToBin Z = Nil
+natToBin k with (parity k)
+   natToBin (j + j)     | Even = False :: natToBin j
+   natToBin (S (j + j)) | Odd  = True  :: natToBin j
+**** Métaphore de la rivière
+La construction
 
-Alors que ce code-ci marche
+do objet1 <- saut1
+   _      <- déplacementLatéral
+   objet2 <- saut2
+   pure $ cogner objet1 objet2
 
-extract : Rand a -> (RNG -> (a, RNG))
-extract (R run) = run
+dans une monade State revient à décrire une *coréographie*
+qui peut servir soit à
++ Décrire ce qui devrait se passer :: en absence d'erreurs
+Dans l'exemple, si je pars d'une position adéquate je pourrai
+en effet prendre deux objets et les cogner entre eux, mais si je pars
+d'une position inadéquate, je brasserai du vide
 
-(>>=) : Rand a -> (a -> Rand b) -> Rand b
-(>>=) (R nexta) f =  R (\rng =>
-  let (vala, nrng) = nexta rng in extract (f vala) nrng)
-
-
++ Être générique :: Dans l'exemple, je peux cogner différentes paires d'objets entre eux en fonction de
+l'état duquel je part
