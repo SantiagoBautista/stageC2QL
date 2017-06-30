@@ -1296,3 +1296,27 @@ Voir [[*Bilan partiel][ci-haut]]
 + for comprehension to syntatic-sugarly lifting functions (Particular case of Monad, I guess)
 **** Exercices du chapitre 6 de "Fonctionnal programming in Scala" pour comprendre bien les monades
 Début des exercices
+**** Petit bug dans Idris
+Lorsqu'on utilise le REPL, le :let ne fait aucun binding pour des paires
+Autrement dit, le code
+:let (a,b) = (1,2)
+n'échoue pas, mais ne crée pas de bindings non plus
+** 30/06
+*** Remarques implem exercices chapitre 6 fpinscala
+**** En Idris, le with casse les parenthèses :( (tant pis!)
+Typiquement, le code suivant ne marche pas
+
+(>>=) : Rand a -> (a -> Rand b) -> Rand b
+(>>=) (R nexta) f =  R (\rng =>
+  let (vala, nrng) = nexta rng with (f vala) | (R nextb) = nextb nrng)
+
+Alors que ce code-ci marche
+
+extract : Rand a -> (RNG -> (a, RNG))
+extract (R run) = run
+
+(>>=) : Rand a -> (a -> Rand b) -> Rand b
+(>>=) (R nexta) f =  R (\rng =>
+  let (vala, nrng) = nexta rng in extract (f vala) nrng)
+
+
