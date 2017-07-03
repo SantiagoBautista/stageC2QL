@@ -32,3 +32,20 @@ abs = do  first   <- as
 
 go               : State -> (String, State)
 go initialState  = apply abs initialState
+
+Functor Action where
+  map f fa = (>>=) fa (\a => pure (f a))
+
+Applicative Action where
+  pure a = pure a
+
+  (<*>) f fa = Update (\s =>
+    let (a, s')   = apply fa s  in
+    let (ff, s'') = apply f  s' in
+    (ff a, s''))
+
+Monad Action where
+  (>>=) fa f = (>>=) fa f
+
+example : Action Integer
+example = (join . Prelude.Applicative.pure . Main.pure) 1

@@ -1,0 +1,75 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{fullpage}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage[main=francais,english]{babel}%
+
+\usepackage{graphicx}%
+\usepackage{url}%
+\usepackage{abstract}%
+
+\usepackage{mathpazo}%
+
+\usepackage{listings}
+
+\lstset{%
+	basicstyle=\sffamily,%
+	columns=fullflexible,%
+	frame=lb,%
+	frameround=fftf,%
+}%
+
+\parskip=0.5\baselineskip
+
+\sloppy
+
+\author{Santiago Bautista}
+\date{Juillet 2017}
+\title{Sémantique et extension du langage C2QL pour la composition de techniques protégeant la confidentialité dans le nuage}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+	
+	\begin{description}
+		\item[Mots clés:]{} 
+	\end{description} 
+	
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\input{introduction.tex}
+
+\section{Contexte}
+\input{contexte.tex}
+
+\section{Contribution}
+\input{introContribution.tex}
+
+\subsection{Établir des définitions}
+\input{defs.tex}
+
+\subsection{Compléter les propriétés}
+\input{compl.tex}
+
+\subsection{Prouver les propriétés}
+\input{prouv.tex}
+
+\subsection{Optimiser les requêtes}
+\input{opti.tex}
+
+%%
+\section{Travail futur}
+\input{futur.tex}
+
+\section{Conclusion}
+\input{conclusion.tex}
+
+ \newpage
+ \appendix
+
+\end{document}
