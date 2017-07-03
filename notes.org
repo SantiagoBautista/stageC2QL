@@ -1332,3 +1332,10 @@ d'une position inadéquate, je brasserai du vide
 
 + Être générique :: Dans l'exemple, je peux cogner différentes paires d'objets entre eux en fonction de
 l'état duquel je part
+** 03/07
+*** Commencer à écrire le rapport d'étape
+[[file:rapport/rapport.pdf][rapport d'étape en cours d'écriture]]
+*** Étudier rapidement les chapitres 10 et 11 de fpinS
+[[file:exercices/idris/ch10.idr][Exercices du chapitre 10]]
+**** Type constructor
+synonyme de Type->Type (et donc pas un type en lui-même)
