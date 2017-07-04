@@ -1340,3 +1340,5 @@ l'état duquel je part
 [[file:exercices/idris/ch11.idr][Exercices du chapitre 11]]
 **** Type constructor
 synonyme de Type->Type (et donc pas un type en lui-même)
+** 04/07
+*** Introduction du rapport
