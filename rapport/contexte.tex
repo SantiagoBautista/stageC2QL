@@ -1,12 +1,45 @@
+De plus en plus d'applications, en particulier
+les applications web et les applications pour téléphone portable,
+cherchent à utiliser le nuage, soit pour stocker du code ou des données, 
+soit pour faire des calculs,
+voir les deux à la fois.
 
+En effet, le nuage peut offrir des services (que ce soit sous forme d'infrastructure,
+de plateforme ou de logiciel) disposant d'une forte disponibilité et faciles à redimensionner.
 
+Autrement dit, pouvoir utiliser le nuage est devenu un enjeu de la conception logicielle,
+à cause des avantages de disponibilité et redimensionnement que cela offre.
 
+Mais ce n'est pas le seul enjeux de la conception logicielle.
+
+Vu que la plupart de ces applications manipulent des données personnelles, 
+garantir la \emph{confidentialité} des données est également un enjeux de 
+ces applications là; tout comme le sont les \emph{performances} pour garantir
+une meilleure expérience à l'utilisateur de l'application.
+
+Dans sa thèse, R. Cherrueau s'intéresse à trois techniques particulières
+utilisées dans le développement logiciel et regarde comment elles interagissent
+avec les trois enjeux cités plus haut.
+Ces trois techniques, qu'on va décrire brièvement, sont
+	le \emph{chiffrement},
+	la \emph{fragmentation verticale} et
+	l'\emph{exécution} de l'application \emph{chez l'utilisateur}.
+
+\paragraph{Le chiffrement}
+Lorsqu'il est bien utilisé, le chiffrement permet de garantir la confidentialité
+des données de l'utilisateur.
+De plus, dans certains cas, des calculs peuvent être faits sur les données chiffrées.
+On appelle chiffrement homomorphe un chiffrement avec lequel on peut effectuer des calculs
+avec les données chiffrées. Les chiffrement homomorphes totaux, comme celui de
+Gentry (référence à ajouter) sont pour l'instant trop contraignants pour pouvoir être utilisés
+dans la plupart des applications
 
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{snps.png}
 		\caption{Enjeux et techniques dans le cloud-computing}
+		\caption*{(image provenant de la thèse de Ronan Cherrueau)}
 		\label{enjeux}
 	\end{center}
 \end{figure}
