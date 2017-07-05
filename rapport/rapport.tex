@@ -10,53 +10,58 @@
 \usepackage{abstract}%
 \usepackage{amsmath}
 \usepackage{mathpazo}%
-
-\DeclareSymbolFont{Letters} {U}{zeur}{m}{n}% Euler
-\DeclareMathSymbol\Gamma    {\mathalpha}{Letters}{"00}
-\DeclareMathSymbol\Delta    {\mathalpha}{Letters}{"01}
-\DeclareMathSymbol\Theta    {\mathalpha}{Letters}{"02}
-\DeclareMathSymbol\Lambda   {\mathalpha}{Letters}{"03}
-\DeclareMathSymbol\Xi       {\mathalpha}{Letters}{"04}
-\DeclareMathSymbol\Pi       {\mathalpha}{Letters}{"05}
-\DeclareMathSymbol\Sigma    {\mathalpha}{Letters}{"06}
-\DeclareMathSymbol\Upsilon  {\mathalpha}{Letters}{"07}
-\DeclareMathSymbol\Phi      {\mathalpha}{Letters}{"08}
-\DeclareMathSymbol\Psi      {\mathalpha}{Letters}{"09}
-\DeclareMathSymbol\Omega    {\mathalpha}{Letters}{"0A}
-\DeclareMathSymbol{\alpha}  {\mathalpha}{Letters}{"0B}
-\DeclareMathSymbol{\beta}   {\mathalpha}{Letters}{"0C}
-\DeclareMathSymbol{\gamma}  {\mathalpha}{Letters}{"0D}
-\DeclareMathSymbol{\delta}  {\mathalpha}{Letters}{"0E}
-\DeclareMathSymbol{\epsilon}{\mathalpha}{Letters}{"0F}
-\DeclareMathSymbol{\zeta}   {\mathalpha}{Letters}{"10}
-\DeclareMathSymbol{\eta}    {\mathalpha}{Letters}{"11}
-\DeclareMathSymbol{\theta}  {\mathalpha}{Letters}{"12}
-\DeclareMathSymbol{\iota}   {\mathalpha}{Letters}{"13}
-\DeclareMathSymbol{\kappa}  {\mathalpha}{Letters}{"14}
-\DeclareMathSymbol{\lambda} {\mathalpha}{Letters}{"15}
-\DeclareMathSymbol{\mu}     {\mathalpha}{Letters}{"16}
-\DeclareMathSymbol{\nu}     {\mathalpha}{Letters}{"17}
-\DeclareMathSymbol{\xi}     {\mathalpha}{Letters}{"18}
-\DeclareMathSymbol{\pi}     {\mathalpha}{Letters}{"19}
-\DeclareMathSymbol{\rho}    {\mathalpha}{Letters}{"1A}
-\DeclareMathSymbol{\sigma}  {\mathalpha}{Letters}{"1B}
-\DeclareMathSymbol{\tau}    {\mathalpha}{Letters}{"1C}
-\DeclareMathSymbol{\upsilon}{\mathalpha}{Letters}{"1D}
-\DeclareMathSymbol{\phi}    {\mathalpha}{Letters}{"1E}
-\DeclareMathSymbol{\chi}    {\mathalpha}{Letters}{"1F}
-\DeclareMathSymbol{\psi}    {\mathalpha}{Letters}{"20}
-\DeclareMathSymbol{\omega}  {\mathalpha}{Letters}{"21}
-\DeclareMathSymbol{\varepsilon}{\mathalpha}{Letters}{"22}
-\DeclareMathSymbol{\vartheta}{\mathalpha}{Letters}{"23}
-\DeclareMathSymbol{\varpi}  {\mathalpha}{Letters}{"24}
-\DeclareMathSymbol{\varphi} {\mathalpha}{Letters}{"27}
-\DeclareMathSymbol\upOmega  {\mathord}{Letters}{"0A}
-\DeclareMathSymbol\upDelta  {\mathord}{Letters}{"01}
-
-
 \usepackage{amssymb}
 
+\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
 
+\DeclareMathOperator{\proj}{\mathchar"1119}
+\DeclareMathOperator{\sel}{\mathchar"111B}
+\DeclareMathOperator{\frag}{frag}
+\DeclareMathOperator{\defrag}{defrag}
+\DeclareMathOperator{\crypt}{crypt}
+\DeclareMathOperator{\decrypt}{decrypt}
+\DeclareMathOperator{\group}{group}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ens}{E}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Sc}{S}
+\DeclareMathOperator{\s}{sch}
+\DeclareMathOperator{\ls}{L}
+\DeclareMathOperator{\ru}{Ru}
+\DeclareMathOperator{\uni}{Unif}
+\DeclareMathOperator{\cor}{cor}
+\DeclareMathOperator{\rj}{Rj}
+\DeclareMathOperator{\enc}{Enc}
+\DeclareMathOperator{\dec}{Dec}
+\DeclareMathOperator{\ids}{IDs}
+\DeclareMathOperator{\lgr}{lg}
+\DeclareMathOperator{\redu}{red}
+\DeclareMathOperator{\head}{hd}
+\DeclareMathOperator{\tail}{tl}
+\DeclareMathOperator{\hfrag}{hfrag}
+\DeclareMathOperator{\hdefrag}{hdefrag}
+\DeclareMathOperator{\send}{send}
+\DeclareMathOperator{\rec}{receiveAndGroup}
+
+\newcommand\typeT[1]{\text{\ttfamily #1}}
+\newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
+\newcommand{\cryptArgs}[2]{\crypt_{#1 , \typeT{#2}}}
+\newcommand{\projDelta}{\proj_{\delta}}
+\newcommand{\selP}{\sel_p}
+\newcommand{\decryptCAlpha}{\decryptArgs{\alpha}{c}}
+\newcommand{\cryptCAlpha}{\cryptArgs{\alpha}{c}}
+\newcommand{\ch}{\typeT{c}}
+\newcommand{\chp}{\typeT{c'}}
+\newcommand{\groupDelta}{\group_{\delta}}
+\newcommand{\fragDelta}{\frag_{\delta}}
+\newcommand{\val}{\mathcal{V}}
+\newcommand{\cy}[1]{\typeT{c}(#1)}
+\newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
+\newcommand{\cip}{\cup \{id\}}
+\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
+\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
+\newcommand{\dilta}{{\delta \cip}}
 
 \usepackage{listings}
 \usepackage{caption}
