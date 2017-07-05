@@ -31,9 +31,18 @@ des données de l'utilisateur.
 De plus, dans certains cas, des calculs peuvent être faits sur les données chiffrées.
 On appelle chiffrement homomorphe un chiffrement avec lequel on peut effectuer des calculs
 avec les données chiffrées. Les chiffrement homomorphes totaux, comme celui de
-Gentry (référence à ajouter) sont pour l'instant trop contraignants pour pouvoir être utilisés
-dans la plupart des applications
+Gentry (\textbf{référence à ajouter}) sont pour l'instant trop contraignants pour pouvoir être utilisés
+dans la plupart des applications, mais les chiffrements homomorphes partiels,
+c'est à dire les chiffrement avec lesquels on peut effectuer \emph{certaines}
+opérations sur les données chiffrées, peuvent se révéler très utiles.
+C'est le cas des chiffrements déterministes (dont les chiffrements symétriques)
+qui sont des chiffrement homomorphes partiels, permettant le test d'égalité.
 
+Dans tous les cas, le chiffrement implique un surcoût en terme de calculs,
+donc diminue les performances. Dans certains cas, il améliore la confidentialité
+et permet l'utilisation du nuage.
+
+\paragraph{La fragmentation verticale} consiste en séparer les différentes données dont
 
 \begin{figure}
 	\begin{center}
