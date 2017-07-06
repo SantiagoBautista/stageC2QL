@@ -1,0 +1,40 @@
+Les définitions des différents opérateurs présentes dans la thèse de 2016
+sont données en français, ce qui facilite leur compréhension, mais rend
+impossible une preuve mathématique de la correction des lois les concernant.
+
+J'ai donc commencé par poser des définitions formelles des fonctions du langage
+C2QL.
+
+Pour former ces définitions, j'ai du faire des choix à plusieurs reprises.
+À chaque fois, j'ai utilisé les deux mêmes critères pour guider mes choix:
+d'une part il faut que les définitions que je choisi permettent au langage
+d'être le plus expressif possible, d'autre part il faut que les définitions
+choisies facilitent une démonstration rigoureuse de la correction
+des lois de commutation.
+
+\subsubsection*{Des tuples ou des fonctions?}
+Dans son livre de 1982, Ullman parle de deux
+façons de définir les relations (tables) de l'algèbre relationnelle:
+soit comme un sous-ensemble d'un produit de domaines
+(donc comme un ensemble de tuples, où chaque
+tuple représente une ligne
+de la table et chaque coordonnée de chaque tuple correspond
+à la valeur pour un attribut donné), soit comme un ensemble de fonctions
+définies sur l'ensemble des attributs (chaque fonction correspond donc
+à une ligne de la table, et la valeur d'un attribut pour une ligne donnée
+est son image par cette fonction).
+
+Ullman décide d'utiliser la première définition pour le reste de son livre,
+et ne détaille pas plus la deuxième définition. C'est pourtant cette deuxième
+définition que j'ai décidé de prendre dans ce cas ci, puisque que ce soit
+pour le chiffrement comme pour la fragmentation, on fait ici référence aux différentes
+colonnes d'une table par leur nom (toutes les colonnes ont un nom, et tous les
+noms des colonnes sont différents) et il est donc plus facile de raisonner,
+par exemple, sur la fragmentation, avec cette définition-là:
+en effet, la fragmentation se définit alors en thermes de simples restrictions
+sur certains ensembles.
+
+\subsubsection*{Des sélections portant sur plus d'un attribut à la fois.}
+Dans certaines des lois présentes dans la thèse, la notation
+suggère que les prédicats utilisés lors des filtrages ne portent que sur
+un seul attribut à la fois
