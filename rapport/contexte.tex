@@ -181,4 +181,30 @@ au moment de l'exécution.
 Dans sa thèse, Cherrueau expose un méthode pour se servir facilement
 et efficacement de C2QL, en trois étapes.
 
-\paragraph{Première étape: écrire la version locale de l'application}
+\paragraph{Première étape: écrire la version locale de l'application.}
+Le développeur peut commencer par écrire les requêtes de son application
+sans tenir compte de l'utilisation du cloud ni de la protection
+des données. C'est ce qu'on appelle ici une version \og locale \fg{}
+du programme; c'est le programme tel qu'il pourrait s'exécuter dans la machine de l'utilisateur, localement.
+Cette version de l'application est beaucoup plus facile à écrire 
+qu'une version utilisant efficacement les techniques de protection.
+
+\paragraph{Deuxième étape: ajouter les techniques de protection nécessaires.}
+Le langage C2QL suppose que les contraintes de confidentialité sont de deux types:
+soit il s'agit d'une association entre deux attributs que l'on veut 
+protéger, dans lequel cas on choisit de mettre les deux attributs de l'association
+dans des fragments distincts grâce à la fragmentation verticale, soit il s'agit de la
+valeur d'un attribut que l'on veut protéger, dans lequel cas soit on chiffre cette valeur,
+soit on la décompose sur plusieurs fragments avec la technique exposée par Aggarwal 
+(\textbf{TODO rajouter la référence}). Dans les deux cas on peut passer des 
+versions locales des requêtes à des versions protégées en faisant apparaître 
+à droite de la requête les fonctions de protections composées avec leurs fonctions réciproques.
+
+\paragraph{Troisième étape: faire commuter les différentes fonctions.}
+En faisant commuter les différents opérateurs qui apparaissent dans les requêtes,
+on peut aboutir à une requête optimisée, profitant des avantages du cloud et de bonnes performances.
+Pour cela, on a besoin de savoir à quelles conditions les différents opérateurs de C2QL peuvent
+commuter.
+
+C'est sur cet ensemble de lois qui indiquent à quelle condition deux fonctions de C2QL peuvent
+commuter que je me suis intéressé pendant mon stage.
