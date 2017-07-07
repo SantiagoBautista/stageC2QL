@@ -12,6 +12,16 @@ d'être le plus expressif possible, d'autre part il faut que les définitions
 choisies facilitent une démonstration rigoureuse de la correction
 des lois de commutation.
 
+Pour un document contenant l'ensemble des définition,
+se référer à l'annexe A.
+
+Dans ce rapport je vais me centrer principalement
+sur celles des définitions où il y a eu des choix à faire
+(en exposant les motivations qui ont permit d'effectuer un choix
+plutôt qu'un autre) et celles des définitions où il y a des différences par rapport
+aux définitions qui étaient suggérées par les notations de la thèse,
+en expliquant les motivations de ces différences.
+
 \subsubsection*{Des tuples ou des fonctions?}
 Dans son livre de 1982, Ullman parle de deux
 façons de définir les relations (tables) de l'algèbre relationnelle:
@@ -37,4 +47,56 @@ sur certains ensembles.
 \subsubsection*{Des sélections portant sur plus d'un attribut à la fois.}
 Dans certaines des lois présentes dans la thèse, la notation
 suggère que les prédicats utilisés lors des filtrages ne portent que sur
-un seul attribut à la fois
+un seul attribut à la fois.
+
+Ainsi, par exemple, dans la loi (7) à la page 30 de la thèse
+concernant la commutation entre la jointure naturelle et la
+sélection,
+on lit
+\begin{align*}
+\sel_{p\alpha \wedge q\beta} \circ \Join 
+& \equiv \Join \circ (\sel_{p\alpha}, \sel_{q\beta})
+& \text{si $\alpha \in \Delta$ et $\beta \in \Delta'$}
+\end{align*}
+où $\Delta$ et $\Delta'$ représentent respectivement le schéma relationnel
+du premier argument et le schéma relationnel du deuxième argument.
+
+Cette notation suggère que les prédicats $p$ et $q$ portent
+chacun sur un seul attribut (respectivement $\alpha$ et $\beta$).
+
+Le problème est qu'il y a certains prédicats qui ne peuvent
+pas ce décomposer en des prédicats portant chacun sur un seul attribut.
+
+Par exemple, si on dispose d'une base données concernant
+des ornithorynques, qu'un des attributs de la base de données indique
+la date où l'ornithorynque a vu un kangourou pour la première fois,
+et qu'un autre des attributs indique la date où l'ornithorynque a pondu des oeufs
+pour la première fois,
+et que l'on ne veut s'intéresser qu'aux ornithorynques ayant vu des kangourous avant
+de pondre des œufs pour la première fois, alors le prédicat
+("date de première vision d'un kangourou" < "date de première ponte des oeufs")
+ne peux pas être décomposé en deux prédicats qui porteraient l'un sur 
+la date de la première vision d'un kangourou et l'autre sur la date de la 
+première ponte d'œufs.
+
+Ainsi, dans ma définition de ce qu'est une sélection et ce qu'est un prédicat,
+j'ai supposé que la valeur de vérité d'un prédicat dépendait de plusieurs
+attributs à la fois, et pour refléter cela j'utilise la notion de
+\emph{domaine d'un prédicat}.
+
+Avec cette définition là, la loi de commutation entre la jonction
+et la sélection devient
+\begin{align*}
+\selP \circ \Join
+& = \Join \circ (\selP, \id)
+& \text{si $\dom(p) \subset \delta_1$}
+\label{seljoin1}\\ 
+\selP \circ \Join
+& = \Join \circ (\id, \selP)
+& \text{si $\dom(p) \subset \delta_2$}
+\end{align*}
+(où $\delta_1$ et $\delta_2$ sont les schémas relationnels de, respectivement,
+le premier et le deuxième argument).
+
+\subsubsection*{Compter, ou agréger et réduire?}
+Le nombre d'opérations qu'on peut vouloir faire 
