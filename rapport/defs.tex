@@ -99,4 +99,18 @@ et la sélection devient
 le premier et le deuxième argument).
 
 \subsubsection*{Compter, ou agréger et réduire?}
-Le nombre d'opérations qu'on peut vouloir faire 
+Le développeur peut vouloir agir sur plusieurs lignes à la fois.
+
+Le choix qui a été fait dans la thèse, c'est de traiter l'exemple
+de la fonction count, qui permet de regrouper, \emph{en les comptant},
+les lignes ayant les mêmes valeurs pour un certain ensemble d'attributs.
+
+Je me suis posé la questions de savoir si les opportunités d'optimisation
+exposées dans la thèse par rapport à la fonction count et à sa façon de commuter
+avec les autres fonctions lui étaient propres, ou si elles étaient généralisables
+à toutes les fonctions d'agrégation. Plutôt que de m'intéresser à la fonction
+count, je me suis donc intéressé aux fonctions group et fold, qui permettent
+de regrouper, \emph{en appliquant une fonction quelconque aux autres attributs},
+les lignes ayant les mêmes valeurs pour un certain ensemble d'attributs.
+
+\subsubsection*{Défragmentation et jointure, un air de famille trompeur}
