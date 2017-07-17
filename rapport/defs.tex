@@ -44,6 +44,40 @@ par exemple, sur la fragmentation, avec cette définition-là:
 en effet, la fragmentation se définit alors en thermes de simples restrictions
 sur certains ensembles.
 
+Ainsi, la définition d'une relation que j'ai retenue a été la suivante
+(où $\val$ est un ensemble appelé ensemble des valeurs):
+
+\begin{defi*}
+	On appelle \emph{relation} de schéma relationnel $\Delta$
+	tout ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
+\end{defi*}
+
+\subsubsection*{Expressivité ou prudence?}
+Lorsqu'on définit un langage et sa sémantique, il faut entre autres
+décider quelles expressions appartiennent au langage
+(ou \og ont du sens\fg{}) et lesquelles n'y appartiennent pas.
+
+Face à ce choix, deux attitudes sont possibles.
+Soit on favorise l'expressivité du langage en donnant du sens
+au plus d'expressions possibles, soit on est \guillemets{prudent}, restrictif,
+en ne donnant du sens qu'à un ensemble restreint d'expressions.
+
+L'avantage de l'approche restrictive est qu'elle évite des erreurs de programmation
+où le développeur se retrouve à écrire quelque chose dont le sens
+ne correspond pas à celui qu'il désirait.
+
+Dans l'implémentation de C2QL en tant que langage embarqué dans Idris
+que R. Cherrueau a développé en 2016, c'est l'approche
+\og prudente \fg{} qui est privilégiée.
+
+Mais je me suis aperçu que justement, du fait que l'implémentation
+déjà existante privilégie un langage restrictif,
+les définitions que je pose peuvent définir un langage plus
+expressif sans que cela enlève
+les avantages du langage restrictif.
+
+
+
 \subsubsection*{Des sélections portant sur plus d'un attribut à la fois.}
 Dans certaines des lois présentes dans la thèse, la notation
 suggère que les prédicats utilisés lors des filtrages ne portent que sur
@@ -83,6 +117,17 @@ Ainsi, dans ma définition de ce qu'est une sélection et ce qu'est un prédicat
 j'ai supposé que la valeur de vérité d'un prédicat dépendait de plusieurs
 attributs à la fois, et pour refléter cela j'utilise la notion de
 \emph{domaine d'un prédicat}.
+
+\begin{defi*}
+On appelle \emph{domaine} d'un prédicat $p$ le plus petit
+	ensemble $D$ tel que:
+	$$
+	\forall (l, l') \in \ls^2, (l|_D = l'|_D \Rightarrow  p(l) = p(l')) 
+	$$
+	et on le note $\dom(p)$.
+	
+	(Où $\ls$ est l'ensemble de toutes les lignes possibles.)
+\end{defi*}
 
 Avec cette définition là, la loi de commutation entre la jonction
 et la sélection devient
