@@ -70,13 +70,16 @@ Dans l'implémentation de C2QL en tant que langage embarqué dans Idris
 que R. Cherrueau a développé en 2016, c'est l'approche
 \og prudente \fg{} qui est privilégiée.
 
-Mais je me suis aperçu que justement, du fait que l'implémentation
+Cependant, je me suis aperçu que, du fait que l'implémentation
 déjà existante privilégie un langage restrictif,
 les définitions que je pose peuvent définir un langage plus
 expressif sans que cela enlève
 les avantages du langage restrictif.
 
-
+En effet, si jamais une loi de commutation est correcte avec des définitions
+moins restrictives, le sens de la requête reste le même avant et après
+commutation et donc la loi de commutation est également sémantiquement correcte pour
+les définitions plus restrictives.
 
 \subsubsection*{Des sélections portant sur plus d'un attribut à la fois.}
 Dans certaines des lois présentes dans la thèse, la notation
@@ -147,15 +150,45 @@ le premier et le deuxième argument).
 Le développeur peut vouloir agir sur plusieurs lignes à la fois.
 
 Le choix qui a été fait dans la thèse, c'est de traiter l'exemple
-de la fonction count, qui permet de regrouper, \emph{en les comptant},
+de la fonction \lstinline|count|, qui permet de regrouper, \emph{en les comptant},
 les lignes ayant les mêmes valeurs pour un certain ensemble d'attributs.
 
 Je me suis posé la questions de savoir si les opportunités d'optimisation
-exposées dans la thèse par rapport à la fonction count et à sa façon de commuter
+exposées dans la thèse par rapport à la fonction \lstinline|count| et à sa façon de commuter
 avec les autres fonctions lui étaient propres, ou si elles étaient généralisables
 à toutes les fonctions d'agrégation. Plutôt que de m'intéresser à la fonction
-count, je me suis donc intéressé aux fonctions group et fold, qui permettent
+\lstinline|count|, je me suis donc intéressé 
+aux fonctions \lstinline|group| et \lstinline|fold|, qui permettent
 de regrouper, \emph{en appliquant une fonction quelconque aux autres attributs},
 les lignes ayant les mêmes valeurs pour un certain ensemble d'attributs.
 
+En faisant cela, j'ai remarqué que les optimisations proposées pour la fonction
+\lstinline|count| ne lui sont pas propres et se généralisent bien aux
+fonctions \lstinline|group| et \lstinline|fold|.
+
+\paragraph*{Remarque}
+Pour pouvoir vraiment exprimer la fonction \lstinline|count|
+à l'aide des fonctions \lstinline|group| et \lstinline|fold|
+il faudrait également introduire des fonctions permettant d'ajouter ou de 
+renommer des colonnes aux/des relations manipulées.
+Or, comme le fait remarquer Cherrueau dans sa thèse en citant Ullman,
+\og The nonquery aspects of a query langage are often straighforward\fg{}.
+L'ajout et le renommage d'attributs n'en sont pas l'exception:
+leur intéraction avec les autres fonctions du langage ne présente 
+\emph{a priori} aucune difficulté particulière, et donc ces deux opérations-là
+n'ont pas été traitées.
+
 \subsubsection*{Défragmentation et jointure, un air de famille trompeur}
+Dans un premier temps, nous avons voulu voir la défragmentation comme un cas
+particulier de jointure naturelle, où l'attribut en commun entre
+les deux relations serait l'identifiant
+des lignes.
+
+Cependant, il s'est avéré que ce n'était pas possible de traiter la défragmentation
+comme un cas particulier de jointure, car, du fait que la jointure
+peut produire plusieurs lignes là où avant il n'y en avait qu'une seule,
+la jointure ce doit de changer les identifiants des lignes pour des identifiants frais,
+ce qui est incompatible avec le comportement qu'a la défragmentation
+vis-à-vis des identifiants des lignes.
+
+Ainsi, il a été nécessaire de créer des définitions séparées pour ces deux notions.

@@ -142,8 +142,18 @@
 \section{Conclusion}
 \input{conclusion.tex}
 
- \newpage
- \appendix
+\newpage
+\renewcommand{\thepage}{\Roman{page}}
+\setcounter{page}{1}
+\appendix
 \section*{Annexe A: Définitions sémantiques}
 \input{contentDefs}
+
+\section*{Annexe B: Ensemble des lois pour le langage C2QL}
+\newcommand{\args}{Soit $\delta_1$ le schéma relationnel du premier
+	argument et $\delta_2$ le schéma relationnel du deuxième
+	argument.}
+\input{contentLoisStage}
+
+%
 \end{document}
