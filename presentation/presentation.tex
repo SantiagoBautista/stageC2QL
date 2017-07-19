@@ -1,0 +1,95 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\usepackage{default}
+
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage[main=francais,english]{babel}%
+
+\usepackage{graphicx}%
+\usepackage{url}%
+\usepackage{amsmath}
+\usepackage{mathpazo}%
+\usepackage{amssymb}
+
+\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
+
+\DeclareMathOperator{\proj}{\mathchar"1119}
+\DeclareMathOperator{\sel}{\mathchar"111B}
+\DeclareMathOperator{\frag}{frag}
+\DeclareMathOperator{\defrag}{defrag}
+\DeclareMathOperator{\crypt}{crypt}
+\DeclareMathOperator{\decrypt}{decrypt}
+\DeclareMathOperator{\group}{group}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ens}{E}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Sc}{S}
+\DeclareMathOperator{\s}{sch}
+\DeclareMathOperator{\ls}{L}
+\DeclareMathOperator{\ru}{Ru}
+\DeclareMathOperator{\uni}{Unif}
+\DeclareMathOperator{\cor}{cor}
+\DeclareMathOperator{\rj}{Rj}
+\DeclareMathOperator{\enc}{Enc}
+\DeclareMathOperator{\dec}{Dec}
+\DeclareMathOperator{\ids}{IDs}
+\DeclareMathOperator{\lgr}{lg}
+\DeclareMathOperator{\redu}{red}
+\DeclareMathOperator{\head}{hd}
+\DeclareMathOperator{\tail}{tl}
+\DeclareMathOperator{\hfrag}{hfrag}
+\DeclareMathOperator{\hdefrag}{hdefrag}
+\DeclareMathOperator{\send}{send}
+\DeclareMathOperator{\rec}{receiveAndGroup}
+
+\newcommand\typeT[1]{\text{\ttfamily #1}}
+\newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
+\newcommand{\cryptArgs}[2]{\crypt_{#1 , \typeT{#2}}}
+\newcommand{\projDelta}{\proj_{\delta}}
+\newcommand{\selP}{\sel_p}
+\newcommand{\decryptCAlpha}{\decryptArgs{\alpha}{c}}
+\newcommand{\cryptCAlpha}{\cryptArgs{\alpha}{c}}
+\newcommand{\ch}{\typeT{c}}
+\newcommand{\chp}{\typeT{c'}}
+\newcommand{\groupDelta}{\group_{\delta}}
+\newcommand{\fragDelta}{\frag_{\delta}}
+\newcommand{\val}{\mathcal{V}}
+\newcommand{\cy}[1]{\typeT{c}(#1)}
+\newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
+\newcommand{\cip}{\cup \{id\}}
+\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
+\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
+\newcommand{\dilta}{{\delta \cip}}
+
+\newcommand{\guillemets}[1]{\og #1 \fg{}}
+
+\usepackage{listings}
+\usepackage{caption}
+
+\lstset{%
+	basicstyle=\sffamily,%
+	columns=fullflexible,%
+	frame=lb,%
+	frameround=fftf,%
+}%
+
+
+\begin{document}
+\author{Santiago Bautista}
+\title{Sémantique et optimisation dans le  langage C2QL}
+\date{juin - juillet 2017}
+
+\titlegraphic{
+	\includegraphics[width=1cm]{logoENS.jpg} \hspace{0.85cm}
+	\includegraphics[width=1.5cm]{logoIMT.jpg} \hspace{0.85cm}
+	\includegraphics[width=1.7cm]{logoINRIA.jpg} \hspace{0.85cm}
+	\includegraphics[width=1.7cm]{logoRennes1.png}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\end{document}
