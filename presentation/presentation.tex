@@ -1,15 +1,14 @@
 \documentclass{beamer}
 \usetheme{Warsaw}
-\usepackage{default}
 
 \usepackage[T1]{fontenc}%
 \usepackage[utf8]{inputenc}%
-\usepackage[main=francais,english]{babel}%
+%\usepackage[main=francais,english]{babel}%
 
 \usepackage{graphicx}%
 \usepackage{url}%
 \usepackage{amsmath}
-\usepackage{mathpazo}%
+%\usepackage{mathpazo}%
 \usepackage{amssymb}
 
 \newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
@@ -271,44 +270,217 @@ sont supposées en sécurité
 \end{center}
 \end{frame}
 
-\begin{frame}{Le langage C2QL}
-\end{frame}
-
 \begin{frame}{Relations}
+\begin{center}
+\begin{tabular}{cccc}
+		Nom	 & Lieu			& Date	  & Animal 			\\ \hline
+		Ana  & Melton	    & 9 août  & Kangourou 		\\
+		Fred & Tamworth 	& 10 août & Ornithorynque 	\\
+		Ana  & Orange 		& 11 août & Ornithorynque	\\
+\end{tabular}
+\end{center}
 \end{frame}
 
-\begin{frame}{Ensemble des fonctions \uncover<2>{étendu}}
+\begin{frame}{Ensemble des fonctions \uncover<3->{étendu}}
+\begin{itemize}
+\item Projection, $\proj$ \uncover<2->{, $\proj_{Animal}$}
+\item Sélection,  $\sel$ \uncover<2->{, $\sel_{|Aujourd'hui - date| < 8 jours}$}
+\item Jonction,   $\Join$ \uncover<2->{, $Observations \Join Aventuriers$}
+\item Agrégation et réduction, $\group$ et $\operatorname{fold}$ \\
+\uncover<2->{$\fold{Animal}{[nbK, esp \mapsto\mathrm{ if }(esp == Kang) (nbK+1)
+\ \mathrm{ else }\ nbK]}{0} \circ \group_{date}$}
+\item<3-> Fragmentation et défragmentation, $\frag$ et $\defrag$ \\
+\uncover<4>{$\defrag \circ \frag_{Lieu}$}
+\item<3-> Chiffrement et déchiffrement, $\crypt$ et $\decrypt$ \\
+\uncover<4>{$\decryptArgs{AES}{Nom}\cryptArgs{AES}{Nom}$}
+\end{itemize}
 \end{frame}
+
+\begin{frame}{Le langage C2QL}
+\begin{block}{En algèbre relationnelle}
+$\# KangF = \operatorname{countK} \circ \proj_{date, Animal} \circ \sel_{Nom = Fred \wedge |Aujourd'hui-date|<8}$
+\end{block}
+
+\begin{block}{En C2QL}
+\begin{align*}
+\# KangF = \defrag \circ  (\proj_\emptyset, & \operatorname{countK} \circ \proj_{date, Animal} \circ \\
+& 
+\sel_{\operatorname{AES}(Nom) = 3ghjKrE \wedge |Aujourd'hui-date|<8}) \\
+& \circ \frag_{\{Lieu\}}  \circ \cryptArgs{AES}{Nom}  
+\end{align*}
+\end{block}
+\end{frame}
+
 
 \subsection{Les lois de commutation}
-\begin{frame}{Développer un programme C2QL optimal}
+\begin{frame}{Développer un programme C2QL}
+\only{\begin{block}{D'abord, écrire version locale}
+$\operatorname{countK} \circ \proj_{date, Animal} \circ \sel_{Nom = Fred \wedge |Aujourd'hui-date|<8}$
+\end{block}}<-2>
+
+\only{\begin{block}{Ensuite, composer les protections/déprotection à droite}
+\begin{align*}
+\operatorname{countK} &\circ \proj_{date, Animal} \circ \sel_{Nom = Fred \wedge |Aujourd'hui-date|<8} \\
+&\circ \defrag \circ \frag_{Lieu} \circ \decryptArgs{AES}{Nom} \circ \cryptArgs{AES}{Nom}
+\end{align*}
+\end{block}}<2->
+
+\only{\begin{block}{Finalement, faire commuter les opérateurs}
+\begin{align*}
+\# KangF = \defrag \circ  (\proj_\emptyset, & \operatorname{countK} \circ \proj_{date, Animal} \circ \\
+& 
+\sel_{\operatorname{AES}(Nom) = 3ghjKrE \wedge |Aujourd'hui-date|<8}) \\
+& \circ \frag_{\{Lieu\}}  \circ \cryptArgs{AES}{Nom}  
+\end{align*}
+\end{block}}<4>
 \end{frame}
+
 
 \section{Contribution}
 \subsection{Définir formellement les fonctions de C2QL}
-\begin{frame}{Choix à faire}
+
+\begin{frame}{Choix à faire: Tuples ou fonctions?}
+\begin{center}
+\begin{tabular}{cccc}
+		Nom	 & Lieu			& Date	  & Animal 			\\ \hline
+		Ana  & Melton	    & 9 août  & Kangourou 		\\
+		Fred & Tamworth 	& 10 août & Ornithorynque 	\\
+		Ana  & Orange 		& 11 août & Ornithorynque	\\
+\end{tabular}
+
+\begin{align*}
+f : & Nom \mapsto Fred , Lieu \mapsto Tamworth, \\& Date \mapsto 10/08, 
+Animal \mapsto Ornithorynque 
+\end{align*}
+\end{center}
 \end{frame}
+
+\begin{frame}{Choix à faire: Expressivité ou restrictivité?}
+\begin{center}
+\begin{tabular}{c}
+L'implémentation faite en Idris évite déjà les erreurs de programmation \\
+$\Downarrow$ \\
+Pour les démonstrations, les expression peuvent être expressives
+\end{tabular}
+\end{center}
+\begin{exampleblock}<2>{Exemple}
+	$$
+	\begin{array}{llcl}
+	\projDelta:	& r		& \mapsto		& 
+					\{{l|}_{(\delta\cap \s(r)) \cup \{id\}} / l \in r \}
+	\end{array}
+	$$
+\end{exampleblock}
+\end{frame}
+
+
 
 \subsection{Prouver la correction des lois}
 \begin{frame}{Structure des preuves}
+$$
+\left\lbrace
+\begin{array}{cc}
+res_1 = & (f \circ g) (r) \\
+res_2 = & (g \circ f) (r)
+\end{array}
+\right.
+$$
+\begin{itemize}
+\item Égalité des schémas relationnels
+\item Inclusion de $res_1$ dans $res_2$
+\item Inclusion de $res_2$ dans $res_1$
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Erreurs corrigées}
+\begin{frame}{Erreurs corrigées: projection et projection}
+\begin{block}{Loi 3 page 30 de la thèse}
+$$ 
+\proj_{a_1} \circ \dots \circ \proj_{a_n} 
+\equiv \proj_{a_1, \dots, a_n}
+$$
+\end{block}
+\begin{block}{Contre-exemple}
+\begin{tabular}{lr}
+		a\(_{\text{1}}\) & a\(_{\text{2}}\)\\
+		\hline
+		a & 1\\
+		b & 2\\
+\end{tabular}
+
+\(\pi_{a_1} \circ \pi_{a_2} (r) = \emptyset\)
+mais
+\(\pi_{a_1, a_2} (r) = (r)\)
+\end{block}
+\begin{exampleblock}{Correction}
+$$
+\proj_{\delta_1} \circ \dots \circ \proj_{\delta_n} 
+\equiv \proj_{\delta_1 \cap \dots \cap \delta_n}
+$$
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Erreurs corrigées : Defragmentation et projection}
+\begin{block}{Loi 12 page 64 de la thèse}
+$$
+\projDelta \circ \defrag
+\equiv \defrag \circ (\proj_{\delta \cap \delta'} , \proj_{\delta \setminus \delta'})
+$$
+\end{block}
+\begin{exampleblock}{Correction}
+\begin{align*}
+\projDelta \circ \defrag
+& = \defrag \circ (\proj_{\delta \cap \delta_1}, \proj_{\delta \cap \delta_2})
+& \text{si $\delta_1 \cap \delta_2 = \emptyset$}
+\end{align*}
+\end{exampleblock}
 \end{frame}
 
 \subsection{Compléter l'ensemble de lois}
 \begin{frame}{Critère de complétude}
+Toutes les paires de fonctions possibles soient considérées
+\end{frame}
+
+\begin{frame}{Tableau des lois}
+\includegraphics[width=\textwidth]{complLoisBilan.png}
 \end{frame}
 
 \begin{frame}{Exemple}
+Soit $\delta_1$ le schéma relationnel du premier
+	argument et $\delta_2$ le schéma relationnel du deuxième
+	argument.
+En appelant $(P)$ la propriété
+\og Soit $\ch$ est injectif, soit $\alpha \notin \delta_1 \cap \delta_2$\fg{},
+\begin{align}
+\decryptCAlpha \circ \Join
+& \equiv
+\Join \circ (\decryptCAlpha, \id)
+& \text{si $\alpha \in \delta_1$ et $(P)$} \\
+\decryptCAlpha \circ \Join
+& \equiv
+\Join \circ (\id, \decryptCAlpha)
+& \text{si $\alpha \in \delta_2$ et $(P)$} 
+\end{align}
 \end{frame}
 
 \subsection{Une première version de l'optimiseur}
-\begin{frame}{Tableau des effets de chaque loi}
+\begin{frame}{Automatiser l'optimisation}
+\includegraphics[width = 0.5\textwidth]{work.png}
 \end{frame}
 
 \section{Travail futur}
+
 \begin{frame}
+
+\begin{block}{Autres pistes à explorer}
+\begin{itemize}
+\item Autres propriétés de sécurité
+\item Autres mécanismes
+\item Compilateur C2QL $\rigtharrow$ application concrète
+\item Finir compilateur vers Provérif
+\item $\dots$
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 \section*{Conclusion}
