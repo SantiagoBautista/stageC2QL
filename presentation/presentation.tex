@@ -97,13 +97,23 @@
 
 \section{Introduction}
 \begin{frame}
-% De plus en plus d'applications utilisent le cloud
-% en manipulant des données personnelles
+De plus en plus d'applications
+
+$$
+\left\lbrace
+\begin{array}{l}
+\text{Utilisent le nuage} \\
+\text{Manipulent des données personnelles}
+\end{array}
+\right.
+$$
 \end{frame}
 
 \begin{frame}
-% Comment protéger la confidentialité
-% tout en privilégiant utilisation du nuage et performances?
+\begin{block}{Problème}
+Comment protéger la confidentialité
+tout en privilégiant l'utilisation du nuage et les performances?
+\end{block}
 \end{frame}
 
 \begin{frame}
@@ -112,8 +122,31 @@
 
 \begin{frame}{Exemple fil rouge}
 % Explorateurs en Australie
+\begin{tabular}{lcccrc}
+&	& & 
+\includegraphics[width=1cm]{phone.png} 
+& \includegraphics[width=1cm]{adventurer.png} 
+& \includegraphics[width=2cm]{kangourou.png} \\
+\includegraphics[width=1.5cm]{researcher.png} & $\leftarrow$
+& \includegraphics[width = 1.5cm]{cloud.png}
+& & &   \\
+& & & 
+\includegraphics[width=1cm]{phone.png} 
+& \includegraphics[width=1cm]{adventurer.png} 
+& \includegraphics[width=3cm]{orni.png}
+\end{tabular}
 \end{frame}
 
+\begin{frame}{Exemple fil rouge}
+Exemple de données collectées:
+\begin{itemize}
+\item Animal vu (kangourou, ornithorynque)
+\item Date
+\item Lieu
+\item Nom de l'aventurier
+\item $\dots$
+\end{itemize}
+\end{frame}
 
 \section{Concepts manipulés et travail antérieur}
 
@@ -127,26 +160,115 @@ Un problème de confidentialité est défini par
 \end{frame}
 
 \begin{frame}{Contraintes de confidentialité}
+Dans l'exemple on veut protéger 
+\begin{itemize}
+\item L'association (date, lieu)
+\item Les noms des aventuriers
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Hypothèses sur l'attaquant}
+\begin{alertblock}{On ne fait confiance}
+\begin{itemize}
+\item Ni aux nuages utilisés
+\item Ni au réseau utilisé
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{On fait confiance}
+\begin{itemize}
+\item A la machine de l'utilisateur.
+\end{itemize}
+\end{exampleblock}
+
 \end{frame}
 
 \subsection{Techniques de protection}
 \begin{frame}{Chiffrement}
+\begin{center}
+\begin{block}{Définition}
+Transformer l'information intelligible en inintelligible
+de façon réversible pour les destinataires. 
+\end{block}
+
+\begin{exampleblock}{Exemple}<2>
+\begin{tabular}{lcr}
+ & $\rightarrow$ & \\
+\begin{tabular}{ccc}
+		Ana  & Melton	    & 4/8 \\
+		Fred & Tamworth 	& 5/8 \\
+		Ana  & Orange 		& 6/8
+\end{tabular} & &
+\begin{tabular}{ccc}
+		LD6h736B  & Melton	    & 4/8 \\
+		3ghjKrE	  & Tamworth 	& 5/8 \\
+		LD6h736B  & Orange 		& 6/8
+\end{tabular} \\
+%9 juillet à 14h09	& & LD6h736B3ghjKrE	\\
+ & $\leftarrow$& \\
+\end{tabular}
+\end{exampleblock}
+\end{center}
 \end{frame}
 
 \begin{frame}{Fragmentation verticale}
+\begin{block}{Définition}
+Séparer (géographiquement, par exemple)
+deux informations pour rendre inintelligible leur association.
+\end{block}
+
+\begin{exampleblock}{Exemple}<2>
+\begin{tabular}{lcr}
+&	\begin{tabular}{ccc}
+		Ana  & Melton	    & 9 août \\
+		Fred & Tamworth 	& 10 août \\
+		Ana  & Orange 		& 11 août
+	\end{tabular}
+& \\
+\begin{tabular}{c}
+Melton \\
+Tamworth \\
+Orange
+\end{tabular}
+& &
+\begin{tabular}{cc}
+Ana 	& 9 août \\
+Fred 	& 10 août \\
+Ana 	& 11 août
+\end{tabular}
+\end{tabular}
+\end{exampleblock}
 \end{frame}
 
 \begin{frame}{Calculs côté utilisateur}
+\begin{center}
+\begin{tabular}{c}
+On fait confiance à la machine de l'utilisateur \\
+$\Downarrow$ \\
+Les informations traitées et stockées \emph{localement} \\
+sont supposées en sécurité
+\end{tabular}
+\end{center}
 \end{frame}
 
 \subsection{Le langage C2QL et l'algèbre relationnelle}
 \begin{frame}{Enjeux d'une application utilisant le nuage}
+\begin{itemize}
+\item Utilisation du nuage
+\begin{itemize}
+\item Disponibilité
+\item Passage à l'échelle automatisable
+\end{itemize}
+\item Protection de la confidentialité
+\item Performances
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Enjeux et protection de la confidentialité}
+\begin{center}
+\hspace{0.7cm}
+\includegraphics[width=0.9\textwidth]{snps.png}
+\end{center}
 \end{frame}
 
 \begin{frame}{Le langage C2QL}
