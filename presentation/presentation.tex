@@ -3,12 +3,12 @@
 
 \usepackage[T1]{fontenc}%
 \usepackage[utf8]{inputenc}%
-%\usepackage[main=francais,english]{babel}%
+\usepackage[main=francais,english]{babel}%
 
 \usepackage{graphicx}%
 \usepackage{url}%
 \usepackage{amsmath}
-%\usepackage{mathpazo}%
+\usepackage{mathpazo}%
 \usepackage{amssymb}
 
 \newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
@@ -132,7 +132,7 @@ tout en privilégiant l'utilisation du nuage et les performances?
 & & & 
 \includegraphics[width=1cm]{phone.png} 
 & \includegraphics[width=1cm]{adventurer.png} 
-& \includegraphics[width=3cm]{orni.png}
+& \includegraphics[width=2.5cm]{orni.png}
 \end{tabular}
 \end{frame}
 
@@ -191,8 +191,10 @@ de façon réversible pour les destinataires.
 \end{block}
 
 \begin{exampleblock}{Exemple}<2>
+\begin{center}
+$\leftrightarrow$ \hspace*{1cm}
+\end{center}
 \begin{tabular}{lcr}
- & $\rightarrow$ & \\
 \begin{tabular}{ccc}
 		Ana  & Melton	    & 4/8 \\
 		Fred & Tamworth 	& 5/8 \\
@@ -204,7 +206,6 @@ de façon réversible pour les destinataires.
 		LD6h736B  & Orange 		& 6/8
 \end{tabular} \\
 %9 juillet à 14h09	& & LD6h736B3ghjKrE	\\
- & $\leftarrow$& \\
 \end{tabular}
 \end{exampleblock}
 \end{center}
@@ -220,13 +221,13 @@ deux informations pour rendre inintelligible leur association.
 \begin{tabular}{lcr}
 &	\begin{tabular}{ccc}
 		Ana  & Melton	    & 9 août \\
-		Fred & Tamworth 	& 10 août \\
+		Fred & Dubbo	 	& 10 août \\
 		Ana  & Orange 		& 11 août
 	\end{tabular}
 & \\
 \begin{tabular}{c}
 Melton \\
-Tamworth \\
+Dubbo \\
 Orange
 \end{tabular}
 & &
@@ -358,9 +359,10 @@ Animal \mapsto Ornithorynque
 \begin{frame}{Choix à faire: Expressivité ou restrictivité?}
 \begin{center}
 \begin{tabular}{c}
-L'implémentation faite en Idris évite déjà les erreurs de programmation \\
+L'implémentation faite en Idris \\
+évite déjà les erreurs de programmation \\
 $\Downarrow$ \\
-Pour les démonstrations, les expression peuvent être expressives
+Pour les démonstrations, les définitions peuvent être expressives
 \end{tabular}
 \end{center}
 \begin{exampleblock}<2>{Exemple}
@@ -475,9 +477,8 @@ En appelant $(P)$ la propriété
 \begin{itemize}
 \item Autres propriétés de sécurité
 \item Autres mécanismes
-\item Compilateur C2QL $\rigtharrow$ application concrète
+\item Compilateur C2QL application concrète
 \item Finir compilateur vers Provérif
-\item $\dots$
 \end{itemize}
 \end{block}
 
