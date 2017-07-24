@@ -113,4 +113,11 @@ count, je me suis donc intéressé aux fonctions group et fold, qui permettent
 de regrouper, \emph{en appliquant une fonction quelconque aux autres attributs},
 les lignes ayant les mêmes valeurs pour un certain ensemble d'attributs.
 
-\subsubsection*{Défragmentation et jointure, un air de famille trompeur}
+\subsubsection*{Défragmentation et jointure, de faux jumeaux}
+Dans un premier temps, j'avais essayé de définir la défragmentation verticale comme
+un cas particulier de jointure naturelle (où l'attribut en commun serait
+l'identifiant de la ligne). Lors de la jointure, il faut bien définir un comportement
+pour les identifiants. 
+
+Puisqu'une seule ligne dans les tables à joindre
+peut produire plusieurs lignes dans le résultat d'une jointure, 

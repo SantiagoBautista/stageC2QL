@@ -1,3 +1,12 @@
+* Urgent
+** Revoir lois entre jointure et défragmentation
++ Soit cette commutation ne devrait pas être possible
++ Soit il faut qu'on m'explique qu'est-ce qui arrive
+aux identifiants
+
+
+
+
 * Grandes lignes
 ** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
