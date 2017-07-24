@@ -1,244 +1,167 @@
-\documentclass[french]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage[a4paper]{geometry}
-\usepackage{babel}
-\usepackage{amsmath}
-\usepackage{amssymb}
-%\usepackage{latexsym} %maybe needed for \Join %nope, it doesn't seem so
-
-\newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
-
-\DeclareMathOperator{\proj}{\pi}
-\DeclareMathOperator{\sel}{\sigma}
-\DeclareMathOperator{\frag}{frag}
-\DeclareMathOperator{\defrag}{defrag}
-\DeclareMathOperator{\crypt}{crypt}
-\DeclareMathOperator{\decrypt}{decrypt}
-\DeclareMathOperator{\group}{group}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\ens}{E}
-\DeclareMathOperator{\R}{R}
-\DeclareMathOperator{\Sc}{S}
-\DeclareMathOperator{\s}{sch}
-\DeclareMathOperator{\ls}{L}
-\DeclareMathOperator{\ru}{Ru}
-\DeclareMathOperator{\uni}{Unif}
-\DeclareMathOperator{\cor}{cor}
-\DeclareMathOperator{\rj}{Rj}
-\DeclareMathOperator{\enc}{Enc}
-\DeclareMathOperator{\dec}{Dec}
-\DeclareMathOperator{\ids}{IDs}
-\DeclareMathOperator{\lgr}{lg}
-\DeclareMathOperator{\redu}{red}
-\DeclareMathOperator{\head}{hd}
-\DeclareMathOperator{\tail}{tl}
-\DeclareMathOperator{\hfrag}{hfrag}
-\DeclareMathOperator{\hdefrag}{hdefrag}
-\DeclareMathOperator{\send}{send}
-\DeclareMathOperator{\rec}{receiveAndGroup}
-
-\newcommand\typeT[1]{\text{\ttfamily #1}}
-\newcommand{\decryptArgs}[2]{\decrypt_{#1 , \typeT{#2}}}
-\newcommand{\cryptArgs}[2]{\crypt_{#1 , \typeT{#2}}}
-\newcommand{\projDelta}{\proj_{\delta}}
-\newcommand{\selP}{\sel_p}
-\newcommand{\decryptCAlpha}{\decryptArgs{\alpha}{c}}
-\newcommand{\cryptCAlpha}{\cryptArgs{\alpha}{c}}
-\newcommand{\ch}{\typeT{c}}
-\newcommand{\chp}{\typeT{c'}}
-\newcommand{\groupDelta}{\group_{\delta}}
-\newcommand{\fragDelta}{\frag_{\delta}}
-\newcommand{\val}{\mathcal{V}}
-\newcommand{\cy}[1]{\typeT{c}(#1)}
-\newcommand{\dc}[1]{\typeT{c}^{-1}(#1)}
-\newcommand{\cip}{\cup \{id\}}
-\newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
-\newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
-\newcommand{\dilta}{{\delta \cip}}
-
-\newcommand{\args}{Soit $\delta_1$ le schéma relationnel du premier
-	argument et $\delta_2$ le schéma relationnel du deuxième
-	argument.}
-
-\begin{document}
-
-\title{Ensemble des lois algébriques pour le langage C2QL}
-\author{Santiago Bautista}
-\date{Juin 2017}
-\maketitle
-
 Pour tout chiffrement $\ch$,
 on appellera $\chp$
 le chiffrement qui agit sur une liste en appliquant
 $\ch$ à chacun des éléments de la liste.
-Lorsqu'une défragmentation est effectuée, on supposera que le schéma relationnel
-du fragment de gauche s'appelle $\delta'$ .
 
 \subsection*{Lois de projection}
 \subsubsection*{Projection et projection}
-\begin{align}
+\begin{align*}
 \proj_{\delta_1}\circ \dots \circ \proj_{\delta_n} 
 & = \proj_{\delta_1 \cap \dots \cap \delta_n}
-\end{align}
+\end{align*}
 
 \subsubsection*{Projection et sélection}
-\begin{align}
+\begin{align*}
 \projDelta \circ \selP
 & = \selP \circ \projDelta
 & \text{si $\dom(p) \subset \delta$}
-\end{align}
+\end{align*}
 
 
 \subsubsection*{Projection et défragmentation (verticale)}
 En appelant $\delta_1$ le schéma relationnel du premier
 argument et $\delta_2$ le schéma relationnel du deuxième
 argument, on a:
-\begin{align}
+\begin{align*}
 \projDelta \circ \defrag
 & = \defrag \circ (\projDelta, \projDelta)
 & \text{si $\delta_1 \cap \delta_2 = \emptyset$}
-\end{align}
+\end{align*}
 \subsubsection*{Projection et déchiffrement d'un attribut projeté ou non}
-\begin{align}
+\begin{align*}
 \projDelta \circ \decryptArgs{\alpha}{c}
 & \equiv \decryptArgs{\alpha}{c} \circ \projDelta
-\end{align}
+\end{align*}
 \subsubsection*{Projection et déchiffrement d'un attribut non projeté}
-\begin{align}
+\begin{align*}
 \projDelta \circ \decryptArgs{\alpha}{c}
 & \equiv \projDelta
 &\text{si $\alpha \notin \delta$} 
-\end{align}
+\end{align*}
 \subsubsection*{Projection et jointure}
 En appelant $\delta_1$ le schéma relationnel du premier
 argument et $\delta_2$ le schéma relationnel du deuxième argument,
 on a:
-\begin{align}
+\begin{align*}
 \projDelta \circ \Join
 & = \Join \circ (\projDelta, \projDelta)
 & \text{si $\delta_1 \cap \delta_2 \subset \delta$}
-\end{align}
+\end{align*}
 \subsubsection*{Projection et agrégation}
-\begin{align}
+\begin{align*}
 \groupDelta \circ \proj_{\delta'}
 & \equiv \proj_{\delta'} \circ \groupDelta
 & \text{si $\delta \subset \delta'$}
-\end{align}
+\end{align*}
 \subsubsection*{Projection et réduction d'un attribut projeté ou non}
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \projDelta
 & \equiv \projDelta \circ \foldAlphafz
-\end{align}
+\end{align*}
 \subsubsection*{Projection et réduction d'un attribut non projeté}
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \projDelta
 & \equiv \projDelta
 & \text{si $\alpha \notin \dilta$}
-\end{align}
+\end{align*}
 \subsection*{Lois de sélection}
 \subsubsection*{Sélection et sélection}
-\begin{align}
+\begin{align*}
 \sel_{p_1} \circ \dots \circ \sel_{p_n}
 &\equiv \sel_{p_1 \wedge \dots \wedge p_n} 
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et défragmentation}
 En appelant $\delta_1$ le schéma relationnel du premier argument,
 et $\delta_2$ le schéma relationnel du deuxième arguemnt,
-\begin{align}
+\begin{align*}
 \selP \circ \defrag 
 & \equiv \defrag \circ (\selP, \id)
-& \text{si $dom(p) \subset \delta_1$} 
-\label{seldefrag1}\\
+& \text{si $dom(p) \subset \delta_1$} \\
 \selP \circ \defrag 
 & \equiv \defrag \circ (\id, \selP)
 & \text{si $dom(p) \subset \delta_2$}
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et déchiffrement non sélectif}
-\begin{align}
+\begin{align*}
 \selP \circ \decryptCAlpha 
 & = \decryptCAlpha \circ \selP
 & \text{si $\alpha \notin \dom(p)$}
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et déchiffrement d'un attribut sélectif}
-\begin{align}
+\begin{align*}
 \selP \circ \decryptCAlpha 
 & = \decryptCAlpha \circ \sel_{\typeT{c} \Rightarrow p}
 & \text{si $p$  est compatible avec $\typeT{c}$}
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et jointure}
 \args
 
-\begin{align}
+\begin{align*}
 \selP \circ \Join
 & = \Join \circ (\selP, \id)
-& \text{si $\dom(p) \subset \delta_1$}
-\label{seljoin1}\\ 
+& \text{si $\dom(p) \subset \delta_1$}\\ 
 \selP \circ \Join
 & = \Join \circ (\id, \selP)
 & \text{si $\dom(p) \subset \delta_2$}
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et agrégation}
-\begin{align}
+\begin{align*}
 \groupDelta \circ \selP 
 & \equiv \selP \circ \groupDelta
 & \text{si $\dom(p) \subset \delta$}
-\end{align}
+\end{align*}
 \subsubsection*{Sélection et réduction}
-\begin{align}
+\begin{align*}
 \selP \circ \foldAlphafz & = \foldAlphafz \circ \selP
 & \text{si $\alpha \notin \dom(p)$}
-\end{align}
+\end{align*}
 \subsection*{Lois de fragmentation}
 \subsubsection*{Fragmentation et défragmentation}
-\begin{align}
+\begin{align*}
 \defrag \circ \fragDelta
 & = \id
-\end{align}
+\end{align*}
 \subsubsection*{Fragmentation et chiffrement}
-\begin{align}
+\begin{align*}
 \fragDelta \circ \cryptCAlpha
 & \equiv (\cryptCAlpha, \id) \circ\fragDelta 
-& \text{si $\alpha \in \delta$}
-\label{fragCrypt1} \\
+& \text{si $\alpha \in \delta$}\\
 \fragDelta \circ \cryptCAlpha
 & \equiv (\id, \cryptCAlpha) \circ\fragDelta 
 & \text{si $\alpha \notin \delta$}
-\end{align}
+\end{align*}
 \subsubsection*{Fragmentation et déchiffrement}
-\begin{align}
+\begin{align*}
 \fragDelta \circ \decryptCAlpha
 & \equiv (\decryptCAlpha, \id) \circ \fragDelta
 & \text{si $\alpha \in \delta$} \\
 \fragDelta \circ \decryptCAlpha
 & \equiv (\id, \decryptCAlpha) \circ \fragDelta
 & \text{si $\alpha \notin \delta$}
-\end{align}
+\end{align*}
 
 \subsection*{Lois de défragmentation}
 \subsubsection*{Défragmentation et chiffrement}
 \args
-\begin{align}
+\begin{align*}
 \defrag \circ (\cryptCAlpha, \id)
 & \equiv \cryptCAlpha \circ \defrag 
 & \text{si $\alpha \in \delta_1$} \\
 \defrag \circ (\id, \cryptCAlpha)
 & \equiv \cryptCAlpha \circ \defrag 
 & \text{si $\alpha \in \delta_2$} 
-\end{align}
+\end{align*}
 
 \subsubsection*{Défragmentation et déchiffrement}
 \args
-\begin{align}
+\begin{align*}
 \decryptCAlpha \circ \defrag 
 & \equiv \defrag \circ (\decryptCAlpha, \id)
 & \text{si $\alpha \in \delta_1$} \\
 \decryptCAlpha \circ \defrag 
 & \equiv \defrag \circ (\id, \decryptCAlpha)
 & \text{si $\alpha \in \delta_2$}
-\end{align}
+\end{align*}
 
 \subsubsection*{Défragmentation et jointure}
 On appelle,
@@ -246,7 +169,7 @@ $\delta_1, \delta_2, \delta_3, \dots$
 les schémas relationnels respectifs
 du premier, deuxième et troisième argument.
 
-\begin{align}
+\begin{align*}
 \Join \circ (\defrag, \id)
 & \equiv
 \defrag \circ (\id, \Join)
@@ -255,57 +178,57 @@ du premier, deuxième et troisième argument.
 & \equiv
 \defrag \circ (\Join, \id)
 & \text{si $\delta_3 \cap (\delta_1 \cup \delta_2) = \emptyset$} 
-\end{align}
+\end{align*}
 
 \subsubsection*{Défragmentation et agrégation}
 \args
-\begin{align}
+\begin{align*}
 \groupDelta \circ \defrag 
 & \equiv \defrag \circ (\send\circ\groupDelta, \rec)
 & \text{Si $\delta \subset \delta_1$} \\
 \groupDelta \circ \defrag 
 & \equiv \defrag \circ (\rec, \send\circ\groupDelta)
 & \text{Si $\delta \subset \delta_2$} 
-\end{align}
+\end{align*}
 
 \subsubsection*{Défragmentation et réduction}
 \args
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \defrag
 & = \defrag \circ (\foldAlphafz, \id)
 & \text{si $\alpha \in \delta_1$} \\
 \foldAlphafz \circ \defrag
 & = \defrag \circ (\id, \foldAlphafz)
 & \text{si $\alpha \in \delta_2$}
-\end{align}
+\end{align*}
 
 \subsection*{Lois de chiffrement}
 \subsubsection*{Chiffrement et chiffrement}
-\begin{align}
+\begin{align*}
 \cryptCAlpha \circ \cryptArgs{\beta}{s}
 & \equiv \cryptArgs{\beta}{s} \circ \cryptCAlpha
 & \text{si $\alpha \neq \beta$}
-\end{align}
+\end{align*}
 
 \subsubsection*{Chiffrement et déchiffrement}
-\begin{align}
+\begin{align*}
 \id & \equiv \decryptArgs{\alpha}{c} \circ \cryptArgs{\alpha}{c}
-\end{align}
+\end{align*}
 
 \subsection*{Lois de déchiffrement}
 \subsubsection*{Déchiffrement et déchiffrement}
-\begin{align}
+\begin{align*}
 \decryptCAlpha \circ \decryptArgs{\beta}{s}
 & \equiv \decryptArgs{\beta}{s} \circ \decryptCAlpha
 & \text{si $\alpha \neq \beta$}
-\end{align}
+\end{align*}
 
 \subsubsection*{Déchiffrement et jointure}
 \args
 
 En appelant $(P)$ la propriété
 \og Soit $\ch$ est injectif, soit $\alpha \notin \delta_1 \cap \delta_2$\fg{},
-\begin{align}
+\begin{align*}
 \decryptCAlpha \circ \Join
 & \equiv
 \Join \circ (\decryptCAlpha, \id)
@@ -314,47 +237,47 @@ En appelant $(P)$ la propriété
 & \equiv
 \Join \circ (\id, \decryptCAlpha)
 & \text{si $\alpha \in \delta_2$ et $(P)$} 
-\end{align}
+\end{align*}
 
 \subsubsection*{Déchiffrement et agrégation}
-\begin{align}
+\begin{align*}
 \groupDelta \circ \decryptCAlpha
 & \equiv \decryptArgs{\alpha}{\chp} \circ \groupDelta
 & \text{Si $\alpha \notin \delta$} \\
 \groupDelta \circ \decryptCAlpha
 & \equiv \decryptCAlpha \circ \groupDelta
 & \text{Si $\alpha \in \delta$ et $\ch$ est compatible avec l'égalité}
-\end{align}
+\end{align*}
 
 \subsubsection*{Déchiffrement et réduction}
 \args
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \decryptArgs{\beta}{c}
 & = \decryptArgs{\beta}{c} \circ \foldAlphafz
 & \text{si $\alpha \neq \beta$} \\
 \foldAlphafz \circ \decryptCAlpha
 & = \decryptCAlpha \circ \fold{\alpha}{\typeT{c} \Rightarrow f}{\typeT{c} \Rightarrow z}
 & \text{si $\typeT{c}$ est compatible avec $f$}
-\end{align}
+\end{align*}
 
 \subsection*{Lois de jointure}
 \subsubsection*{Jointure et jointure}
-\begin{align}
+\begin{align*}
 \Join \circ (\Join, \id)
 & \equiv \Join \circ (\id, \Join) &
-\end{align}
+\end{align*}
 
 \subsubsection*{Jointure et agrégation}
 \args
-\begin{align}
+\begin{align*}
 \groupDelta \circ \Join
 & \equiv \Join \circ (\groupDelta, \groupDelta)
 & \text{si $\delta = \delta_1 \cap \delta_2$}
-\end{align}
+\end{align*}
 
 \subsubsection*{Jointure et réduction}
 \args
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \Join
 & = \Join \circ (\foldAlphafz, \id)
 & \text{si $\alpha \in \delta_1 \setminus \delta_2$} \\
@@ -364,26 +287,25 @@ En appelant $(P)$ la propriété
 \foldAlphafz \circ \Join
 & = \Join \circ (\foldAlphafz, \foldAlphafz)
 & \text{si $\redu_{\alpha, f, z, \bullet}$ est injective}
-\end{align}
+\end{align*}
 
 \subsection*{Lois d'agrégation}
 \subsubsection*{Agrégation et agrégation}
-\begin{align}
+\begin{align*}
 \text{$group$ ne commute pas avec lui-même}
-\end{align}
+\end{align*}
 
 \subsubsection*{Agrégation et réduction}
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \groupDelta
 & = \groupDelta \circ \foldAlphafz
 & \text{si $\redu_{\alpha, f, z, \bullet}$ est injective et $\alpha \in \delta$}
-\end{align}
+\end{align*}
 
 \subsection*{Lois de réduction}
 \subsubsection*{Réduction et réduction}
-\begin{align}
+\begin{align*}
 \foldAlphafz \circ \fold{\beta}{g}{z'}
 & = \fold{\beta}{g}{z'} \circ \foldAlphafz
 & \text{si $\alpha \neq \beta$}
-\end{align}
-\end{document}
+\end{align*}

@@ -11,8 +11,10 @@
 \usepackage{amsmath}
 \usepackage{mathpazo}%
 \usepackage{amssymb}
+\usepackage{amsthm}
 
 \newtheorem{defi}{Définition}
+\newtheorem*{defi*}{Définition}
 %\usepackage{pdfpages}
 
 \newcommand{\uconcat}{\ensuremath{+\!\!\!+\,}}
@@ -66,6 +68,8 @@
 \newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
 \newcommand{\dilta}{{\delta \cip}}
 
+\newcommand{\guillemets}[1]{\og #1 \fg{}}
+
 \usepackage{listings}
 \usepackage{caption}
 
@@ -86,8 +90,6 @@
 
 \begin{document}
 \maketitle
-Cette version préliminaire est largement incomplète,
-je la compléterai le 17 juillet.
 \begin{abstract}
 	Des applications de tout genre manipulent des personnelles de ses utilisateurs
 	et utilisent le cloud pour s'exécuter ou s'héberger.
@@ -139,8 +141,18 @@ je la compléterai le 17 juillet.
 \section{Conclusion}
 \input{conclusion.tex}
 
- \newpage
- \appendix
+\newpage
+\renewcommand{\thepage}{\Roman{page}}
+\setcounter{page}{1}
+\appendix
 \section*{Annexe A: Définitions sémantiques}
 \input{contentDefs}
+
+\section*{Annexe B: Ensemble des lois pour le langage C2QL}
+\newcommand{\args}{Soit $\delta_1$ le schéma relationnel du premier
+	argument et $\delta_2$ le schéma relationnel du deuxième
+	argument.}
+\input{contentLoisStage}
+
+%
 \end{document}
