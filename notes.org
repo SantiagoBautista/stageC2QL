@@ -605,11 +605,14 @@ Idris plus adapté car manipule nativement les types dépendants
 
 *** L'implémen actuelle permet-elle de définir une politique de sécurité?
 Pas en C2QL, mais à priori oui, en Idris et proVérif
-**** TODO regarder comment peuvent être définies les politiques de sécurité en Idris et proVérif
+**** DONE regarder comment peuvent être définies les politiques de sécurité en Idris et proVérif
+Pas définissables en Idris. Finalement, je n'ai pas regarder ce que c'était que ProVérif
 
 
-*** POSSIBLE Regarder les expérimentations de Ronan 
+*** DONE Regarder les expérimentations de Ronan 
 [[http://www.github.com/rcherrueau/C2QL/tree/master/experimentations][Dossier des expérimentations]]
+Je le ferai un jour si j'essai de faire le compilateur concret
+Pas pour ce stage
 
 
 *** Dans cryptDB
@@ -630,17 +633,24 @@ suggérée dans la thèse (d'abord version locale, puis
 protection, puis lois).
 
 Il reste cependant à 
-**** TODO *vérifier* que toutes les commutations faites avec le defrag peuvent être défaites de façon transparente.
-
+**** DONE *vérifier* que toutes les commutations faites avec le defrag peuvent être défaites de façon transparente.
+Oui, les lois sont vraiment des lois d'équivalence pouvant s'utiliser dans les deux sens
 
 *** p.78 => mais il peut y avoir un destructeur pour un fragment sans qu'il y en ai pour l'autre, non?
 Non. Pas si la requête est sous forme canonique... et qu'il n'y a pas de defrags imbriqués!
-**** POSSIBLE Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
-
+**** DONE Est-ce qu'on veut vraiment se limiter au cas où il n'y a pas de defrags imbriqués?
+Pour l'instant on le fait :-P
 
 *** p.78: il parle d'un \vee, qui n'apparaît nulle part dans las formules...
-**** TODO poser la question
+**** DONE poser la question
 Le 23/06 à 13h30 j'ai rendez-vous avec Ronan, je pourrai lui poser la question
+Finalement je ne lui ai pas posé la question, mais c'est pas grave:
+Avec 
++ l'automatisation de l'optimiseur
++ la fin des preuves
++ la fin du rapport
++ la fin des modifications à l'implémentation
+J'ai assez de choses à faire
 
 ** Remarques
 
@@ -1028,24 +1038,29 @@ Mais surtout, on peut vouloir commuter une sélection sans avoir à changer le p
 
 Je viens de décider que je vais apprendre à me servir d'Idris avant de continuer de modifier le code xD
 
-***** DOING frag ne rend pas une expr C2QL, mais 2.. non?
-J'ai modifié le type de frag, ce qui va provablement nécessiter 
+***** DONE frag ne rend pas une expr C2QL, mais 2.. non?
+J'ai créer ma propre implem de "l'ADT" C2QL pour tenir compte de la structure en diamant
 
 **** Apprendtissage d'Idris
 Comme suggéré par Ronan, je vais étudier par la réécriture la définition des listes
 qui est donnée par le langage (qui, parait-il, utilise les preuves)
 
 *** Choses à faire qui son apparues
-**** TODO Pour reproductibilité et compréhension: vérifier erreurs evitées
+**** DONE Pour reproductibilité et compréhension: vérifier erreurs evitées
 Déclarer les faux-programmes qui servent d'exemple dans la section 6
  en C2QL et vérifier que ça déclenche bien une erreur de typage
-**** TODO Possibilité d'encoder des schémas comme des ensembles
+**** DONE Possibilité d'encoder des schémas comme des ensembles
 En utilisant, si nécessaire, cette implémentation d'ensembles en Idris
 [[https://github.com/jfdm/idris-containers/blob/master/Data/AVL/Set.idr][Implem d'ensembles en Idris, par l'un des développeurs d'Idris]]
 
+Finalment je ne le ferai pas pour le moment.
+cf [[*poser la question][raisons à la section "poser la question"]]
+
+(-
 Ou plutôt en utilisant Data.Fin? 
 [[http://docs.idris-lang.org/en/latest/tutorial/typesfuns.html][cf "The finite sets" here]]
 Non, c'est des ensemble canonique, pas des ensembles arbitraires
+-)
 
 ** 23/06
 *** Objectifs de la journée
@@ -1058,7 +1073,7 @@ Réunion à 13h30
 **** Tableau d'optimisations effectuées par chaque loi
 **** Suite de la lecture des chapitres 6 et 7
 *** Choses qu'il restera à faire
-**** TODO Modifier frag pour qu'il rende (C2QL, C2QL) et non pas C2QL
+**** DONE Modifier frag pour qu'il rende (C2QL, C2QL) et non pas C2QL
 *** Bilan de la journée
 **** Réproductibilité
 + Les erreurs ne sont lancées que si on formule la requête avec Privy,
@@ -1099,7 +1114,7 @@ Et, de façon assez drôle,
 le Return (ou Pure) est.. *le point d'entrée* à la monade x)
 
 Car oui, si on défini un bind et un return, ça définit, en Idris, une monade
-****** TODO Regarder plus précisément ce qu'est une monade
+****** DONE Regarder plus précisément ce qu'est une monade
 Ronan conseille de regarder la monade State
 
 

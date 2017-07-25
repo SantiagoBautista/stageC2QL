@@ -1321,14 +1321,24 @@ donc sont égaux et $l$ appartient à $r'$.
 \begin{align}
 \fragDelta \circ \cryptCAlpha
 & \equiv (\cryptCAlpha, \id) \circ\fragDelta 
-& \text{si $\alpha \in \delta$}
+& \text{si $\alpha \in \delta_1 \cap \delta$}
 \label{fragCrypt1} \\
 \fragDelta \circ \cryptCAlpha
 & \equiv (\id, \cryptCAlpha) \circ\fragDelta 
-& \text{si $\alpha \notin \delta$}
+& \text{si $\alpha \in \delta_1 \setminus \delta$}
+\label{fragCrypt2} \\
+\fragDelta \circ \cryptCAlpha
+& \equiv \fragDelta
+& \text{si $\alpha \notin \delta_1$}
+\label{fragCrypt3}
 \end{align}
-Les deux lois se démontrent de façons tout à fait symétrique,
+Les lois (\ref{fragCrypt1}) et \ref{fragCrypt2} se démontrent 
+de façons tout à fait symétriques,
+et la démonstration de la loi (\ref{fragCrypt3})
+est plus simple que la démonstration de la loi (\ref{fragCrypt1}),
 donc je ne vais démontrer que la loi (\ref{fragCrypt1}).
+
+
 
 Soit $\alpha$ un nom d'attribut,
 $\typeT{c}$ un chiffrement
@@ -1344,14 +1354,103 @@ et $(res_{2,1}, res_{2,2}) = (\cryptCAlpha, \id) \circ \fragDelta(r)$.
 
 \subsubsection*{Schémas relationnels}
 Vu que $\cryptCAlpha$ préserve les schémas relationnels,
-$res_{1,1}$ et $res_{2,1}$ ont tous les deux pour schémas relationnels
-$\delta_1 \cap \delta$
+$res_{1,1}$ et $res_{2,1}$ ont tous les deux pour schéma relationnel
+$\delta_1 \cap \delta$ , et
 $res_{1,2}$ et $res_{2,2}$ ont tous deux pour schéma relationnel
 $\delta_1 \setminus \delta$.
 
-\subsubsection*{Première inclusion}
+\subsection*{Lemme}
+Dans les démonstrations des inclusions ci-après
+nous allons être emmené à nous servir du résultat
+suivant.
 
-\subsubsection*{Deuxième inclusion}
+Pour \typeT{c} un chiffrement,
+$\alpha$ un attribut, $l$ une ligne
+et $\delta$ un ensemble de noms d'attributs, 
+on a:
+$$
+\cy{l|_\delta}_\alpha =
+\left\lbrace
+\begin{array}{lr}
+l|_\delta & \text{si $\alpha \notin \delta$} \\
+(\cy{l}_\alpha)|_\delta & \text{sinon}
+\end{array}
+\right.
+$$
+
+\paragraph*{Démonstration du lemme}
+Dans le cas où $\alpha \notin \delta$,
+$\cy{l|_\delta}_\alpha$ et $l|_\delta$
+sont toutes deux définies sur $D_l \ cap \delta$
+et, pour tout $\beta$ de $D_l \cap \delta$ on a
+$\beta \neq \alpha$ du fait que $\alpha \notin \delta$
+d'où
+$\cy{l|_\delta}_\alpha(\beta) = l|_\delta(\beta)$.
+
+Dans le cas où $\alpha \in \delta$,
+vu que le chiffrement conserve l'ensemble de définition,
+l'ensemble de définition des deux fonctions considérées est bien
+le même ($D_l \cap \delta$).
+Pour $\beta \in D_l \cap \delta$ deux cas se présentent:
+soit $\beta = \alpha$ dans lequel cas
+$\cy{l|_\delta}_\alpha(\alpha) = \cy{(l|_\delta(\alpha))}$
+par définition du chiffrement,
+or $l|_\delta(\alpha) = l(\alpha)$
+car $\alpha \in \delta$,
+donc $\cy{l|_\delta}_\alpha(\alpha) = \cy{(l(\alpha))}$,
+or $\cy{(l(\alpha))} = \cy{l}_\alpha(\alpha)$
+par définition du chiffrement
+et $\cy{l}_\alpha(\alpha) = (\cy{l}_\alpha)|_\delta(\alpha)$
+puisque $\alpha \in \delta$,
+donc $\cy{l|_\delta}_\alpha(\alpha) = (\cy{l}_\alpha)|_\delta(\alpha)$ ;
+soit $\beta \neq \alpha$ dans lequel cas
+$\cy{l|_\delta}_\alpha(\beta) = l|_\delta(\beta) = l(\beta)$
+et $(\cy{l}_\alpha)|_\delta(\beta) = \cy{l}_\alpha(\beta) = l(\beta)$
+d'où $\cy{l|_\delta}_\alpha(\beta) = (\cy{l}_\alpha)|_\delta(\beta)$.
+
+\paragraph*{Cas particulier pour la démonstration de la loi 20}
+Puisqu'on suppose $\alpha \in \delta_1 \cap \delta$
+(et donc que $\alpha \notin \delta_1 \setminus \delta$)
+on pourra utiliser dans la suite le fait que
+$\cy{l|_\dilta}_\alpha = (\cy{l}_\alpha)|_\dilta$
+et
+$\cy{l|_{(\delta_1 \setminus \delta) \cip}}_\alpha
+= l|_{(\delta_1 \setminus \delta) \cip }$
+
+\subsubsection*{Inclusion de $res_{1,1}$ dans $res_{2,1}$}
+Soit $l$ une ligne de $res_{1,1}$.
+Il existe $l'$ une ligne de $r$ telle que
+$l = (\cy{l'}_\alpha)|_\dilta$.
+
+Or, puisque $l'$ appartient à $r$,
+$l'|_\dilta$ appartient à la première composante du
+couple
+$\fragDelta(r)$, donc
+$\cy{l'|_\dilta}_\alpha$ appartient à $res_{2,1}$.
+Or, $l = (\cy{l'}_\alpha)|_\dilta = \cy{l'|_\dilta}_\alpha$
+d'après le lemme, donc $l$ appartient à $res_{2,1}$.
+
+\subsubsection*{Inclusion de $res_{1,2}$ dans $res_{2,2}$}
+Soit $l$ une ligne de $res_{1,2}$.
+Il existe $l'$ ligne de $r$ telle que
+$l = (\cy{l'}_\alpha)|_{(\delta_1 \setminus \delta) \cip}$.
+
+Or, puisque $l'$ appartient à $r$,
+$l'_{(\delta_1 \setminus \delta) \cip}$ appartient à la deuxième
+composante de $\fragDelta(r)$, donc
+$l'_{(\delta_1 \setminus \delta) \cip}$ appartient à $res_{2,2}$.
+
+De plus, d'après le lemme,
+$l'_{(\delta_1 \setminus \delta) \cip}
+= (\cy{l'}_\alpha)|_{(\delta_1 \setminus \delta) \cip}$
+donc $l$ appartient à $res_{2,2}$.
+
+\subsubsection*{Inclusions réciproques}
+$res_{1,1}$, $res{1,2}$, $res{2,1}$ et 
+$res{2,2}$ ont tous les quatre le même cardinal
+(celui de $r$) donc, puisque les inclusions dans un sens ont été montrées
+et que le cardinal est le même, on a:
+$res_{1,1} = res_{2,1}$ et $res{1,2} = res_{2,2}$.
 
 \subsection*{Fragmentation et déchiffrement}
 \begin{align}
