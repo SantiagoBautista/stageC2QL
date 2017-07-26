@@ -1,12 +1,4 @@
 * Urgent
-** Revoir lois entre jointure et défragmentation
-+ Soit cette commutation ne devrait pas être possible
-+ Soit il faut qu'on m'explique qu'est-ce qui arrive
-aux identifiants
-
-
-
-
 * Grandes lignes
 ** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
@@ -1366,3 +1358,25 @@ l'état duquel je part
 synonyme de Type->Type (et donc pas un type en lui-même)
 ** 04/07
 *** Introduction du rapport
+** Du 05/07 au 07/07
+*** Début de la rédaction du rapport
+[[file:rapport/rapport.pdf][Rapport de stage]]
+
+** Du 09/07 au 16/07
+*** Semaine d'absence
+prévue dans les dates du stage.
+Encadrement du camp d'été avec les
+louveuteaux-jeannettes de Dinan.
+** Du 17/07 au 20/07
+Préparation de la présentation
+pour le séminaire d'équipe
+[[file:presentation/presentation.pdf][Diapositives de la présentation]]
+** Du 24/07 au 27/07
+*** Suite des démonstrations
+*** Liste des choses à faire
+**** TODO Revoir lois entre jointure et défragmentation
+ + Soit cette commutation ne devrait pas être possible
+ + Soit il faut qu'on m'explique qu'est-ce qui arrive
+ aux identifiants
+
+**** TODO Copier à l'ens des lois les modifs de frag/crypt-decrypt

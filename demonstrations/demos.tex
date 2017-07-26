@@ -1381,7 +1381,7 @@ $$
 \paragraph*{Démonstration du lemme}
 Dans le cas où $\alpha \notin \delta$,
 $\cy{l|_\delta}_\alpha$ et $l|_\delta$
-sont toutes deux définies sur $D_l \ cap \delta$
+sont toutes deux définies sur $D_l \cap \delta$
 et, pour tout $\beta$ de $D_l \cap \delta$ on a
 $\beta \neq \alpha$ du fait que $\alpha \notin \delta$
 d'où
@@ -1455,12 +1455,24 @@ $res_{1,1} = res_{2,1}$ et $res{1,2} = res_{2,2}$.
 \subsection*{Fragmentation et déchiffrement}
 \begin{align}
 \fragDelta \circ \decryptCAlpha
-& \equiv (\decryptCAlpha, \id) \circ \fragDelta
-& \text{si $\alpha \in \delta$} \\
+& \equiv (\decryptCAlpha, \id) \circ\fragDelta 
+& \text{si $\alpha \in \delta_1 \cap \delta$} \\
+\label{fragDecryptFirst}
 \fragDelta \circ \decryptCAlpha
-& \equiv (\id, \decryptCAlpha) \circ \fragDelta
-& \text{si $\alpha \notin \delta$}
+& \equiv (\id, \decryptCAlpha) \circ\fragDelta 
+& \text{si $\alpha \in \delta_1 \setminus \delta$} \\
+\fragDelta \circ \decryptCAlpha
+& \equiv \fragDelta
+& \text{si $\alpha \notin \delta_1$}
+\label{fragDecryptLast}
 \end{align}
+
+Pour avoir une démonstration des lois (\ref{fragDecryptFirst}) à
+(\ref{fragDecryptLast}) il suffit de reprendre la démonstration
+des lois entre la fragmentation et le chiffrement (lois
+(\ref{fragCrypt1}) à (\ref{fragCrypt3})) en remplaçant toutes les occurrences
+de \typeT{c} par $\typeT{c}^{-1}$ et celles de
+$\cryptCAlpha$ par $\decryptCAlpha$.
 
 \section*{Lois de défragmentation}
 \subsection*{Défragmentation et chiffrement}
