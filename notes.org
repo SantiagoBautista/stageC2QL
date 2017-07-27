@@ -1,4 +1,3 @@
-* Urgent
 * Grandes lignes
 ** Définir une notion de complétude pour les lois algébrique
 *** Première idée: 
@@ -1380,3 +1379,6 @@ pour le séminaire d'équipe
  aux identifiants
 
 **** TODO Copier à l'ens des lois les modifs de frag/crypt-decrypt
+**** TODO Dans les démonstration avec Defrag, changer utilisation du . par Unif
+**** TODO Vérifier démos pour IDENTIFIANTS FRAIS
+Donc, en particulier, dans le cas des jointures

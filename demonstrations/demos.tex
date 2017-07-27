@@ -58,6 +58,7 @@
 \newcommand{\fold}[3]{\operatorname{fold}_{#1, #2, #3}}
 \newcommand{\foldAlphafz}{\fold{\alpha}{f}{z}}
 \newcommand{\dilta}{{\delta \cip}}
+\newcommand{\unif}[2]{\uni(#1, #2)}
 
 \newcommand{\intro}[2]{Soit $r$ une relation. On pose $res_1 = (#1)(r) $ et $res_2 = (#2)(r) $}
 \newcommand{\dintro}{De même, si $l$ est un élément de $res_2$,}
@@ -1480,11 +1481,66 @@ $\cryptCAlpha$ par $\decryptCAlpha$.
 \begin{align}
 \defrag \circ (\cryptCAlpha, \id)
 & \equiv \cryptCAlpha \circ \defrag 
-& \text{si $\alpha \in \delta_1$} \\
+& \text{si $\alpha \in \delta_1$} 
+\label{defragCrypt1}\\
 \defrag \circ (\id, \cryptCAlpha)
 & \equiv \cryptCAlpha \circ \defrag 
-& \text{si $\alpha \in \delta_2$} 
+& \text{si $\alpha \in \delta_2$}
+\label{defragCrypt2} \\
+\cryptCAlpha \circ \defrag 
+& \equiv \defrag
+& \text{si $\alpha \notin \delta_1 \cup \delta_2$}
+\label{defragCrypt3}
 \end{align}
+
+Les lois (\ref{defragCrypt1}) et (\ref{defragCrypt2})
+se démontrant de façons tout à fait symétriques,
+nous démontrerons seulement la loi 
+(\ref{defragCrypt1}).
+
+La démonstration de la loi (\ref{defragCrypt3})
+étant plus facile (dans le sens de l'inclusion
+de l'ensemble des arguments et de leur agencement)
+que la démonstration de la loi (\ref{defragCrypt1}),
+nous démontrerons seulement la loi 
+(\ref{defragCrypt1}).
+
+Soient $r_1$ et $r_2$ deux relations unifiables
+(on peut les supposer unifiables car l'on fait l'hypothèse
+que les requêtes C2QL étudiées sont correctement formées
+et typées, car passent les vérifications de type faites
+par l'implémentation en Idris).
+On pose $res_1 = (\defrag \circ (\cryptCAlpha, \id)) (r1, r2)$
+et $res_2 = (\cryptCAlpha \circ \defrag) (r_1, r_2)$.
+
+\subsubsection*{Schémas relationnels}
+Puisque le chiffrement préserve le schéma relationnel 
+(et donc également l'unifiabilité),
+$res_1$ et $res_2$ ont tous deux pour schéma relationnel
+$\delta_1 \cup \delta_2 \cip$.
+
+\subsubsection*{Première inclusion}
+Soit $l$ une ligne de $res_1$.Il existe $l'_1$ une ligne
+de $\cryptCAlpha(r_1)$ et $l_2$ une ligne de $r_2$
+telles que $l = \uni(l'_1, l_2)$.
+Donc, il existe une ligne $l_1$ de $r_1$
+telle que $l'_1 = \cy{l_1}_\alpha$ et 
+$l = \uni(\cy{l_1}_\alpha, l_2)$.
+
+Or, du fait que $l_1$ appartient à $r_1$ et 
+$l_2$ appartient à $r_2$,
+$\unif{l_1}{l_2}$ appartient à $\defrag (r_1, r_2)$
+et donc $\cy{\unif{l_1}{l_2}}_\alpha$ appartient
+à $\cryptCAlpha(\defrag(r_1,r_2)) = res_2$.
+
+\paragraph{Lemme:} Montrons que, du fait
+que $\alpha$ appartient à $\delta_1$, on a
+$\cy{\unif{l_1}{l_2}}_\alpha = \unif{(\cy{l_1}_\alpha)}{l_2}$.
+Le chiffrement conservant le schéma relationnel,
+les deux fonctions en question sont définies sur
+$\delta_1 \cup \delta_2 \cip$.
+
+Or, on a: 
 
 \subsection*{Défragmentation et déchiffrement}
 \args
