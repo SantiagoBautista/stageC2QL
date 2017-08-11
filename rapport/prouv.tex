@@ -1,1 +1,105 @@
-é
+Pour pouvoir utiliser les lois de commutation
+pour créer des programmes C2QL optimaux,
+il est nécessaire de s'assurer que ces lois sont correctes,
+c'est à dire que le résultat obtenu avant et après la
+commutation des opérateurs est bien le même.
+
+Pour démontrer la correction des lois de commutation,
+deux approches sont possibles:
+soit nous essayons de les démontrer à la main,
+soit nous essayons de les démontrer de façon automatique
+avec un \emph{prouveur} ou un \emph{assistant de preuve}
+tel que \typeT{Coq}.
+
+Nous avons opté pour la première approche,
+principalement pour des raisons de temps.
+En effet, vu qu'il s'agit d'un stage de L3
+nous n'avons aucune expérience dans l'utilisation
+des prouveurs ou des assistants de preuve,
+et donc un temps non négligeable aurait été nécessaire
+à la prise en main de tels outils.
+Or, l'appropriation du sujet et du langage C2QL
+avaient déjà pris un temps certain, donc
+nous n'étions pas sûrs d'avoir le temps nécessaire.
+Ceci est d'autant plus vrai que nous n'avions
+aucun moyen de nous assurer que les méthodes 
+de preuves automatiques (ou semi-automatiques) seraient
+adaptés au problème en question.
+
+\textbf{La structure des preuves} est,
+à quelques exceptions près, toujours la même.
+En effet, il s'agit, de montrer que pour deux fonctions
+$f$ et $g$ du langage C2QL, les fonctions
+$f \circ g$ et $g \circ f$ sont, selon le cas,
+égales ou équivalentes.
+
+Pour cela la méthode suivie est de considérer une relation
+(ou un tuple de relations) $r$ quelconque et de montrer
+que $(f \circ g) (r)$ est égal (ou équivalent)
+à $(g \circ f) (r)$.
+
+Mis à part certains cas où la fonction
+$\frag$ intervient,
+$(f \circ g) (r)$ et $(g \circ f) (r)$ sont tous les deux
+des ensembles, et donc pour prouver leur égalité
+(ou leur équivalence) soit on prouve qu'ils sont
+l'un inclus dans l'autre et l'autre inclus dans l'un,
+soit on prouve que l'un est inclus dans l'autre et qu'ils
+ont tous deux même cardinal.
+
+\paragraph{Égalité ou équivalence}
+La plupart du temps, c'est bien d'une égalité qu'il s'agit
+entre les deux résultats en question.
+Cependant, on va ci-dessous expliquer pourquoi
+lorsque l'une des fonctions qu'on cherche à faire commuter
+est la fonction de jonction, on ne peux pas parler
+d'égalité proprement dite et il faut parler d'équivalence.
+
+Cela vient de la gestion des identifiants des lignes.
+Pour pouvoir défragmenter des relations issues d'une
+fragmentation, on utilise des identifiants pour les lignes:
+au sein de chacune des relations manipulées, chaque ligne
+possède un identifiant qui (dans la relation) 
+lui est unique.
+Ainsi, lors de la fragmentation, les deux morceaux
+d'une ligne gardent le même identifiant,
+ce qui permet de les faire correspondre lors de la 
+défragmentation.
+Comme au sein de chaque relation chaque identifiant
+est unique, cette correspondance ce fait sans ambiguïté;
+c'est bien le comportement désiré.
+
+Cependant, lors d'une jointure, une ligne d'une des tables
+jointes peut donner lieu à plusieurs lignes dans
+le résultat, et il faut bien que ces lignes-là aient
+un identifiant
+(dans le cas où l'on voudrait les fragmenter par
+la suite). Or cet identifiant ne peut pas correspondre
+à celui de l'une des lignes qui lui a donné naissance,
+parce qu'il ne serait alors pas unique.
+Il ne peut pas non plus correspondre à un couple
+avec les deux identifiants des deux lignes lui ayant
+donné naissance, car une autre jonction
+(avec un ensemble différent d'attributs en communs,
+par exemple après une projection) pourrait donner
+lieu, ailleurs dans le système,
+à des lignes ayant le même identifiant que la ligne
+crée par la jonction, sans que ces deux lignes aient
+un rapport entre elles.
+
+Ainsi, les effets propres à la jonctions nécessitent
+que lors d'une jonction, les lignes du résultat 
+aient des identifiants frais, qui ne soient
+présents nulle part ailleurs dans le système.
+
+Une conséquence directe de cela, est que
+les lois de commutation ne peuvent pas assurer l'égalité
+stricte des résultats lorsqu'une jonction intervient,
+car la jonction crée un identifiant frais pour chaque
+ligne résultat, et que deux identifiants frais
+(ceux de chaque résultat) n'ont aucune raison d'être
+égaux entre eux.
+
+Dans ces cas-là il s'agit donc de prouver une 
+égalité \emph{aux identifiants des lignes près}.
+C'est ça qu'on appelle \emph{équivalence}.
