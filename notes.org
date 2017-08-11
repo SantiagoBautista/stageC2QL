@@ -703,8 +703,7 @@ pour les decrypt, par exemple
 Il y a différentes choses à faire, dont
 ***** Calculer un schéma à partir d'un schéma et d'une expression C2QL
 ***** Calcule-t-on toutes les transformations possibles?
-***** Comment choisi-t-on entre deux transformations
-
+***** Comment choisi-t-on entre deux transformations?
 
 * Carnet de bord à partir du 12/06
 ** 12/06

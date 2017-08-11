@@ -5,3 +5,67 @@ du fait qu'elle s'exécute dans le cloud,
 ni tenir compte des mécanismes de protection utilisés)
 à une version optimisée.
 
+En effet, tout l'intérêt du langage C2QL est d'obtenir
+un programme tirant avantage de la composition
+pour être particulièrement performant
+(au sens des trois critères définis dans la section
+\ref{context}) tout en facilitant au maximum
+le développement pour le développeur
+(en lui permettant de n'écrire que la version locale
+des requêtes).
+
+C'est l'utilisation des lois de commutation qui permet
+de passer de la version locale à la version
+optimisée, mais cette utilisation se fait pour le moment à
+la main: à chaque étape, le développeur doit regarder, 
+dans les lois applicables, laquelle il veut appliquer.
+
+Pour faciliter la tache au programmeur, on peut
+vouloir automatiser ce processus d'optimisation,
+ce qui pose plusieurs questions.
+
+\paragraph{Choix des métriques}
+Les lois, peuvent avoir des effets sur les trois
+objectifs/critères suivants:
+\begin{itemize}
+	\item Utiliser le cloud le plus possible
+	\item Utiliser le moins de temps possible
+	\item Faire transiter le moins de données
+	possibles à travers le réseau
+\end{itemize}
+Ainsi donc, si jamais on doit choisir entre deux lois de commutation différentes applicables à une requête donnée
+et mutuellement exclusives; pour faire un choix objectif
+il faut disposer d'une manière de mesurer l'effet produit
+par chacune de ces lois par rapport à ces critères-ci.
+
+Qui plus est, si les lois parmi lesquelles il faut choisir
+agissent sur des critères différents, il
+peut être nécessaire de pouvoir comparer l'importance des
+différents critères entre eux. Autrement dit,
+si l'on dispose d'une métrique pour chaque critère,
+il faut avoir une façon d'en déduire une métrique
+globale. Ceci peut nécessiter de s'intéresser aux
+nécessités et visées spécifiques de l'application en question.
+
+\paragraph{Choix de la méthode d'exploration}
+Les différentes suites de lois appliquées
+pour optimiser une requête se présentent comme
+un arbre de transformations possibles, qu'il faut donc
+explorer pour trouver la forme la plus optimale
+pour la requête.
+
+Il faut donc choisir une méthode d'exploration
+pour explorer l'arbre en question.
+
+\paragraph{Une première approche, naïve}
+En ce moment, nous sommes en train de développer
+une toute première approche, complètement naïve
+d'un optimiseur automatique de requêtes C2QL.
+La méthode d'exploration choisie est l'exploration
+exhaustive. La métrique choisie consiste en,
+pour chaque lois et chaque critère, affecter un score
+de 1, 0 ou -1 selon le fait que la loi favorise,
+soit neutre, ou défavorise le critère en question;
+et on affecte la même importance, le même poids,
+aux métriques des trois critères, par une simple somme,
+pour obtenir la métrique globale.
