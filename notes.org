@@ -705,6 +705,7 @@ Il y a différentes choses à faire, dont
 ***** Calcule-t-on toutes les transformations possibles?
 ***** Comment choisi-t-on entre deux transformations?
 
+
 * Carnet de bord à partir du 12/06
 ** 12/06
 Je vais plutôt commencer à démontrer les lois,
