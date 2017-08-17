@@ -1,6 +1,99 @@
+Comme nous l'avons vu dans la section
+\ref{contrib}, le but de ce stage 
+était surtout de gagner en assurance et en
+\og complétude \fg{} sur un aspect précis
+du langage C2QL: l'ensemble de lois
+de commutation qui permettent de passer d'optimiser une
+requête C2QL.
+
+Ce but-là a été réussi, mais il reste, en ce qui
+concerne le langage C2QL, des ajouts et
+approfondissements intéressants qui peuvent être faits
+(tels que l'ajout d'un compilateur vers une application
+concrète ou la prise en compte d'autres critères de
+sécurité et d'autres mécanismes de sécurité), et,
+en ce qui concerne le travail de ce stage, 
+l'automatisation de l'optimisation de requêtes,
+qui n'a été que effleurée, pourrait être traitée
+de façon plus approfondie.
 
 \subsection*{Un compilateur concret de C2QL}
+Pour l'instant, C2QL dispose d'une implémentation
+en tant que langage embarqué dans Idris; qui permet
+de vérifier certaines propriétés de \og bonne formulation
+\fg{} des requêtes qu'on écrit en C2QL. Par exemple,
+lorsque, dans une requête, on déchiffre
+un attribut, l'implémentation actuelle
+vérifie que l'attribut en question était bien chiffré.
+Ce genre de vérifications permet d'éviter un certain
+nombre d'erreurs de programmation.
+
+Pour information, Idris est un langage avec des types
+dépendants, ce qui veut dire qu'en Idris, le type
+des variables peut dépendre d'une ou plusieurs valeurs.
+Ainsi, on peut préciser comme type 
+\og Liste avec 3 éléments \fg{} et ce type là
+\emph{dépend} de la valeur 3.
+Mais les valeurs dont dépend un type ne doivent pas
+forcément être constantes. Le type d'une variable peut
+en effet dépendre de la valeur d'une autre variable,
+ou même du résultat de l'application d'un certain type
+de fonction, les fonctions \emph{totales}, à une variable.
+Pour faire simple, une fonction est dite \emph{totale}
+en Idris, si Idris est capable de vérifier statiquement
+que cette fonction termine.
+Par exemple, le calcul de la longueur d'une liste peut
+être implémenté de façon totale, et donc
+\og un couple de listes de même longueur \fg{}
+peut très bien être un type en Idris.
+
+Grâce à l'utilisation de types dépendants en Idris,
+en typant les requêtes avec les schémas relationnels
+des relations utilisées,
+l'implémentation actuelle de C2QL peut vérifier
+de façon fiable des propriétés qui seraient autrement
+plus difficiles à obtenir.
+
+\textbf{Cependant}, même si l'implémentation
+actuelle permet d'exprimer les requêtes à effectuer
+et d'en vérifier des propriétés; elle n'offre aucun moyen
+d'exécuter concrètement ces requêtes sur des
+vraies données.
+Il a été envisagé par l'auteur de la thèse
+de réaliser un compilateur qui transforme un programme
+C2QL (i.e. un ensemble de requêtes C2QL) en
+des programmes écrits par exemple en JavaScript
+pour être exécutés l'un par la machine du client,
+les autres par les différents clouds concernés.
+Un travail futur pourrait consister en l'élaboration
+d'un tel compilateur de C2QL vers une application
+\og concrète \fg{}, exécutable sur le cloud.
+
+De la même façon,
+l'auteur de la thèse avait envisagé de
+créer un \og compilateur \fg{} de C2QL vers
+ProVérif pour pouvoir, avec ProVérif,
+vérifier que le programme C2QL écrit respecte bien
+les contraintes de confidentialité qui avaient été fixées.
+
+Il existe actuellement une transformation de
+C2QL vers le pi-calcul; il resterait donc
+à créer une transformation du pi-calcul vers ProVérif.
 
 \subsection*{Un optimiseur réaliste des requêtes}
+Comme mentionné dans la section \ref{opti},
+l'optimiseur automatique de requêtes
+que nous sommes en train de développer 
+suit une approche naïve (tantôt dans sa façon de
+mesurer l'effet de l'application d'une commutation, 
+comme dans l'exploration des suites de commutations
+possibles) et a pour seule ambition d'être une
+première approche.
+
+Un travail futur pourrait être de créer un optimiseur
+de requêtes plus réaliste; ce qui nécessiterait
+une réflexion plus approfondie, en particulier
+en ce qui concerne les métriques permettant d'estimer
+l'effet d'une commutation donnée.
 
 \subsection*{D'autres critères et mécanismes de sécurité}
