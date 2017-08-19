@@ -97,3 +97,38 @@ en ce qui concerne les métriques permettant d'estimer
 l'effet d'une commutation donnée.
 
 \subsection*{D'autres critères et mécanismes de sécurité}
+C2QL est un langage qui permet d'exprimer la composition 
+de différents mécanismes de sécurité, comme on l'a vu dans
+la section \ref{descrC2QL}.
+
+Les trois mécanismes de sécurité actuellement
+pris en compte dans C2QL
+(le chiffrement, la fragmentation verticale
+et le fait de réaliser les calcul sur
+la machine du client)
+sont tous les trois des mécanismes permettant
+de protéger la \emph{confidentialité} des données.
+
+Or, la confidentialité n'est pas le seul critère
+de sécurité que l'on peut vouloir garantir.
+L'intégrité des données ou la disponibilité des données,
+par exemple, peuvent également être des critères 
+de sécurité importants; et pour les satisfaire,
+il est nécessaire de prendre en compte d'autres
+mécanismes de protection.
+
+Par exemple, le tatouage des données 
+(qui consiste à altérer légèrement les données,
+à en ajouter une \og marque \fg{}) peut être utilisé
+pour protéger l'intégrité des données.
+En effet, si la marque en question constitue une
+signature électronique, alors toute attaque voulant porter
+atteinte à l'intégrité des données (en remplaçant les 
+vraies données par des fausses données) serait
+repérable par une vérification de la marque
+associée à ces données là.
+
+Ajouter d'autres mécanismes de sécurité
+(tels que le tatouage) pour prendre en compte
+d'autres critères de sécurité (tels que l'intégrité)
+serait une extension possible du langage C2QL.
