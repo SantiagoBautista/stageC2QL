@@ -78,19 +78,25 @@ un ensemble de rendez-vous, l'association $(\mathrm{date}, \mathrm{lieu})$
 doit être protégée, car une personne malveillante ayant accès à ces deux
 informations là à la fois pourrait suivre l'utilisateur de l'application.
 
+L'idée de fragmentation verticale, la façon de l'utiliser,
+et même le fait de décrire certaines contraintes de
+confidentialité sous la forme d'un couple d'attributs
+sont empruntés à un article de 
+Oury et Swierstra~\cite{OurySwierstra}.
+
 La fragmentation verticale contribue à protéger la confidentialité,
-mais d'une façon souvent moins forte que celles du chiffrement
+mais d'une façon parfois moins forte que celles du chiffrement
 ou de l'exécution côté client. Par contre, chacun des fragments
-de données qu'elles génère peuvent être opérés séparément, en introduisant
+de données qu'elle génère peuvent être opérés séparément, en introduisant
 ainsi, lorsque le programme le permet, une dose de parallélisation
 supplémentaire qui peut améliorer les performances et permettre de tirer
-encore plus d'avantages du nuage.
+encore plus d'avantages du cloud.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{snps.png}
 		\caption{Enjeux et techniques dans le cloud-computing}
-		\caption*{(image provenant de la thèse de Ronan Cherrueau)}
+		\caption*{(image provenant de la thèse de Ronan Cherrueau~\cite{rc:these})}
 		\label{enjeux}
 	\end{center}
 \end{figure}
