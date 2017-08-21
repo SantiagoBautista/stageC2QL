@@ -1,4 +1,5 @@
 \subsection{De l'importance de composer les techniques de protection}
+\label{fautComposer}
 
 De plus en plus d'applications, en particulier
 les applications web et les applications pour téléphone portable,
@@ -114,16 +115,30 @@ pour pouvoir raisonner dessus, Cherrueau a introduit un langage: C2QL.
 
 \subsection{Un langage pour décrire la composition: C2QL}
 \label{descrC2QL}
+On suppose que l'on peut voir les données stockées par
+l'application comme étant une base de données.
+
+Le modèle mathématique le plus répandu pour modéliser
+les bases de données est appelé
+\emph{algèbre relationnelle}.
+Pour une idée plus précise de ce qu'est 
+l'algèbre relationnelle, se référer à
+la section \ref{defs}, à l'annexe B
+ou à la description des fonctions ci-dessous.
+L'algèbre relationnelle, comporte, entre
+autres, un ensemble de fonctions permettant 
+de manipuler les données.
+
 Le langage C2QL donne une façon d'exprimer comment les techniques
 mentionnées ci-dessus se composent avec les fonctions classiques de l'algèbre relationnelle.
 
-Les données manipulées sont donc représentées sous forme de tables, ou relations,
+Les données manipulées sont représentées sous forme de tables, ou relations,
 c'est à dire un ensemble de lignes contenant des valeurs pour chacun(e) des 
 différent(e)s attributs ou colonnes considéré(e)s.
 
 Dans l'exemple de l'application stockant des rendez-vous, cette
 table contiendrait autant de lignes que de rendez-vous stockés 
-dans l'application et (par exemple) trois colonnes ou attributs: 
+et (par exemple) trois colonnes ou attributs: 
 nom de l'utilisateur
 ayant stocké le rendez-vous, date du rendez-vous et lieu du rendez-vous.
 
@@ -131,14 +146,15 @@ ayant stocké le rendez-vous, date du rendez-vous et lieu du rendez-vous.
 présents dans ce langage sont
 \begin{itemize}
 	\item La projection, notée $\proj$ 
-	qui consiste à ne considérer que certains des attributs de la table.
+	qui consiste à ne considérer que certains des attributs de la table (autrement dit,
+	à ne garder que certaines colonnes).
 	\item La sélection, notée $\sel$
 	qui consiste, pour une table donnée, à ne considérer que
 	les lignes satisfiant un certain prédicat.
 	\item La jonction naturelle, notée $\Join$, qui combine
 	les informations de deux tables en fonction des attributs qu'elles ont
 	en commun.
-	\item L'aggrégation et la réduction
+	\item L'agrégation et la réduction
 	(notées respectivement $\group$ et $\operatorname{fold}$)
 	permettant, respectivement, 
 	de regrouper les lignes qui partagent les mêmes valeurs
@@ -157,7 +173,7 @@ présents dans le langage sont
 	\item La défragmentation verticale, notée $\defrag$,
 	qui effectue l'opération inverse: à partir de deux
 	tables n'ayant pas d'attributs en commun, reconstruit une seule table.
-	Un attribut spécial, $id$, servant à identifier chaque ligne et créer lors de 
+	Un attribut spécial, $id$, servant à identifier chaque ligne et conservé lors de 
 	la fragmentation d'une table, rend la défragmentation possible.
 	
 	\item Le chiffrement, noté $\operatorname{crypt}$
@@ -168,40 +184,81 @@ présents dans le langage sont
 \end{itemize}
 
 \paragraph{\og Où est passée le calcul côté client?\fg{}}
-est peut-être une question que vous vous posez peut-être en ce moment.
+est une question que vous vous posez peut-être en ce moment.
+En effet, il peut paraître étrange que le langage
+C2QL n'intégre pas d'opérateur relatif
+ax calculs côté client, qui est l'une des techniques
+que nous avons annoncée comme étant prise en compte
+dans le langage C2QL.
+
 La raison pour laquelle il n'y a aucun opérateur dans C2QL 
 qui permette d'exprimer le rapatriement des données sur la machine de l'utilisateur
-est que cette gestion est faite implicitement, pour garantir
-que les requêtes C2QL protègent toujours la confidentialité, par conception.
-En effet, dans le langage C2QL on suppose que les données à protéger sont toujours
-soit un attribut, dans lequel cas il peut être protégé par chiffrement,
-soit une association de deux attributs, dans lequel cas elle peut être protégée
-par fragmentation. Par conséquent, dans une requête, le premier déchiffrement 
-ou la première défragmentation (ou l'absence de chiffrement ou de
-fragmentation dans des cas où ils auraient été nécessaires)
-brisent la protection des données et requièrent que
-les données soient rapatriées chez l'utilisateur pour cette opération et toutes
-les opérations postérieures.
+est liée, d'une part, aux suppositions qu'on fait sur les contraintes
+de confidentialité à respecter
+(suppositions détaillés plus bas), et,
+d'autre part, au fait que
+le langage C2QL vise la \emph{sécurité par 
+	conception} ou (\emph{security by design}):
+le langage doit, dans la mesure du possible,
+ être fait de telle façon
+qu'un programme écrit dans ce langage soit forcément
+sûr.
+
+On suppose, concernant les contraintes de confidentialité
+que l'on cherche à respecter, qu'elles sont de l'une des
+deux formes suivantes: soit il s'agit du contenu d'un
+attribut qu'il faut maintenir confidentiel,
+soit c'est l'association entre deux attributs
+qu'il faut protéger.
+
+Dans le cas où il faut protéger la confidentialité
+d'un seul attribut, le mécanisme utilisé
+sera le chiffrement; et donc le fait
+de déchiffrer enlève la protection de cet
+attribut et implique que, pour que l'application soit
+sûre, cette opération de déchiffrement 
+et toutes les opérations suivantes doivent être exécutées
+sur la machine de l'utilisateur.
+
+Dans le cas où il faut protéger l'association entre deux 
+attributs, le mécanisme utilisé
+pour protéger cette association est la fragmentation,
+et donc toute défragmentation réunissant les deux attributs
+en question rompt la protection et nécessite 
+que cette défragmentation et les opérations suivantes
+soient exécutées sur la machine de l'utilisateur.
+
+% que cette gestion est faite implicitement, pour garantir
+%que les requêtes C2QL protègent toujours la confidentialité, par conception.
+%En effet, dans le langage C2QL on suppose que les données à protéger sont toujours
+%soit un attribut, dans lequel cas il peut être protégé par chiffrement,
+%soit une association de deux attributs, dans lequel cas elle peut être protégée
+%par fragmentation. Par conséquent, dans une requête, le premier déchiffrement 
+%ou la première défragmentation (ou l'absence de chiffrement ou de
+%fragmentation dans des cas où ils auraient été nécessaires)
+%brisent la protection des données et requièrent que
+%les données soient rapatriées chez l'utilisateur pour cette opération et toutes
+%les opérations postérieures.
 
 Ainsi, on peut, en regardant une expression C2QL et en connaissant les
 contraintes de confidentialité à respecter,
 déduire à quel moment les données doivent être rapatriées chez l'utilisateur;
 sans que cette opération aie besoin d'apparaître explicitement dans l'expression.
+Le rapatriement des données dans la machine de l'utilisateur
+est donc gérée implicitement.
 
-\textbf{Rajouter un exemple serait probablement utile}
+%\textbf{Rajouter un exemple serait probablement utile}
 
-\textbf{TODO Expliquer les contraintes de sécurité avant l'aspect implicite
-	du c.c.}
 
 Ce langage a été défini comme un Langage de Domaine Spécifique Embarqué dans
-Idris, qui est un langage à types dépendants.
+Idris. Idris, qui est un langage à types dépendants.
 Le système de typage d'Idris et les types donnés aux opérateurs permettent
 de vérifier, lorsqu'on écrit une requête en C2QL que celle-ci aura un sens
 au moment de l'exécution.
 
 \subsection{Utiliser C2QL: commuter les opérateurs}
 \label{passage}
-Dans sa thèse, Cherrueau expose un méthode pour se servir facilement
+Dans sa thèse, Cherrueau expose une méthode pour se servir facilement
 et efficacement de C2QL, en trois étapes.
 
 \paragraph{Première étape: écrire la version locale de l'application.}
@@ -213,15 +270,14 @@ Cette version de l'application est beaucoup plus facile à écrire
 qu'une version utilisant efficacement les techniques de protection.
 
 \paragraph{Deuxième étape: ajouter les techniques de protection nécessaires.}
-Le langage C2QL suppose que les contraintes de confidentialité sont de deux types:
+Comme vu à la section \ref{fautComposer}, le langage C2QL suppose que les contraintes de confidentialité sont de deux types:
 soit il s'agit d'une association entre deux attributs que l'on veut 
 protéger, dans lequel cas on choisit de mettre les deux attributs de l'association
 dans des fragments distincts grâce à la fragmentation verticale, soit il s'agit de la
 valeur d'un attribut que l'on veut protéger, dans lequel cas soit on chiffre cette valeur,
-soit on la décompose sur plusieurs fragments avec la technique exposée par Aggarwal 
-(\textbf{TODO rajouter la référence}). Dans les deux cas on peut passer des 
+soit on la décompose sur plusieurs fragments avec la technique exposée par Aggarwal~\cite{aggar}. Dans les deux cas on peut passer des 
 versions locales des requêtes à des versions protégées en faisant apparaître 
-à droite de la requête les fonctions de protections composées avec leurs fonctions réciproques.
+à droite de la requête les fonctions de protection composées avec leurs fonctions réciproques.
 
 \paragraph{Troisième étape: faire commuter les différentes fonctions.}
 En faisant commuter les différents opérateurs qui apparaissent dans les requêtes,
