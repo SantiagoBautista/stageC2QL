@@ -5,6 +5,9 @@
 \usepackage[utf8]{inputenc}%
 \usepackage[main=francais,english]{babel}%
 
+\usepackage[backend=biber, sorting=none]{biblatex}%
+\bibliography{papers}% The name of your .bib file
+
 \usepackage{graphicx}%
 \usepackage{url}%
 \usepackage{abstract}%
@@ -91,14 +94,17 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-	Des applications de tout genre manipulent des personnelles de ses utilisateurs
+	Des applications de tout genre manipulent des
+	données personnelles %de ses utilisateurs
 	et utilisent le cloud pour s'exécuter ou s'héberger.
 	Différentes techniques existent pour protéger la confidentialité de ces données.
-	Pendant ce stage on a étudié la sémantique et prouvé les propriétés algébriques d'un langage permettant de décrire
+	Pendant ce stage nous avons étudié la sémantique et prouvé les propriétés algébriques d'un langage,
+	nommé C2QL, permettant 
+	d'optimiser
 	efficacement la composition de plusieurs de ces techniques, comme la fragmentation et le chiffrement.
 	\begin{description}
 		\item[Mots clés:]{\begin{otherlanguage}{english}
-				privacy, cloud-computing, semantics, proof of correctness, algebraic laws, fragmentation, optimisation
+				privacy, cloud, semantics, proof of correctness, algebraic laws, fragmentation, C2QL language 
 			\end{otherlanguage}} 
 	\end{description} 
 	

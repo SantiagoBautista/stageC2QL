@@ -6,20 +6,35 @@ cherchent à utiliser le nuage, soit pour stocker du code ou des données,
 soit pour faire des calculs,
 voir les deux à la fois.
 
-En effet, le nuage peut offrir des services (que ce soit sous forme d'infrastructure,
-de plateforme ou de logiciel) disposant d'une forte disponibilité et faciles à redimensionner.
+En effet, le cloud peut offrir des services (que ce soit de l'infrastructure,
+des plateformes ou du logiciel) disposant d'une forte disponibilité et faciles à redimensionner.
 
-Autrement dit, pouvoir utiliser le nuage est devenu un enjeu de la conception logicielle,
-à cause des avantages de disponibilité et redimensionnement que cela offre.
+Autrement dit, \emph{pouvoir utiliser le cloud} 
+est devenu, dans certains cas,
+un enjeu de la conception logicielle,
+à cause des avantages de disponibilité 
+et redimensionnement que cela offre.
 
-Mais ce n'est pas le seul enjeux de la conception logicielle.
+Mais ce n'est pas le seul enjeu de la conception
+logicielle.
 
-Vu que la plupart de ces applications manipulent des données personnelles, 
-garantir la \emph{confidentialité} des données est également un enjeux de 
-ces applications là; tout comme le sont les \emph{performances} pour garantir
+Vu que la plupart de ces applications manipulent 
+des données personnelles, 
+garantir la \emph{confidentialité} des données 
+est également un enjeu de 
+ces applications-là; 
+tout comme le sont les \emph{performances} 
+pour garantir
 une meilleure expérience à l'utilisateur de l'application.
 
-Dans sa thèse, R. Cherrueau s'intéresse à trois techniques particulières
+C'est à ces trois enjeux-là de la conception
+logicielle (l'utilisation du cloud,
+la protection de la confidentialité
+et la recherche des performances)
+que s'intéresse R. Cherrueau dans sa thèse.
+
+Il s'intéresse également à trois techniques
+particulières de protection de la confidentialité
 utilisées dans le développement logiciel et regarde comment elles interagissent
 avec les trois enjeux cités plus haut.
 Ces trois techniques, qu'on va décrire brièvement, sont
@@ -32,13 +47,13 @@ Lorsqu'il est bien utilisé, le chiffrement permet de garantir la confidentialit
 des données de l'utilisateur.
 De plus, dans certains cas, des calculs peuvent être faits sur les données chiffrées.
 On appelle chiffrement homomorphe un chiffrement avec lequel on peut effectuer des calculs
-avec les données chiffrées. Les chiffrement homomorphes totaux, comme celui de
-Gentry (\textbf{référence à ajouter}) sont pour l'instant trop contraignants pour pouvoir être utilisés
+avec les données chiffrées. Les chiffrements homomorphes totaux, comme celui de
+Gentry~\cite{gentry:total} sont pour l'instant trop contraignants pour pouvoir être utilisés
 dans la plupart des applications, mais les chiffrements homomorphes partiels,
-c'est à dire les chiffrement avec lesquels on peut effectuer \emph{certaines}
+c'est à dire les chiffrements avec lesquels on peut effectuer \emph{certaines}
 opérations sur les données chiffrées, peuvent se révéler très utiles.
 C'est le cas des chiffrements déterministes (dont les chiffrements symétriques)
-qui sont des chiffrement homomorphes partiels, permettant le test d'égalité.
+qui sont des chiffrements homomorphes partiels, permettant le test d'égalité.
 
 Dans tous les cas, le chiffrement implique un surcoût en terme de calculs,
 donc diminue les performances. Dans certains cas, il améliore la confidentialité
@@ -179,6 +194,7 @@ de vérifier, lorsqu'on écrit une requête en C2QL que celle-ci aura un sens
 au moment de l'exécution.
 
 \subsection{Utiliser C2QL: commuter les opérateurs}
+\label{passage}
 Dans sa thèse, Cherrueau expose un méthode pour se servir facilement
 et efficacement de C2QL, en trois étapes.
 

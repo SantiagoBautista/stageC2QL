@@ -1,6 +1,6 @@
 De plus en plus de logiciels sont développés pour être exécutés dans le cloud,
 et ses logiciels, de quelque sorte qu'ils soient (messagerie, gestion d'agenda personnel,
-commande de pizza ou reconnaissance vocale) traitent des données personnelles, qu'ils doivent
+commande de pizza, reconnaissance vocale, $\dots$) traitent des données personnelles, qu'ils doivent
 donc protéger.
 
 Une des propriétés qui doit être garantie dans la protection des données personnelles
@@ -13,11 +13,19 @@ Dans sa thèse de 2016, Ronan Cherrueau montre que chacune de ces techniques
 mais qu'\emph{en composant les différentes techniques ensemble} 
 on peut profiter de tous les avantages de ces
 techniques en éliminant la plupart des inconvénients.
+
 Il développe donc un langage, nommé C2QL (pour \emph{\begin{otherlanguage}{english}
 		Cryptographic Compositions for Query Language
 	\end{otherlanguage}}),
-qui permet de décrire une telle composition de techniques de sécurisation des données
-pour en vérifier la correction et raisonner plus facilement.
+qui permet de décrire la composition de techniques de protection des données.
+Grâce à C2QL, on peut non seulement
+raisonner sur cette composition en vu d'en prouver la
+correction, mais aussi passer d'un programme 
+ne tenant pas compte de la protection
+à un programme composant efficacement les
+techniques de sécurité, en utilisant la
+méthode décrite ci-après
+et détaillée à la section \ref{passage} .
 
 Le langage se présente comme un ensemble de fonctions que l'on peut
 composer entre elles.
@@ -40,7 +48,8 @@ fonctions pour optimiser sa requête sécurisée.
 Par conséquent, disposer de lois qui indiquent à quelles conditions les différentes
 fonctions du langage commutent est très important.
 
-Or, si dans sa thèse R. Cherrueau donne la plupart de ces lois,
+Dans sa thèse, R. Cherrueau donne la plupart de ces lois.
+Cependant,
 il n'a pas eu le temps de les démontrer, ni de contempler tous les cas de figure.
 
 C'est pourquoi, pendant ce stage, 
@@ -50,7 +59,8 @@ et j'ai formalisé la sémantique des différentes fonctions
 (section \ref{defs}) pour ensuite
 démontrer la correction de ces lois (section \ref{proof}).
 
-Une description du contexte dans lequel s'inscrit ce stage
+Une description du contexte dans lequel s'inscrit ce stage,
+et du travail qui avait déjà été fait,
 est donnée à la section \ref{context},
 et une discussion sur les aspects qui n'ont pas été traités
 est donnée à la section \ref{discusion}.
