@@ -5,14 +5,14 @@ impossible une preuve mathématique de la correction des lois les concernant.
 J'ai donc commencé par poser des définitions formelles des fonctions du langage
 C2QL.
 
-Pour former ces définitions, j'ai du faire des choix à plusieurs reprises.
+Pour former ces définitions, j'ai dû faire des choix à plusieurs reprises.
 À chaque fois, j'ai utilisé les deux mêmes critères pour guider mes choix:
 d'une part il faut que les définitions que je choisi permettent au langage
 d'être le plus expressif possible, d'autre part il faut que les définitions
 choisies facilitent une démonstration rigoureuse de la correction
 des lois de commutation.
 
-Pour un document contenant l'ensemble des définition,
+Pour un document contenant l'ensemble des définitions,
 se référer à l'annexe A.
 
 Dans ce rapport je vais me centrer principalement
@@ -23,7 +23,7 @@ aux définitions qui étaient suggérées par les notations de la thèse,
 en expliquant les motivations de ces différences.
 
 \subsubsection*{Des tuples ou des fonctions?}
-Dans son livre de 1982, Ullman parle de deux
+Dans son livre de 1982~\cite{ullman}, Ullman parle de deux
 façons de définir les relations (tables) de l'algèbre relationnelle:
 soit comme un sous-ensemble d'un produit de domaines
 (donc comme un ensemble de tuples, où chaque
@@ -36,7 +36,8 @@ est son image par cette fonction).
 
 Ullman décide d'utiliser la première définition pour le reste de son livre,
 et ne détaille pas plus la deuxième définition. C'est pourtant cette deuxième
-définition que j'ai décidé de prendre dans ce cas ci, puisque que ce soit
+définition que j'ai décidé de prendre pour
+le travail effectué pendant ce stage, puisque que ce soit
 pour le chiffrement comme pour la fragmentation, on fait ici référence aux différentes
 colonnes d'une table par leur nom (toutes les colonnes ont un nom, et tous les
 noms des colonnes sont différents) et il est donc plus facile de raisonner,
@@ -77,8 +78,8 @@ expressif sans que cela enlève
 les avantages du langage restrictif.
 
 En effet, si jamais une loi de commutation est correcte avec des définitions
-moins restrictives, le sens de la requête reste le même avant et après
-commutation et donc la loi de commutation est également sémantiquement correcte pour
+moins restrictives, alors, du fait que le sens de la requête reste le même avant et après
+commutation, la loi de commutation est également sémantiquement correcte pour
 les définitions plus restrictives.
 
 \subsubsection*{Des sélections portant sur plus d'un attribut à la fois.}
@@ -102,7 +103,7 @@ Cette notation suggère que les prédicats $p$ et $q$ portent
 chacun sur un seul attribut (respectivement $\alpha$ et $\beta$).
 
 Le problème est qu'il y a certains prédicats qui ne peuvent
-pas ce décomposer en des prédicats portant chacun sur un seul attribut.
+pas se décomposer en des prédicats portant chacun sur un seul attribut.
 
 Par exemple, si on dispose d'une base données concernant
 des ornithorynques, qu'un des attributs de la base de données indique
@@ -187,7 +188,7 @@ des lignes.
 Cependant, il s'est avéré que ce n'était pas possible de traiter la défragmentation
 comme un cas particulier de jointure, car, du fait que la jointure
 peut produire plusieurs lignes là où avant il n'y en avait qu'une seule,
-la jointure ce doit de changer les identifiants des lignes pour des identifiants frais,
+la jointure se doit de changer les identifiants des lignes pour des identifiants frais,
 ce qui est incompatible avec le comportement qu'a la défragmentation
 vis-à-vis des identifiants des lignes.
 
