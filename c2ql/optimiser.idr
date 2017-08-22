@@ -37,3 +37,5 @@ pred = Equal A "Bureau"
 
 example1 : Fonction 0 1
 example1 = Defrag .< (Project [N], Select pred) >. Frag [N, D] . Rel RendezVous
+
+schemaRes : Fonction args res -> Vect args Schema -> Vect res Schema
