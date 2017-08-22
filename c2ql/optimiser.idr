@@ -21,16 +21,10 @@ mutual
     Rel     : Schema -> Fonction 0 1
     -- For composition
     (.) : Fonction b c -> Fonction a b -> Fonction a c
---    (>>) : Uncomplete a -> Fonction b 2 -> Fonction b a
     (.<): Fonction 2 a -> Uncomplete b -> Fonction b a
 
   data Uncomplete : Nat -> Type where
     (>.) : (Fonction 1 1 , Fonction 1 1) -> Fonction a 2 -> Uncomplete a
---    (<): Fonction 2 a -> (Fonction 1 1, Fonction 1 1) -> Uncomplete a
-
--- To set the priority right
--- infix 6 <
--- < = .<
 
 pred: C2QLPred
 pred = Equal A "Bureau"
