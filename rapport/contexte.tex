@@ -75,7 +75,7 @@ que manipule le programme entre deux clouds n'ayant aucun rapport entre eux
 etc$\dots$).
 Ceci permet de protéger celles des données personnelles qui sont constituées d'une
 \emph{association} de deux données. Par exemple, dans une application stockant
-un ensemble de rendez-vous, l'association $(\mathrm{date}, \mathrm{lieu})$
+un ensemble de rendez-vous, l'association $\{\mathrm{date}, \mathrm{lieu}\}$
 doit être protégée, car une personne malveillante ayant accès à ces deux
 informations là à la fois pourrait suivre l'utilisateur de l'application.
 
@@ -83,7 +83,7 @@ L'idée de fragmentation verticale, la façon de l'utiliser,
 et même le fait de décrire certaines contraintes de
 confidentialité sous la forme d'un couple d'attributs
 sont empruntés à un article de 
-Oury et Swierstra~\cite{OurySwierstra}.
+Aggarwal et al.~\cite{aggar}.
 
 La fragmentation verticale contribue à protéger la confidentialité,
 mais d'une façon parfois moins forte que celles du chiffrement
@@ -183,11 +183,11 @@ présents dans le langage sont
 	qui déchiffre un attribut dans une table.
 \end{itemize}
 
-\paragraph{\og Où est passée le calcul côté client?\fg{}}
+\paragraph{\og Où est passé le calcul côté client?\fg{}}
 est une question que vous vous posez peut-être en ce moment.
 En effet, il peut paraître étrange que le langage
 C2QL n'intégre pas d'opérateur relatif
-ax calculs côté client, qui est l'une des techniques
+aux calculs côté client, qui est l'une des techniques
 que nous avons annoncée comme étant prise en compte
 dans le langage C2QL.
 
@@ -272,9 +272,9 @@ qu'une version utilisant efficacement les techniques de protection.
 \paragraph{Deuxième étape: ajouter les techniques de protection nécessaires.}
 Comme vu à la section \ref{fautComposer}, le langage C2QL suppose que les contraintes de confidentialité sont de deux types:
 soit il s'agit d'une association entre deux attributs que l'on veut 
-protéger, dans lequel cas on choisit de mettre les deux attributs de l'association
+protéger, et dans ce cas on choisit de mettre les deux attributs de l'association
 dans des fragments distincts grâce à la fragmentation verticale, soit il s'agit de la
-valeur d'un attribut que l'on veut protéger, dans lequel cas soit on chiffre cette valeur,
+valeur d'un attribut que l'on veut protéger, et dans ce cas soit on chiffre cette valeur,
 soit on la décompose sur plusieurs fragments avec la technique exposée par Aggarwal~\cite{aggar}. Dans les deux cas on peut passer des 
 versions locales des requêtes à des versions protégées en faisant apparaître 
 à droite de la requête les fonctions de protection composées avec leurs fonctions réciproques.

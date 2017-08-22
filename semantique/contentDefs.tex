@@ -19,7 +19,7 @@ formelle des fonctions dont est composé le langage C2QL.
 
 \begin{defi}
 	On appelle \emph{schéma relationnel} tout ensemble
-	de noms d'attributs réguliers.
+	fini de noms d'attributs réguliers.
 \end{defi}
 
 \subsection*{Définitions générales}
@@ -33,7 +33,8 @@ formelle des fonctions dont est composé le langage C2QL.
 
 \begin{defi}
 	On appelle \emph{relation} de schéma relationnel $\Delta$
-	tout ensemble de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
+	tout ensemble fini
+	de fonctions de $\Delta \cup \{ id \}$ dans $\val$.
 	
 	Chacun des éléments de la relation (chacune de ces fonctions)
 	est appelé(e) \emph{ligne}.
@@ -47,7 +48,7 @@ formelle des fonctions dont est composé le langage C2QL.
 
 \begin{defi}
 	On appelle $\Sc$ l'ensemble des schémas relationnels possibles.
-	Autrement dit, on pose  $\Sc = \mathcal{P}\left( \Sigma^* \setminus \{id\} \right)$.
+	Autrement dit, on pose  $\Sc = \mathcal{P}_f\left( \Sigma^* \setminus \{id\} \right)$.
 	
 	On appelle $\R$ l'ensemble des relations possibles,
 	
@@ -156,7 +157,8 @@ et il serait le seul.
 	$$
 	\s(r) \cap \s(r') = \emptyset
 	$$
-	On remarquera que deux relations unifiables non vides sont également joignables.
+	On remarquera que deux relations unifiables non vides sont également joignables: leur jonction naturelle
+	est alors égale à leur produit cartésien.
 	
 	On note $\ru$ l'ensemble des paires de relations unifiables,
 	qui	est un sous-ensemble de $\R^2$.
@@ -195,7 +197,7 @@ et il serait le seul.
 
 \begin{defi}
 	On appelle \emph{défragmentation} la fonction
-	de $\ru$ à valeur dans $\R$ définie par:
+	de $\ru$ à valeurs dans $\R$ définie par:
 	$$
 	\begin{array}{llcl}
 	\defrag: & \ru & \rightarrow & \R \\
@@ -451,7 +453,7 @@ et $z$ est un élément de $\val$.
 \begin{defi}
 	On dit que deux tables $r$ et $r'$ sont \emph{défragmentables horizontalement}
 	si elles ont  même schéma relationnel
-	e leurs ensembles d'identifiants sont disjoints.
+	et leurs ensembles d'identifiants sont disjoints.
 	Autrement dit,
 	$$
 	\left\lbrace
